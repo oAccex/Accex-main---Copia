@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro de Locais</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/formularios.css" />
+    <link rel="stylesheet" href="css/header-footer.css">
+    <link rel="stylesheet" href="css/cadastroLocais.css">
+    <script src="js/menu.js" defer></script>
+    <script src="js/image-preview.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <style>
+        
+    </style>
+  </head>
+  <body>
+    <header>
+      <span></span>
+      <a href="/"><img src="image/logoAccex-azul.png" alt="Logo" /></a>
+      <img src="image/iconePERFIL.png" id="usuario" alt="User" class="open-menu"/>
+      <nav class="menu-container">
+        <ul>
+          <li>Entrar</li>
+          <li>Cadastro</li>
+          <li>Perfil</li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <h1>Criar estabelecimento</h1>
+        <form action="" class="locais">
+            <label for="NomeLocal">Nome do estabelecimento:</label>
+            <input type="text" id="NomeLocal" required>
+            <p>Tipo de estabelecimento:</p>
+            <div class="Tipo-locais">
+                <span><input type="radio" name="estabelecimento" id="Universidade" required><label for="Universidade">Universidade</label></span>
+                <span><input type="radio" name="estabelecimento" id="Mercado" required><label for="Mercado">Mercado</label></span>
+                <span><input type="radio" name="estabelecimento" id="Parque" required><label for="Parque">Parque</label></span>
+                <span><input type="radio" name="estabelecimento" id="Restaurante" required><label for="Restaurante">Restaurante</label></span>
+                <span><input type="radio" name="estabelecimento" id="Hotel" required><label for="Hotel">Hotel</label></span>
+                <span><input type="radio" name="estabelecimento" id="Biblioteca" required><label for="Biblioteca">Biblioteca</label></span>
+            </div>
+            <label for="Cidade">Cidade:</label>
+            <input type="text" name="Cidade" id="Cidade" required>
+            <label for="CEP">CEP:</label>
+            <input type="text" name="CEP" id="CEP" required>
+            <label for="Rua">Rua:</label>
+            <input type="text" name="Rua" id="Rua" required>
+            <label for="Bairro">Bairro:</label> 
+            <input type="text" name="Bairro" id="Bairro" required>
+            <label for="Num">Número(Estabelecimento):</label>
+            <input type="text" name="Num" id="Num" required maxlength="4">
+
+            <p>Anexe uma foto do estabelecimento:</p>
+            <div id="boxLocal">
+              <label for="Local" class="addLocal">+</label>
+              <input type="file" aria-label="Logo" required name="Local" id="Local" max="1" placeholder="Local">
+          </div>
+            <button>
+                <a href="localCaracteristicas">Continuar</a>
+            </button>
+        </form>
+    </main>
+    <footer style="margin-top: 10vh;">
+      <a href="faleConosco">Fale conosco</a>
+      <div class="rodape-info">
+        <img src="image/logoAccex-branca.png" alt="" id="logo">
+        <p>E-mail <br/> accex@gmail.com</p>
+        <div class="socialMedia">
+          <div><img src="image/logoFaceb.png" alt="Ícone Facebook" /></div><div>
+            <img src="image/logoInstag.png" alt="Ícone Instagram"/>
+          </div><div>
+            <img src="image/logoX.png" alt="Ícone X"/>
+          </div></div>
+      </div>
+    </footer>
+    <script>
+      $("#CNPJ").mask("99.999.999/9999-99");
+      $("#Telefone").mask("(99) 99999-99999")
+      $("#CEP").mask("99999-999")
+      $("#CPF").mask("999.999.999-99")
+      $("#data").mask("99/99/9999")
+  </script>
+    </body>
+    </html>

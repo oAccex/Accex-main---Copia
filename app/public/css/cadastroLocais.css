@@ -1,0 +1,50 @@
+form{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #79797946;
+    border-radius: 10px;
+    padding: 5vw;
+    }
+
+input[type='file']{
+    display:none
+}
+
+#boxLocal label{
+    background-color: white;
+    width: 20vw;
+    aspect-ratio: 18/9;
+    color: #797979;
+    display: flex;
+    align-items:center;
+    justify-content: flex-start;
+    padding-left: 2.5vw ;
+    font: normal bold 5vw Roboto;
+    cursor: pointer;
+    border: 1px solid #79797946;
+    margin: 0 !important;
+    align-self: center;
+    grid-area: label;
+}
+
+label>img{
+    width: 100%;
+}
+
+#boxLocal{
+    margin: 2vh auto;
+    width: 80vw;
+    height: 30vw;
+    display: grid;
+    grid-template-columns: 1fr, 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "label img";
+    cursor: pointer;
+}
+
+
+.imgLocal{
+    aspect-ratio: 16/9;
+    width: 50vw;
+    grid-area: img;
+}

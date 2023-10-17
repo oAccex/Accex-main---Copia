@@ -57,9 +57,9 @@ router.get("/", verificarUsuAutenticado, function (req, res) {
   res.render("pages/index", req.session.autenticado);
 });
 
-router.get("/sair", limparSessao, function (req, res) {
-  res.redirect("/");
-});
+// router.get("/sair", limparSessao, function (req, res) {
+//   res.redirect("/");
+// });
 
 
 router.get("/login", function (req, res) {
@@ -74,7 +74,7 @@ router.post(
     .withMessage("O nome de usuário/e-mail deve ter de 8 a 45 caracteres"),
   body("password")
     .isStrongPassword()
-    .withMessage("A senha deve ter no mínimo 8 caracteres (mínimo 1 letra maiúscula, 1 caractere especial e 1 número)"),
+    .withMessage("A senha ou usuario estão incorretos"),
 
   gravarUsuAutenticado(usuarioDAL, bcrypt),
   function (req, res) {

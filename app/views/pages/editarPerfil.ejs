@@ -13,61 +13,75 @@
   <script src="js/menu.js" defer></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />​
   <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
+  <script type="text/javascript" src="//acc.magixite.com/freeCode?oatk=2133516" />
   <script src="js/notify.js"></script>​
 </head>
 
 <body>
-  <% 
-  let msgErro = {"fullName":"", "password":"",userName:""};
-  let avisoErro = {"fullName":"", "password":"",userName:""};
-  if(listaErros){
-      listaErros.errors.forEach(function(itemErro){
-          if(itemErro.path == "fullName"){
-              avisoErro.fullName = "erro";
-              msgErro.fullName += " "+itemErro.msg;
-              %>
-              <script>
-                  notify("Erro no preenchimento","Verifique o campo nome<br><%= itemErro.msg%>", "error", "center")                        
-              </script>
-              <%
-          }
-          if(itemErro.path == "password"){
-              avisoErro.password = "erro";
-              msgErro.password = itemErro.msg;
-              %>
-              <script>
-                  notify("Erro no preenchimento","Verifique o campo senha<br><%= itemErro.msg%>", "error", "center")                        
-              </script>
-              <%                
-          }
-          if(itemErro.path == "userName"){
-              avisoErro.userName = "erro";
-              msgErro.userName = itemErro.msg;
-              %>
-              <script>
-                  notify("Erro no preenchimento","Verifique o campo nome de usuário<br><%= itemErro.msg%>", "error", "center")                        
-              </script>
-              <%
-          }
-          if(itemErro.path == "email"){
-              avisoErro.email = "erro";
-              msgErro.email = itemErro.msg;
-              %>
-              <script>
-                  notify("Erro no preenchimento","Verifique o campo e-mail<br><%= itemErro.msg%>", "error", "center")                        
-              </script>
-              <%
-          }
-      })
-  }
-  if (dadosNotificacao) { %>
-    <script>
-            notify("<%= dadosNotificacao.titulo%>","<%= dadosNotificacao.mensagem%>", "<%= dadosNotificacao.tipo%>", "center")
-            if("<%= dadosNotificacao.tipo %>" == "success"){
-                setTimeout(function(){window.location="/"}, 3007)
-            }                        
-    </script>
-<% } %>
+    <%
+
+    let arquivo = {"imagem":"image/img-perfil.png"}
+ 
+    if(valores.img_perfil != null){
+        arquivo.imagem = valores.img_perfil
+    }
+
+    let msgErro = {"nome_completo":"", "email":"",nickname:"", telefone:""}
+    let avisoErro = {"nome_completo":"", "email":"",nickname:"", telefone:""}
+    if(listaErros){
+        listaErros.errors.forEach(function(itemErro){
+            if(itemErro.path == "nome_completo"){
+                avisoErro.nome_completo = "erro";
+                msgErro.nome_completo += " "+itemErro.msg
+                %>
+                <script>
+                    notify("Erro no preenchimento","Verifique o campo nome <br><%= itemErro.msg%>", "error", "center")                        
+                </script>
+                <%
+            }
+            if(itemErro.path == "telefone"){
+                avisoErro.telefone = "erro";
+                msgErro.telefone = itemErro.msg
+                %>
+                <script>
+                    notify("Erro no preenchimento","Verifique o campo Telefone", "error", "center")                        
+                </script>
+                <%
+            }
+            if(itemErro.path == "nickname"){
+                avisoErro.nickname = "erro";
+                msgErro.nickname = itemErro.msg
+                %>
+                <script>
+                    notify("Erro no preenchimento","Verifique o campo nome de usuário", "error", "center")                        
+                </script>
+                <%
+            }
+            if(itemErro.path == "email"){
+                avisoErro.email = "erro";
+                msgErro.email = itemErro.msg
+                %>
+                <script>
+                    notify("Erro no preenchimento","Verifique o campo e-mail", "error", "center")                        
+                </script>
+                <%
+            }
+        })
+    }
+    
+    if (dadosNotificacao) { 
+
+        %>
+        <script>
+                notify("<%= dadosNotificacao.titulo%>","<%= dadosNotificacao.mensagem%>", "<%= dadosNotificacao.tipo%>", "center")
+                
+                if("<%= dadosNotificacao.tipo %>" == "success"){
+                    setTimeout(function(){
+                        window.location="/"
+                    }, 3000)
+                }                        
+        </script>
+    <% } %>
 
   <header>
     <span></span>
@@ -84,12 +98,12 @@
   <main>
 
     <h1>Faça o seu cadastro</h1>
-    <form method="post" action="/cadastro">
+    <form method="post" action="/editar">
       <label for="nome_usu">Seu nome completo:</label>
-      <input type="text" id="fullName" name="fullName" value="<%= valores.fullName %>" class="<%= avisoErro.fullName %>"/> 
+      <input type="text" id="fullName" name="fullName" value="<%= valores.nome_completo %>" class="<%= avisoErro.fullName %>"/> 
       <span> <%= msgErro.fullName %> </span>
       <label for="nomeusu_usu">Nome de Usuário:</label>
-      <input type="text" id="userName" name="userName"value="<%= valores.userName %>" class="<%= avisoErro.userName %>"/>
+      <input type="text" id="userName" name="userName"value="<%= valores.nickname %>" class="<%= avisoErro.userName %>"/>
       <span> <%= msgErro.userName %> </span>
       <label for="telefone">Telefone:</label>
       <input type="tel" id="telefone" name="telefone"value="<%= valores.telefone %>" class="<%= avisoErro.telefone %>"/>
@@ -100,30 +114,8 @@
       <label for="password">Senha:</label>
       <input type="password" id="password" name="password"value="<%= valores.password %>" class="<%= avisoErro.password %>"/>
       <span> <%= msgErro.password %> </span>
-      <button type="submit" id="butcad">Cadastrar</button>
+      <button type="submit" id="butcad">Editar</button>
     </form>
-    <div id="enter"><p class="message">Já é cadastrado? <a href="/login">Entre</a></p></div>
-
-    <div vw class="enabled">
-
-      <div vw-access-button class="active"></div>
-  
-      <div vw-plugin-wrapper>
-  
-        <div class="vw-plugin-top-wrapper"></div>
-  
-      </div>
-  
-    </div>
-  
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-  
-    <script>
-  
-  new window.VLibras.Widget('https://vlibras.gov.br/app');
-  
-    </script>
-
   </main>
 
 

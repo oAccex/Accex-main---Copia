@@ -13,13 +13,14 @@
     <script src="js/menu.js" defer></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />​
     <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
+    <script type="text/javascript" src="//acc.magixite.com/freeCode?oatk=2133516" />
     <script src="js/notify.js"></script>
   </head>
   <body>
     <% if(autenticado){
       if(login){%>
      <script>
-         notify("Login efetuado com sucesso", "Olá <%= autenticado%>", "success", "center")                        
+         notify("Olá <%= autenticado%>", "Login efetuado com sucesso", "success", "center")                        
      </script>
      <% } } %>
     <header>
@@ -219,19 +220,46 @@
             <a href="#"><p>Mais detalhes</p></a>
           </div>
         </div>
+
+
+        
         <div class="signUp">
+          <% if(autenticado == null){ %>
           <div class="cadastrar-home">
             <img src="image/iconeCADASTR.png" alt="Ícone" />
             <p>Com o seu cadastro, você <br> encontrará variados lugares</p>
             <a href="cadastro ">Me cadastrar</a>
           </div>
+          <% }else if(autenticado){ %>
           <div class="addLocal-home">
             <img src="image/iconeADDLOCA.png" alt="Ícone" />
             <p>Ajude-nos <br> a crescer</p>
             <a href="#">Adicionar Local</a>
           </div>
+          <% } %>
         </div>
       </section>
+
+      <div vw class="enabled">
+
+        <div vw-access-button class="active"></div>
+    
+        <div vw-plugin-wrapper>
+    
+          <div class="vw-plugin-top-wrapper"></div>
+    
+        </div>
+    
+      </div>
+    
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    
+      <script>
+    
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+    
+      </script>
+
     </main>
     <footer>
       <a href="faleConosco">Fale conosco</a>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/header-footer.css">
+    <link rel="stylesheet" href="css/locais.css">
+    <link rel="stylesheet" href="css/caixasLocais.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <script src="js/menu.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <span></span>
+      <a href="/"><img src="image/logoAccex-azul.png" alt="Logo" /></a>
+      <a><img src="image/iconePERFIL.png" id="usuario" alt="User" class="open-menu"/></a>
+      <nav class="menu-container">
+        <ul>
+          <li><a href="index">Entrar</a></li>
+          <li><a href="cadastro ">Cadastro</a></li>
+          <li><a href="perfil">Perfil</a></li>
+        </ul>
+      </nav>
+    </header>
+    <h1>
+        Restaurantes perto de você
+    </h1>
+    <section class="selectLocal">
+      <label for="bairro">Selecione o bairro</label>
+      <select name="bairro" id="bairro">
+        <option value="Aldeia da Serra">Aldeia da Serra</option>
+        <option value="Alphaville">Alphaville</option>
+        <option value="Altos">Altos</option>
+        <option value="Belval">Belval</option>
+      </select>
+    </section>
+    <main>
+      <section>
+        <div class="place">
+          <img
+            src="https://source.unsplash.com/random/360x200/?nature"
+            alt="Imagem Local"
+          />
+          <div class="info-place">
+            <div>
+              <h2>Lummina hotel</h2>
+              <span class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star no"></i>
+              </span>
+            </div>
+            <div class="address">
+              <img src="image/inoceLOCALIZ.png" alt="Ícone local" />
+              <p>Avenida Anápolis, 584 - Vila Nilva Barueri - SP</p>
+            </div>
+            <div class="desc">
+              <p>
+                Este hotel se encontra em Alphaville, Barueri. Sendo um ótimo
+                lugar para acomodar-se.
+              </p>
+            </div>
+            <a href="#"><p>Mais detalhes</p></a>
+          </div>
+        </div>
+        <div class="place">
+          <img
+            src="https://source.unsplash.com/random/360x200/?nature"
+            alt="Imagem Local"
+          />
+          <div class="info-place">
+            <div>
+              <h2>Faculdade FATEC</h2>
+              <span class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star no"></i>
+                <i class="fa-solid fa-star no"></i>
+              </span>
+            </div>
+            <div class="address">
+              <img src="image/inoceLOCALIZ.png" alt="Ícone local" />
+              <p>Avenida Carlos Capriotti, 123 Centro de Barueri - SP</p>
+            </div>
+            <div class="desc">
+              <p>
+                Nesta faculdade, você aprenderá com <br> facilidade de acesso para inclusão.
+              </p>
+            </div>
+            <a href="#"><p>Mais detalhes</p></a>
+          </div>
+        </div>
+        <div class="place">
+          <img
+            src="https://source.unsplash.com/random/360x200/?nature"
+            alt="Imagem Local"
+          />
+          <div class="info-place">
+            <div>
+              <h2>Supermercado Dia</h2>
+              <span class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </span>
+            </div>
+            <div class="address">
+              <img src="image/inoceLOCALIZ.png" alt="Ícone local" />
+              <p>AV. Vinte e Seis de Março, 989 Centro de Barueri - SP</p>
+            </div>
+            <div class="desc">
+              <p>
+                Este hotel se encontra em Alphaville, Barueri. Sendo um ótimo
+                lugar para acomodar-se.
+              </p>
+            </div>
+            <a href="#"><p>Mais detalhes</p></a>
+          </div>
+        </div>
+        <button>Mais opções</button>
+        </section>
+    </main>
+    <footer>
+      <a href="faleConosco">Fale conosco</a>
+        <footer>
+          <a href="#">Fale conosco</a>
+          <div class="rodape-info">
+            <img src="image/logoAccex-branca.png" alt="" id="logo">
+            <p>E-mail <br/> accex@gmail.com</p>
+            <div class="socialMedia">
+              <div><img src="image/logoFaceb.png" alt="Ícone Facebook" /></div><div>
+                <img src="image/logoInstag.png" alt="Ícone Instagram"/>
+              </div><div>
+                <img src="image/logoX.png" alt="Ícone X"/>
+              </div></div>
+          </div>
+        </footer>
+    </body>
+  </html>

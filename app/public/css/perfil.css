@@ -1,0 +1,51 @@
+.user-name{
+    background-image:linear-gradient(to right, #00518C,  #377ED0 );
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+    padding: 1.5vh 10vw;
+}
+
+.user-name h1{
+    font: normal 4.5vw "Montserrat",sans-serif;
+}
+
+.user-name img{
+    width: 25%;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+}
+
+main{
+    width: 80vw;
+    margin: 5vh auto;
+    display: flex;
+    flex-direction: column;
+    gap: 6vh;
+}
+
+main .box-perfil{
+    margin: auto;
+    width: 70vw;
+    height: 30vw;
+    background-color: #1C6AB1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2vh;
+    border-radius: 10px;
+}
+
+.box-perfil img{
+    width: 15%;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+}
+
+.box-perfil p{
+    color: white;
+    font: normal 4.5vw "Montserrat",sans-serif;
+    text-align: center;
+}

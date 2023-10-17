@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="css/caixasLocais.css">
+    <link rel="stylesheet" href="css/slider.css" />
+    <link rel="stylesheet" href="css/header-footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <script src="js/menu.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />​
+    <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
+    <script src="js/notify.js"></script>
+  </head>
+  <body>
+    <% if(autenticado){
+      if(login){%>
+     <script>
+         notify("Login efetuado com sucesso", "Olá <%= autenticado%>", "success", "center")                        
+     </script>
+     <% } } %>
+    <header>
+      <span></span>
+      <a href="/"><img src="image/logoAccex-azul.png" alt="Logo" /></a>
+      <img src="image/iconePERFIL.png" id="usuario" alt="User" class="open-menu"/>
+      <nav class="menu-container">
+        <ul>
+          <li><a href="login">Entrar</a></li>
+          <li><a href="cadastro">Cadastro</a></li>
+          <li><a href="perfil ">Perfil</a></li>
+        </ul>
+      </nav>
+    </header>
+    <section class="categories">
+      <form class="searchBar">
+        <input
+          type="search"
+          id="search"
+          name="search"
+          placeholder="Para onde iremos hoje?"
+        />
+      </form>
+      <div class="cat-icons">
+        <div>
+          <a href="#"
+            ><img src="image/iconeUNIVER.png" alt="Ícone categoria"
+          /></a>
+          <p>Universidades</p>
+        </div>
+        <div>
+          <a href="#"
+            ><img src="image/inoneMERCAD.png" alt="Ícone categoria"
+          /></a>
+          <p>Supermercados</p>
+        </div>
+        <div>
+          <a href="#"
+            ><img src="image/iconePARQ.png" alt="Ícone categoria"
+          /></a>
+          <p>Parques</p>
+        </div>
+        <div>
+
+          <a href="#"
+            ><img src="image/iconeRESTAL.png" alt="Ícone categoria"
+          /></a>
+          <p>Restaurantes</p>
+        </div>
+        <div>
+          <a href="#"
+            ><img src="image/iconeHOTEL.png" alt="Ícone categoria"
+          /></a>
+          <p>Hotéis</p>
+        </div>
+        <div>
+          <a href="#"
+            ><img src="image/iconeBIBLIO.png" alt="Ícone categoria"
+          /></a>
+          <p>Bibliotecas</p>
+        </div>
+      </div>
+    </section>
+    <section class="slider">
+      <button class="arrow-left control" aria-label="Previous Image"><img src="image/seta-direita.png" alt=""></button>
+      <button class="arrow-right control" aria-label="Next Image"><img src="image/seta-direita.png" alt="Seta direita"></button>
+      <div class="gallery-wrapper">
+        <div class="gallery">
+          <img
+            src="image/slider/SLIDE1_CRRSSL.png"
+            alt="Image Slider"
+            class="item current-item"
+          />
+          <img
+            src="image/slider/slide2.jpeg"
+            alt="Image Slider"
+            class="item"
+          />
+          <img
+            src="image/slider/slide3.jpeg"
+            alt="Image Slider"
+            class="item"
+          />
+          <img
+            src="image/slider/slide4.jpeg"
+            alt="Image Slider"
+            class="item"
+          />
+        </div>
+      </div>
+    </section>
+    <main>
+      <section class="info">
+        <div>
+          <img src="image/iconeINCLUS.png" alt="Ícone Pessoas" />
+          <p>Inclusão com mais <br> facilidade para você</p>
+        </div>
+        <div>
+          <img src="image/inoceLOCALIZ.png" alt="Ícone Local" />
+          <p>Accex te ajuda a encontrar <br> lugares acessíveis</p>
+        </div>
+        <div>
+          <img src="image/iconeCADEIR.png" alt="Ícone acessibilidade" />
+          <p>Informações acessíveis <br> para todos</p>
+        </div>
+      </section>
+      <section class="placeText">
+        <p>Lugares perto de você</p>
+      </section>
+      <section class="locations">
+        <div class="locationUser">
+          <img src="image/inoceLOCALIZ.png" alt="Ícone Local" />Barueri
+        </div>
+        <div class="place">
+          <img
+            src="https://source.unsplash.com/random/360x200/?nature"
+            alt="Imagem Local"
+          />
+          <div class="info-place">
+            <div>
+              <h2>Lummina hotel</h2>
+              <span class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star no"></i>
+              </span>
+            </div>
+            <div class="address">
+              <img src="image/inoceLOCALIZ.png" alt="Ícone local" />
+              <p>Avenida Anápolis, 584 - Vila Nilva Barueri - SP</p>
+            </div>
+            <div class="desc">
+              <p>
+                Este hotel se encontra em Alphaville, Barueri. Sendo um ótimo
+                lugar para acomodar-se.
+              </p>
+            </div>
+            <a href="#"><p>Mais detalhes</p></a>
+          </div>
+        </div>
+        <div class="place">
+          <img
+            src="https://source.unsplash.com/random/360x200/?nature"
+            alt="Imagem Local"
+          />
+          <div class="info-place">
+            <div>
+              <h2>Faculdade FATEC</h2>
+              <span class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star no"></i>
+                <i class="fa-solid fa-star no"></i>
+              </span>
+            </div>
+            <div class="address">
+              <img src="image/inoceLOCALIZ.png" alt="Ícone local" />
+              <p>Avenida Carlos Capriotti, 123 Centro de Barueri - SP</p>
+            </div>
+            <div class="desc">
+              <p>
+                Nesta faculdade, você aprenderá com <br> facilidade de acesso para inclusão.
+              </p>
+            </div>
+            <a href="#"><p>Mais detalhes</p></a>
+          </div>
+        </div>
+        <div class="place">
+          <img
+            src="https://source.unsplash.com/random/360x200/?nature"
+            alt="Imagem Local"
+          />
+          <div class="info-place">
+            <div>
+              <h2>Supermercado Dia</h2>
+              <span class="rating">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </span>
+            </div>
+            <div class="address">
+              <img src="image/inoceLOCALIZ.png" alt="Ícone local" />
+              <p>AV. Vinte e Seis de Março, 989 Centro de Barueri - SP</p>
+            </div>
+            <div class="desc">
+              <p>
+                Este hotel se encontra em Alphaville, Barueri. Sendo um ótimo
+                lugar para acomodar-se.
+              </p>
+            </div>
+            <a href="#"><p>Mais detalhes</p></a>
+          </div>
+        </div>
+        <div class="signUp">
+          <div class="cadastrar-home">
+            <img src="image/iconeCADASTR.png" alt="Ícone" />
+            <p>Com o seu cadastro, você <br> encontrará variados lugares</p>
+            <a href="cadastro ">Me cadastrar</a>
+          </div>
+          <div class="addLocal-home">
+            <img src="image/iconeADDLOCA.png" alt="Ícone" />
+            <p>Ajude-nos <br> a crescer</p>
+            <a href="#">Adicionar Local</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <a href="faleConosco">Fale conosco</a>
+      <div class="rodape-info">
+        <img src="image/logoAccex-branca.png" alt="" id="logo">
+        <p>E-mail <br/> accex@gmail.com</p>
+        <div class="socialMedia">
+          <div><img src="image/logoFaceb.png" alt="Ícone Facebook" /></div><div>
+            <img src="image/logoInstag.png" alt="Ícone Instagram"/>
+          </div><div>
+            <img src="image/logoX.png" alt="Ícone X"/>
+          </div></div>
+      </div>
+    </footer>
+  </body>
+  <script src="js/slider.js"></script>
+</html>

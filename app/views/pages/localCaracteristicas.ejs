@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/formularios.css" />
+    <link rel="stylesheet" href="css/header-footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <script src="js/menu.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <span></span>
+      <a href="/"><img src="image/logoAccex-azul.png" alt="Logo" /></a>
+      <img src="image/iconePERFIL.png" id="usuario" alt="User" class="open-menu"/>
+      <nav class="menu-container">
+        <ul>
+          <li><a href="index">Entrar</a></li>
+          <li><a href="cadastro ">Cadastro</a></li>
+          <li><a href="perfil">Perfil</a></li>
+        </ul>
+      </nav>
+    </header>
+<main>
+    <h1>Adicionar Acesso(s)</h1>
+    <form class="Acessos">
+        <fieldset>
+            <legend>Este local possui andares?</legend>
+            <div><input type="radio" name="andares" id="SimAnd" value="Possui andares"><label for="SimAnd">Sim</label></div>
+            <div><input type="radio" name="andares" id="NaoAnd" value="Não possui andares"><label for="NaoAnd">   Não</label></div>
+        </fieldset>
+        <fieldset>
+            <legend>Este local escada(s) rolante?</legend>
+            <div><input type="radio" name="escada" id="SimEsc" value="Possui escada rolante"><label for="SimEsc">Sim</label></div>
+            <div><input type="radio" name="escada" id="NaoEsc" value="Não possui escada rolante"><label for="NaoEsc">Não</label></div>
+        </fieldset>
+        <fieldset>
+            <legend>Este local possui elevador(es)?</legend>
+            <div><input type="radio" name="elevadores" id="SimEle" value="Possui elevadores"><label for="SimEle">Sim</label></div>
+            <div><input type="radio" name="elevadores" id="NaoEle" value="Não possui elevadores"><label for="NaoEle">Não</label></div>
+        </fieldset>
+        <fieldset>
+            <legend>Este local possui rampa(s) de acesso?</legend>
+            <div><input type="radio" name="rampa" id="SimRam" value="Possui rampa de acesso"><label for="SimRam">Sim</label></div>
+            <div><input type="radio" name="rampa" id="NaoRam" value="Não possui rampa de acesso"><label for="NaoRam">Não</label></div>
+        </fieldset>
+        <fieldset>
+            <legend>Este local possui piso tátil?</legend>
+            <div><input type="radio" name="piso" id="SimPiso" value="Possui piso tátil"><label for="SimPiso">Sim</label></div>
+            <div><input type="radio" name="piso" id="NaoPiso" value="Não possui piso tátil"><label for="NaoAnd">Não</label></div>
+        </fieldset>
+        <button>Finalizar</button>
+    </form>
+</main>
+<footer>
+  <a href="faleConosco">Fale conosco</a>
+  <div class="rodape-info">
+    <img src="image/logoAccex-branca.png" alt="" id="logo">
+    <p>E-mail <br/> accex@gmail.com</p>
+    <div class="socialMedia">
+      <div><img src="image/logoFaceb.png" alt="Ícone Facebook" /></div><div>
+        <img src="image/logoInstag.png" alt="Ícone Instagram"/>
+      </div><div>
+        <img src="image/logoX.png" alt="Ícone X"/>
+      </div></div>
+  </div>
+</footer>
+    </body>
+  </html>

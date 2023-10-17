@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro</title>
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/formularios.css" />
+  <link rel="stylesheet" href="css/header-footer.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+  <script src="js/menu.js" defer></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />​
+  <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
+  <script src="js/notify.js"></script>​
+</head>
+
+<body>
+  <% 
+  let msgErro = {"fullName":"", "password":"",userName:""};
+  let avisoErro = {"fullName":"", "password":"",userName:""};
+  if(listaErros){
+      listaErros.errors.forEach(function(itemErro){
+          if(itemErro.path == "fullName"){
+              avisoErro.fullName = "erro";
+              msgErro.fullName += " "+itemErro.msg;
+              %>
+              <script>
+                  notify("Erro no preenchimento","Verifique o campo nome<br><%= itemErro.msg%>", "error", "center")                        
+              </script>
+              <%
+          }
+          if(itemErro.path == "password"){
+              avisoErro.password = "erro";
+              msgErro.password = itemErro.msg;
+              %>
+              <script>
+                  notify("Erro no preenchimento","Verifique o campo senha<br><%= itemErro.msg%>", "error", "center")                        
+              </script>
+              <%                
+          }
+          if(itemErro.path == "userName"){
+              avisoErro.userName = "erro";
+              msgErro.userName = itemErro.msg;
+              %>
+              <script>
+                  notify("Erro no preenchimento","Verifique o campo nome de usuário<br><%= itemErro.msg%>", "error", "center")                        
+              </script>
+              <%
+          }
+          if(itemErro.path == "email"){
+              avisoErro.email = "erro";
+              msgErro.email = itemErro.msg;
+              %>
+              <script>
+                  notify("Erro no preenchimento","Verifique o campo e-mail<br><%= itemErro.msg%>", "error", "center")                        
+              </script>
+              <%
+          }
+      })
+  }
+  if (dadosNotificacao) { %>
+    <script>
+            notify("<%= dadosNotificacao.titulo%>","<%= dadosNotificacao.mensagem%>", "<%= dadosNotificacao.tipo%>", "center")
+            if("<%= dadosNotificacao.tipo %>" == "success"){
+                setTimeout(function(){window.location="/"}, 3007)
+            }                        
+    </script>
+<% } %>
+
+  <header>
+    <span></span>
+    <a href="/"><img src="image/logoAccex-azul.png" alt="Logo" /></a>
+    <img src="image/iconePERFIL.png" id="usuario" alt="User" class="open-menu" />
+    <nav class="menu-container">
+      <ul>
+        <li><a href="login">Entrar</a></li>
+        <li><a href="cadastro">Cadastro</a></li>
+        <li><a href="perfil">Perfil</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+
+    <h1>Faça o seu cadastro</h1>
+    <form method="post" action="/cadastro">
+      <label for="nome_usu">Seu nome completo:</label>
+      <input type="text" id="fullName" name="fullName" value="<%= valores.fullName %>" class="<%= avisoErro.fullName %>"/> 
+      <span> <%= msgErro.fullName %> </span>
+      <label for="nomeusu_usu">Nome de Usuário:</label>
+      <input type="text" id="userName" name="userName"value="<%= valores.userName %>" class="<%= avisoErro.userName %>"/>
+      <span> <%= msgErro.userName %> </span>
+      <label for="telefone">Telefone:</label>
+      <input type="tel" id="telefone" name="telefone"value="<%= valores.telefone %>" class="<%= avisoErro.telefone %>"/>
+      <span> <%= msgErro.telefone %> </span>
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" name="email"value="<%= valores.email %>" class="<%= avisoErro.email %>"/>
+      <span> <%= msgErro.email %> </span>
+      <label for="password">Senha:</label>
+      <input type="password" id="password" name="password"value="<%= valores.password %>" class="<%= avisoErro.password %>"/>
+      <span> <%= msgErro.password %> </span>
+      <button type="submit" id="butcad">Cadastrar</button>
+    </form>
+    <div id="enter"><p class="message">Já é cadastrado? <a href="/login">Entre</a></p></div>
+  </main>
+
+
+  <footer>
+    <a href="faleConosco">Fale conosco</a>
+    <div class="rodape-info">
+      <img src="image/logoAccex-branca.png" alt="" id="logo">
+      <p>E-mail <br /> accex@gmail.com</p>
+      <div class="socialMedia">
+        <div><img src="image/logoFaceb.png" alt="Ícone Facebook" /></div>
+        <div>
+          <img src="image/logoInstag.png" alt="Ícone Instagram" />
+        </div>
+        <div>
+          <img src="image/logoX.png" alt="Ícone X" />
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>
+    $("#CNPJ").mask("99.999.999/9999-99");
+    $("#telefone").mask("(99) 99999-9999")
+    $("#CEP").mask("99999-999")
+    $("#CPF").mask("999.999.999-99")
+    $("#data").mask("99/99/9999")
+    $("#card").mask("9999 9999 9999 9999")
+    $("#cvv").mask("999")
+  </script>
+</body>
+
+</html>

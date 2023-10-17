@@ -1,0 +1,84 @@
+.slider{
+    position: relative;
+    margin: 10vh auto;
+    width: 100vw;
+    /* height: 25vh; */
+}
+
+.gallery-wrapper{
+    overflow-x: auto;
+    width: 80vw;
+    margin: auto;
+}
+
+.gallery{
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 20vw;
+
+}
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+.arrow-left,.arrow-right{
+    /* font-weight: bolder; */
+    font-size: 5vw;
+    position: absolute;
+    top: 0;
+    left: auto;
+    right: 0;
+    bottom: 0;
+    width: 10%;
+    cursor: pointer;
+    border: none;
+    background: linear-gradient(to left, transparent 0%, white 250%);
+    transition: all 600ms ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.arrow-left img,.arrow-right img{
+    aspect-ratio: 1/1;
+    object-fit: contain;
+    width: 30%;
+}
+
+.arrow-left{
+    left: 0;
+    right: auto;
+    background: linear-gradient(to left transparent 0%, white 200%) !important;
+    transform: rotate(180deg);
+}
+
+.arrow-left:hover,
+.arrow-right:hover{
+    opacity: 1;
+}
+
+.item{
+    width: 100%;
+    flex-shrink: 0;
+    margin: 2vh auto;
+} 
+
+#last-image-box{
+    display: none;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.gallery-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .gallery-wrapper{
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  .place{
+    box-shadow: none !important;
+    border: 1px solid #79797946;
+  }

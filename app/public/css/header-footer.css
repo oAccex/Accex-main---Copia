@@ -1,0 +1,123 @@
+@media(max-width:480px){
+
+
+header{
+    width: 100vw;
+    height: 10vh;
+    background-color: white;
+    display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr;
+            gap: 0px 0px;
+            grid-auto-flow: row;
+            grid-template-areas:
+              "none logo user";
+          
+}
+
+header a{
+    width: 75%;
+    grid-area: logo;
+    justify-self: center;
+    align-self: center;
+}
+
+header img{
+    width: 100%;
+}
+
+#usuario{
+    width: 20% !important;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+    grid-area: user;
+    justify-self: center;
+    align-self: center;
+    z-index: 2;
+}
+
+nav{
+    position: fixed;
+    right: -100vw;
+    background-color: white;
+    width: 50vw;
+    height: 55vw;
+    display: flex;
+    justify-content: center;
+    transition-duration: 0.5s;
+    align-items: center;
+    z-index: 1;
+}
+
+.show-menu{
+    right: 0 !important;
+    position: absolute;
+    transition-duration: 0.5s;
+}
+nav ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 1.5vh;
+}
+
+footer{
+    position: relative;
+    margin-top: 8vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+    background-image: linear-gradient(135deg, #00518C,  #377ED0 );
+    padding: 5vh 10vw;
+    color: white;
+}
+
+footer>a{
+    color: white;
+}
+
+footer .rodape-info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 10vw;
+}
+
+#logo{
+    position: absolute;
+    top: 40%;
+    right: 14%;
+    width: 20%;
+}
+
+.rodape-info p{
+    font: normal 3.5vw "Montserrat",sans-serif;
+}
+
+.socialMedia{
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+}
+
+
+.socialMedia div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 15%;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+}
+
+.socialMedia div img{
+    width: 60%;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+}
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfil</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/header-footer.css">
+    <link rel="stylesheet" href="css/perfil.css">
+    <script src="js/menu.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <span></span>
+      <a href="/"><img src="image/logoAccex-azul.png" alt="Logo" /></a>
+      <img src="image/iconePERFIL.png" id="usuario" alt="User" class="open-menu"/>
+      <nav class="menu-container">
+        <ul>
+          <li><a href="login">Entrar</a></li>
+          <li><a href="cadastro ">Cadastro</a></li>
+          <li><a href="perfil">Perfil</a></li>
+        </ul>
+      </nav>
+    </header>
+    <section class="user-name"><img src="image/usuario-white.png" alt="Ícone Usuário"><h1><%=valores.nickname%></h1></section>
+    <main>
+        <a href="favoritos" class="box-perfil">
+            <img src="image/favorito-white.png" alt="Ícone Locais Favoritos">
+            <p>Locais favoritos</p>
+        </a>
+        <a href="visitados " class="box-perfil">
+            <img src="image/localizacao-white.png" alt="Ícone Estabelecimentos visitados">
+            <p>Estabelecimentos visitados</p>
+        </a>
+        <a href="#" class="box-perfil">
+            <img src="image/construcao-white.png" alt="Ícone Locais Adicionados">
+            <p>Locais adicionados</p>
+        </a>
+        <a href="/sair">Sair da conta</a>
+    </main>
+    <footer>
+      <a href="faleConosco">Fale conosco</a>
+      <div class="rodape-info">
+        <img src="image/logoAccex-branca.png" alt="" id="logo">
+        <p>E-mail <br/> accex@gmail.com</p>
+        <div class="socialMedia">
+          <div><img src="image/logoFaceb.png" alt="Ícone Facebook" /></div><div>
+            <img src="image/logoInstag.png" alt="Ícone Instagram"/>
+          </div><div>
+            <img src="image/logoX.png" alt="Ícone X"/>
+          </div></div>
+      </div>
+    </footer>
+    </body>
+  </html>

@@ -1,0 +1,55 @@
+h1{
+    background-image:linear-gradient(to right, #00518C,  #377ED0 );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 8vh;
+    color: white;
+    font: normal 4vw "Montserrat",sans-serif;
+}
+
+.selectLocal{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 2.5vh;
+    width: 80vw;
+    margin: 5vh auto 0 auto;
+}
+
+.selectLocal select{
+    width: 100%;
+    padding: 3vw;
+    border: 1px solid #79797946;
+    border-radius: 20px;
+    background-color: white;
+}
+
+.selectLocal option:focus{
+    background-color: #00518C;
+}
+
+
+
+main{
+    width: 80vw;
+}
+
+main>section{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 8vh;
+    gap: 5vh;
+}
+
+button{
+    width: 70vw;
+    background-image: linear-gradient(to right, #00518C,  #377ED0 );
+    padding: 4vw;
+    color: white;
+    border-radius: 20px;
+    margin-top: 2.5vh;
+}

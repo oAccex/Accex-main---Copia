@@ -1,0 +1,288 @@
+@media(max-width:480px){
+    header{
+        width: 100vw;
+        height: 8vh;
+        background-color: white;
+        display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-rows: 1fr;
+                gap: 0px 0px;
+                grid-auto-flow: row;
+                grid-template-areas:
+                  "none logo user";
+    
+              
+    }
+
+    header a{
+        width: 75%;
+        grid-area: logo;
+        justify-self: center;
+        align-self: center;
+    }
+
+    header img{
+        width: 100%;
+    }
+
+    #usuario{
+        width: 20% !important;
+        aspect-ratio: 1/1;
+        object-fit: contain;
+        grid-area: user;
+        justify-self: center;
+        align-self: center;
+    }
+
+    .categories{
+        width: 100vw;
+        height: 100vw;
+        padding: 5vh 10vw 5vh 10vw;
+        background-image: linear-gradient(135deg, #00518C,  #377ED0 );
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .categories .searchBar{
+        width: 100%;
+        margin:0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .searchBar input{
+        width: 90%;
+        padding: 1.5vh 2vw 1.5vh 5vw !important;
+        border-radius: 10px;
+    }
+
+    .searchBar input::placeholder{
+        font-size: 3vw;
+    }
+
+    .categories img{
+        width: 10%;
+    }
+
+    .cat-icons{
+        height: 80%;
+        margin: auto;
+        display: grid; 
+        grid-template-columns: 1fr 1fr 1fr; 
+        grid-template-rows: 1fr 1fr; 
+        gap: 0px 0px; 
+        grid-template-areas: 
+            ". . ."
+            ". . ."; 
+    }
+
+    .cat-icons div{
+        aspect-ratio: 1/1;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        align-self: center;
+        justify-self: center;
+        gap: 2vw;
+    }
+
+    .cat-icons a{
+        background-color: white;
+        border-radius: 40%;
+        width: 100%;
+        aspect-ratio: 1/1;
+        padding: 1vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .cat-icons a img{
+        width: 70%;
+        aspect-ratio: 1/1;
+        object-fit: contain;
+    }
+
+    .cat-icons div p{
+        font: normal  2.5vw "Montserrat", sans-serif;
+        color: white;
+    }
+
+    
+
+    .info{
+        margin-top: 5vh;
+        margin-bottom: 10vh;
+        width: 100vw;
+        height: 125vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .info div{
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        gap: 5vw;
+
+    }
+    .info div p{
+        text-align: center;
+        font: normal 4vw "Montserrat",sans-serif;
+        color: #797979;
+    }
+    .info img{
+        width: 20%;
+        aspect-ratio: 1/1;
+        object-fit: contain;
+    }
+
+    .placeText{
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 20vw;
+        background-image: linear-gradient(to right, #00518C,  #377ED0 );
+    }
+
+    .placeText p{
+        color: white;
+        font: normal 4vw 'Montserrat',sans-serif;
+    }
+
+    .locations{
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 8vh;
+        gap: 5vh;
+    }
+
+    .locations img{
+        width: 10%;
+    }
+
+    .locationUser{
+        display: flex;
+        width: 20vw;
+        gap: 2vw;
+    }
+
+    .locationUser img{
+        aspect-ratio: 1/1;
+        object-fit: contain;
+        width: 20%;
+    }
+
+    .signUp{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5vh;
+        width: 80vw;
+        margin: auto;
+        text-align: center;
+    }
+
+    .signUp div{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2vh;
+        width: 80vw;
+    }
+
+    .signUp div img{
+        width: 20%;
+        aspect-ratio: 1/1;
+        object-fit: contain;
+    }
+
+    .signUp div p{
+        font: normal 4vw "Montserrat",sans-serif;
+        color: #797979;
+    }
+
+    .signUp div a{
+        width: 70%;
+        border: 1px solid #79797946;
+        color: #00518C;
+        padding: 2.5vw 2vw;
+        border-radius: 30px;
+        font: normal 3.5vw "Montserrat",sans-serif;
+    }
+
+    .addLocal-home{
+        display: none !important;
+    }
+
+    /* .cadastrar-home{
+        display: none !important;
+    } */
+
+    footer{
+        margin-top: 8vh;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        gap: 5vh;
+        background-image: linear-gradient(135deg, #00518C,  #377ED0 );
+        padding: 5vh 10vw;
+        color: white;
+    }
+
+    footer>a{
+        color: white;
+    }
+
+    footer .rodape-info{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        gap: 10vw;
+    }
+
+    .rodape-info p{
+        font: normal 3.5vw "Montserrat",sans-serif;
+    }
+
+    .socialMedia{
+        display: flex;
+        justify-content: space-around;
+        width: 50%;
+    }
+
+
+    .socialMedia div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        width: 15%;
+        border-radius: 50%;
+        aspect-ratio: 1/1;
+        object-fit: contain;
+    }
+
+    .socialMedia div img{
+        width: 60%;
+        aspect-ratio: 1/1;
+        object-fit: contain;
+    }
+
+    
+    }

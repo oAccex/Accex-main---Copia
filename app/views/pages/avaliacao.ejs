@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Avaliação</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/formularios.css" />
+    <link rel="stylesheet" href="css/header-footer.css">
+    <link rel="stylesheet" href="css/avaliar.css">
+    <script src="js/menu.js" defer></script>
+    <script src="js/rating.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+  </head>
+
+  <body>
+    <header>
+      <span></span>
+      <a href="/"><img src="image/logoAccex-azul.png" alt="Logo" /></a>
+      <img src="image/iconePERFIL.png" id="usuario" alt="User" class="open-menu"/>
+      <nav class="menu-container">
+        <ul>
+          <li>Entrar</li>
+          <li>Cadastro</li>
+          <li>Perfil</li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+    <h1>Adicionar Acesso(s)</h1>
+        <form class="Avaliacao">
+            <fieldset>
+                <legend>Este local possui escada(s) rolante(s) e está funcionando?</legend>
+                <div><input type="radio" name="escadaRolante" id="SimEsc" value="Possui escada rolante" required><label for="SimEsc">Sim</label></div>
+                <div><input type="radio" name="escadaRolante" id="NaoEsc" value="Não possui escada rolante" required><label for="NaoEsc">Não</label></div>
+                <div><input type="radio" name="escadaRolante" id="NaoSeiEsc" required><label for="NaoSeiEsc">Não sei/Não tenho certeza</label></div>
+            </fieldset>
+            <fieldset>
+                <legend>Este local ainda possui elevadore(s) e está funcionando?</legend>
+                <div><input type="radio" name="elevadores" id="SimEle" value="Possui escada elevadores" required><label for="SimEsc">Sim</label></div>
+                <div><input type="radio" name="elevadores" id="NaoEle" value="Não possui escada elevadores" required><label for="NaoEsc">Não</label></div>
+                <div><input type="radio" name="elevadores" id="NaoSeiEle" required><label for="NaoSeiEle">Não sei/Não tenho certeza</label></div>
+            </fieldset>
+            <fieldset>
+                <legend>Este local possui rampa(s) de acesso?</legend>
+                <div><input type="radio" name="Rampa" id="SimRampa" value="Possui rampa de acesso" required ><label for="SimRampa">Sim</label></div>
+                <div><input type="radio" name="Rampa" id="NaoRampa" value="Não possui rampa de acesso" required ><label for="NaoRampa">Não</label></div>
+                <div><input type="radio" name="Rampa" id="NaoSeiRampa" required ><label for="NaoSeiRampa">Não sei/Não tenho certeza</label></div>
+            </fieldset>
+            <fieldset>
+                <legend>Este local possui piso tátil?</legend>
+                <div><input type="radio" name="piso" id="SimPiso" value="Possui piso tátil" required><label for="SimPiso">Sim</label></div>
+                <div><input type="radio" name="piso" id="NaoPiso" value="Não possui piso tátil" required><label for="NaoAnd">Não</label></div>
+                <div><input type="radio" name="piso" id="NaoRam" value="Não possui rampa de acesso" required><label for="NaoRam">Não</label></div>
+                
+            </fieldset>
+            <fieldset>
+                <legend>Este local possui estacionamento preferencial?</legend>
+                <div><input type="radio" name="estacionamento" id="SimEst" value="Possui rampa de acesso" required><label for="SimEst">Sim</label></div>
+                <div><input type="radio" name="estacionamento" id="NaoEst" value="Não possui estacinamento preferencial" required><label for="NaoEst">Não</label></div>
+                <div><input type="radio" name="estacionamento" id="NaoEst" required><label for="NaoEst">Não</label></div>
+            </fieldset>
+            <fieldset>
+                <legend>Como você avalia este local em acessibilidade?</legend>
+                <div><input type="radio" name="acessibilidade" id="Muito" required><label for="Muito">Muito Acessível</label></div>
+                <div><input type="radio" name="acessibilidade" id="ok" required><label for="ok">Acessível</label></div>
+                <div><input type="radio" name="acessibilidade" id="pouco" required><label for="pouco">Pouco Acessível</label></div>
+                <div><input type="radio" name="acessibilidade" id="ruim" required><label for="ruim">Inacessível</label></div>
+            </fieldset>
+            <fieldset class="rating-box">
+                    <h1>Defina sua classificação</h1>
+                    <div class="stars">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <label for="comment">Compartilhe sua experiência</label>
+                    <textarea name="comment" id="comment" cols="30" rows="6" placeholder="Deixe seu comentário aqui"></textarea>
+            </fieldset>
+            <button>Avaliar</button>
+        </form>
+    </main>
+    <footer>
+        <a href="faleConosco">Fale conosco</a>
+        <div class="rodape-info">
+          <img src="image/logoAccex-branca.png" alt="" id="logo">
+          <p>E-mail <br/> accex@gmail.com</p>
+          <div class="socialMedia">
+            <div><img src="image/logoFaceb.png" alt="Ícone Facebook" /></div><div>
+              <img src="image/logoInstag.png" alt="Ícone Instagram"/>
+            </div><div>
+              <img src="image/logoX.png" alt="Ícone X"/>
+            </div></div>
+        </div>
+      </footer>
+          </body>
+        </html>

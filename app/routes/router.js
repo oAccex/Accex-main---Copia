@@ -259,4 +259,12 @@ router.get("/visitados", function (req, res) {
   res.render("pages/visitados");
 });
 
+router.get("/cadastroLocais", function (req, res) {
+  res.render("pages/cadastroLocais");
+});
+
+router.get("/avaliacao", function (req, res) {
+  res.render("pages/avaliacao");
+});
+
 module.exports = router;

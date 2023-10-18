@@ -15,13 +15,13 @@ CREATE TABLE  usuario(
 	`telefone` varchar(45) NULL,
  	`senha` varchar(100) NOT NULL,
  	`email` varchar(90) NOT NULL,
-    `tipo_usuario` int NOT NULL DEFAULT '1',
+    `img_perfil` varchar(100) DEFAULT NULL,
+    `id_tipo_usuario` int NOT NULL DEFAULT '1',
     `status_usuario` int DEFAULT '1',
     PRIMARY KEY (`idusuario`)
    
 );
-select * from usuario;
-use accex;
+
 
 create table local(
 	`nome` varchar(50) not null ,
@@ -31,6 +31,7 @@ create table local(
 	`num_residen` varchar(9) not null,
 	`cidade` varchar(30) not null,
 	`estado` varchar(30),
+    `img_perfil` varchar(100) DEFAULT NULL,
     `idlocal` int not null Auto_increment, 
     `id_descricao_D_Local` int not null,
     `idtipoDlocal` int not null,
@@ -38,6 +39,7 @@ create table local(
     primary key (`idlocal`)
    
 );
+
 
 
 create table avaliacao(
@@ -72,13 +74,13 @@ create table descricaoDlocal(
 	primary key (`id_descricao_D_Local`)
 );
 
-/*CREATE TABLE `tipo_usuario` (
+/CREATE TABLE `tipo_usuario` (
   `id_tipo_usuario` int NOT NULL AUTO_INCREMENT,
   `tipo_usuario` varchar(25) DEFAULT NULL,
   `descricao_usuario` varchar(155) DEFAULT NULL,
   `status_tipo_usuario` int DEFAULT '1',
   PRIMARY KEY (`id_tipo_usuario`)
-);*/
+);
 
 
 ALTER TABLE local
@@ -95,6 +97,10 @@ FOREIGN KEY (`idlocal`) REFERENCES local(`idlocal`),
 ADD CONSTRAINT usuario
 FOREIGN KEY (`idusuario`) REFERENCES usuario(`idusuario`);
  
-/* ALTER TABLE usuario
+ALTER TABLE usuario
 ADD CONSTRAINT tipo_usuario
-FOREIGN KEY (`id_tipo_usuario`) REFERENCES tipo_usuario(`id_tipo_usuario`); */
+FOREIGN KEY (`id_tipo_usuario`) REFERENCES tipo_usuario(`id_tipo_usuario`); 
+
+INSERT INTO `accex`.`tipo_usuario` (`id_tipo_usuario`, `tipo_usuario`, `descricao_usuario`, `status_tipo_usuario`) VALUES ('1', 'comum', 'usuario logado', '1');
+INSERT INTO `accex`.`tipo_usuario` (`id_tipo_usuario`, `tipo_usuario`, `descricao_usuario`, `status_tipo_usuario`) VALUES ('2', 'proprietario', 'Usuário com acesso a consultas na área administrativa', '1');
+INSERT INTO `accex`.`tipo_usuario` (`id_tipo_usuario`, `tipo_usuario`, `descricao_usuario`, `status_tipo_usuario`) VALUES ('3', 'ADM', 'Usuário com acesso a consultas e edições na área administrativa', '1');

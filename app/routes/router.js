@@ -57,11 +57,6 @@ router.get("/", verificarUsuAutenticado, function (req, res) {
   res.render("pages/index", req.session.autenticado);
 });
 
-// router.get("/sair", limparSessao, function (req, res) {
-//   res.redirect("/");
-// });
-
-
 router.get("/login", function (req, res) {
   res.locals.erroLogin = null
   res.render("pages/login", { listaErros: null });
@@ -83,7 +78,6 @@ router.post(
       return res.render("pages/login", { listaErros: erros, dadosNotificacao: null })
     }
     if (req.session.autenticado != null) {
-      //mudar para página de perfil quando existir
       res.redirect("/?login=logado");
     } else {
       res.render("pages/login", { listaErros: erros, dadosNotificacao: { titulo: "Erro ao logar!", mensagem: "Usuário e/ou senha inválidos!", tipo: "error" } })
@@ -266,5 +260,6 @@ router.get("/cadastroLocais", function (req, res) {
 router.get("/avaliacao", function (req, res) {
   res.render("pages/avaliacao");
 });
+
 
 module.exports = router;

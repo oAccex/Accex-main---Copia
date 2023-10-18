@@ -33,8 +33,9 @@ function gravarUsuAutenticado(usuarioDAL, bcrypt) {
                     var autenticado = {
                         autenticado: results[0].nickname,
                         id: results[0].idusuario,
-                        tipo: results[0].tipo_usuario
+                        tipo: results[0].id_tipo_usuario
                     };
+                    console.log("middle gravar 1 -> "+ autenticado);
                 }
             } else {
                 var autenticado =  null ;
@@ -44,6 +45,7 @@ function gravarUsuAutenticado(usuarioDAL, bcrypt) {
             //tratar os erros no campo do formulário
         }
         req.session.autenticado = autenticado;
+        console.log("middle gravar 2 -> "+ req.session.autenticado.tipo);
         next();
     }
 }

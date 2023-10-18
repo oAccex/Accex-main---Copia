@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/header-footer.css">
     <link rel="stylesheet" href="css/perfil.css">
+    <link rel="stylesheet" href="css/buttons.css">
     <script type="text/javascript" src="//acc.magixite.com/freeCode?oatk=2133516"></script>
     <script src="js/menu.js" defer></script>
   </head>
@@ -33,7 +34,7 @@ if(valores.img_perfil_pasta != null){
   %><img src="image/usuario-white.png" alt="Ícone Usuário">
 <%}
 
-%><h1><%=valores.nickname%></h1> <a href=""></a></section>
+%><h1><%=valores.nickname%></h1> <a href="/editarPerfil">Editar</a></section>
 
 
     
@@ -53,9 +54,21 @@ if(valores.img_perfil_pasta != null){
             <img src="image/construcao-white.png" alt="Ícone Locais Adicionados">
             <p>Locais adicionados</p>
         </a>
-        <a href="/sair">Sair da conta</a>
-        <a href="/deletar">Desativar conta</a>
+        <div class="grup-btcad">
+  
+          <button id="butcad">
+            <a href="/sair">Sair da conta</a>
+          </button>
+          </div>
+          
+          <div class="grup-btcad">
+  
+            <button id="butcad">
+              <a href="/deletar">Desativar conta</a>
 
+            </button>
+            </div>
+        
         <div vw class="enabled">
 
           <div vw-access-button class="active"></div>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>painel adm</title>
 </head>
 <body>
     
@@ -59,50 +59,25 @@ if (dadosNotificacao) {
     </script>
 <% } %>
 
+<header>
+    <span></span>
+    <a href="/"><img src="image/logoAccex-azul.png" alt="Logo" /></a>
+    <img src="image/iconePERFIL.png" id="usuario" alt="User" class="open-menu"/>
+    <nav class="menu-container">
+      <ul>
+        <li><a href="login">Entrar</a></li>
+        <li><a href="cadastro ">Cadastro</a></li>
+        <li><a href="perfil">Perfil</a></li>
+      </ul>
+    </nav>
+  </header>
+
 <h1>Painel Administrativo</h1> 
 <label for="editSlides" id="label-edSl">Editar Slides</label>
 
-<section class="slider-edit" name="editSlides">
 
-    <div class="img-s-edicao">
-        <img src="imagens/Slide_3.png" alt="Imagem de edição slides">
-        <img src="imagens/Slide_2.png" alt="Imagem de edição slides">
-        <img src="imagens/Slide_2.png" alt="Imagem de edição slides">
-    </div>
 
-    <br>
 
-    <div class="slider-options">
-        <div class="btns-n-p">
-            <button id="regredir_slide" id="scroll-up"><span class="material-symbols-outlined"> chevron_left </span></button>
-            <button id="avançar_slide"><span class="material-symbols-outlined"> chevron_right </span></button>
-        </div>
-
-        <div class="load-slide-img">
-            <input type="file">
-        </div>
-
-        <div class="s-and-c">
-            <button id="save">Salvar</button>
-            <button id="cancel">Cancelar</button>
-        </div>
-    </div>
-</section>
-
-<section class="membros_posts">
-    <label for="members_posts" id="label-mb">Membros</label>
-    <div class="members_posts-div" name="members_posts">
-            <span><span class="material-symbols-outlined">group</span><%= totalUsuarios %> Usuários</span>
-            <div class="linha-vertical"></div>
-            <span><span class="material-symbols-outlined">perm_media</span>67 Posts</span>
-    </div>
-
-</section>
-
-<div class="search">
-    <input type="text" id="pesquisa" placeholder="Pesquisar">
-    <span class="material-symbols-outlined">filter_alt </span>
-</div>
 
 <section class="usuarios">
     <table>
@@ -117,9 +92,9 @@ if (dadosNotificacao) {
             <% usuarios.forEach(function(usuario, index) { %>
                 <tr>
                     <td>
-                        <span class="material-symbols-outlined" title="Reativar Usuário" onclick="abrirPopUpR(<%= usuario.id_usuario %>)" id="reatv-user">check_circle</span>
-                        <img src="<%= usuario.img_perfil_pasta ? usuario.img_perfil_pasta : 'imagens/img-perfil.png' %>" alt="Imagem <%= index + 1 %>"><%= usuario.nome %>
-                        <span class="material-symbols-outlined" onclick="abrirPopUp(<%= usuario.id_usuario %>)" title="Desativar Usuário">delete</span>
+                        <span class="material-symbols-outlined" title="Reativar Usuário" onclick="abrirPopUpR(<%= usuario.idusuario %>)" id="reatv-user">check_circle</span>
+                        <img src="<%= usuario.img_perfil ? usuario.img_perfil : 'imagens/img-perfil.png' %>" alt="Imagem <%= index + 1 %>"><%= nome_completo %>
+                        <span class="material-symbols-outlined" onclick="abrirPopUp(<%= usuario.idusuario %>)" title="Desativar Usuário">delete</span>
                         <span class="material-symbols-outlined" title="Editar Usuário">edit</span>
                         
                     </td>
@@ -254,6 +229,18 @@ async function reativarUsuario() {
 
 </main>
 
-
+<footer>
+    <a href="faleConosco">Fale conosco</a>
+    <div class="rodape-info">
+      <img src="image/logoAccex-branca.png" alt="" id="logo">
+      <p>E-mail <br/> accex@gmail.com</p>
+      <div class="socialMedia">
+        <div><img src="image/logoFaceb.png" alt="Ícone Facebook" /></div><div>
+          <img src="image/logoInstag.png" alt="Ícone Instagram"/>
+        </div><div>
+          <img src="image/logoX.png" alt="Ícone X"/>
+        </div></div>
+    </div>
+  </footer>
 </body>
 </html>

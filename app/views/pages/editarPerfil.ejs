@@ -15,7 +15,15 @@
   <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
   <script src="../js/notify.js"></script>
   <script type="text/javascript" src="//acc.magixite.com/freeCode?oatk=2133516"></script>
-  ​
+  ​<style>
+    .esc-img {
+      right: 100%;
+    }
+
+    .esc-img.show{
+      right: 0;
+    }
+  </style>
 </head>
 
 <body>
@@ -97,11 +105,11 @@
     </nav>
   </header>
   <main>
-
+div
     <h1>Edite seu perfil</h1>
     <form method="post" action="/editarPerfil" enctype="multipart/form-data">
       <label for="img-perfil">Escolha uma foto de perfil:</label>
-      <input type="file" name="img-perfil" id="img-perfil" onchange="loadImg()">
+      <input type="file" name="img-perfil" id="img-perfil" onchange="loadImg()" class="esc-img">
       <img class="img-perfil"  id="img-preview" src="<%= arquivo.imagem %>">
       <label for="nome_usu">Seu nome completo:</label>
       <input type="text" id="fullName" name="fullName" value="<%= valores.nome_completo %>" class="<%= avisoErro.fullName %>"/> 
@@ -147,6 +155,17 @@
     $("#data").mask("99/99/9999")
     $("#card").mask("9999 9999 9999 9999")
     $("#cvv").mask("999")
+
+    const editarPerfil = document.getElementsByClassName("img-perfil");
+    const arquivoSelect = document.getElementById("img-perfil")
+    
+    editarPerfil.addEventlistener("click", () => {
+      arquivoSelect.classList.add("show");
+    })
+
+    editarPerfil.addEventlistener("click", () => {
+      arquivoSelect.classList.remove("show");
+    })
   </script>
 </body>
 

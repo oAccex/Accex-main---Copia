@@ -25,7 +25,7 @@
     let arquivo = {"imagem":"image/usuario-white.png"}
  
     if(valores.img_perfil != null){
-        arquivo.imagem = valores.img_perfil
+        arquivo.imagem = valores.img_perfil 
     }
 
     let msgErro = {"fullName":"", "email":"",nickname:"", telefone:""}
@@ -102,7 +102,7 @@
     <form method="post" action="/editarPerfil" enctype="multipart/form-data">
       <label for="img-perfil">Escolha uma foto de perfil:</label>
       <input type="file" name="img-perfil" id="img-perfil" onchange="loadImg()">
-      <img class="img-perfil"  id="img-preview" src="<%= arquivo.imagem %>">
+      <img style="border-radius: 50%;" id="img-preview" src="<%= arquivo.imagem %>">
       <label for="nome_usu">Seu nome completo:</label>
       <input type="text" id="fullName" name="fullName" value="<%= valores.nome_completo %>" class="<%= avisoErro.fullName %>"/> 
       <span> <%= msgErro.fullName %> </span>

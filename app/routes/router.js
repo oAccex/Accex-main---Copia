@@ -204,8 +204,8 @@ router.post("/editarPerfil", upload.single('img-perfil'),
         telefone: req.body.telefone,
         idusuario: req.session.autenticado.id,
         status_usuario: 1,
-        id_tipo_usuario: 1
-
+        id_tipo_usuario: 1,
+        img_perfil: null
       };
       console.log("senha: " + req.body.password)
       if (req.body.password != "") {
@@ -214,7 +214,7 @@ router.post("/editarPerfil", upload.single('img-perfil'),
       if (!req.file) {
         console.log("Falha no carregamento");
       } else {
-        caminhoArquivo = "imagem/perfil/" + req.file.filename;
+        caminhoArquivo = "image/perfil/" + req.file.filename;
         dadosForm.img_perfil = caminhoArquivo
       }
       console.log(dadosForm);
@@ -252,7 +252,7 @@ router.get("/painel_adm", verificarUsuAutorizado([/* */1,/* */ 2, 3], "pages/res
   try {
     const usuarios = await buscarUsuariosDoBanco();
     
-    sharts_db.query("SELECT COUNT(id_usuario) AS total_usuarios FROM usuario", (error, results) => {
+    accex.query("SELECT COUNT(id_usuario) AS total_usuarios FROM usuario", (error, results) => {
       if (error) {
         console.error("Erro ao contar usuários:", error);
         res.status(500).send("Erro ao contar usuários.");
@@ -262,11 +262,11 @@ router.get("/painel_adm", verificarUsuAutorizado([/* */1,/* */ 2, 3], "pages/res
         res.render("pages/painel_adm", {
           listaErros: null,
           dadosNotificacao: null,
-          valores: { nome: "", email: "", senha: "", img_perfil_pasta: ""},
+          valores: { nome: "", email: "", senha: "", img_perfil: ""},
           autenticado: req.session.autenticado,
           login: req.session.autenticado,
-          tipo_usuario: req.session.autenticado.tipo,
-          img_perfil_pasta: req.session.autenticado.img_perfil_pasta,
+          id_tipo_usuario: req.session.autenticado.tipo,
+          img_perfil_pasta: req.session.autenticado.img_perfil,
           usuarios: usuarios,
           totalUsuarios: totalUsuarios, 
         });
@@ -280,7 +280,7 @@ router.get("/painel_adm", verificarUsuAutorizado([/* */1,/* */ 2, 3], "pages/res
 
 async function buscarUsuariosDoBanco() {
   return new Promise((resolve, reject) => {
-    sharts_db.query("SELECT * FROM usuario", (error, results) => {
+    accex.query("SELECT * FROM usuario", (error, results) => {
       if (error) {
         reject(error);
       } else {

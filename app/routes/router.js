@@ -249,7 +249,82 @@ router.post("/editarPerfil", upload.single('img-perfil'),
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// DO FILIPE
+router.get("/painel_adm", verificarUsuAutorizado([/* */1,/* */ 2, 3], "pages/restrito"), verificarUsuAutenticado, async (req, res) => {
+  try {
+    const usuarios = await buscarUsuariosDoBanco();
+    
+    sharts_db.query("SELECT COUNT(id_usuario) AS total_usuarios FROM usuario", (error, results) => {
+      if (error) {
+        console.error("Erro ao contar usuários:", error);
+        res.status(500).send("Erro ao contar usuários.");
+      } else {
+        const totalUsuarios = results[0].total_usuarios;
+        
+        res.render("pages/painel_adm", {
+          listaErros: null,
+          dadosNotificacao: null,
+          valores: { nome: "", email: "", senha: "", img_perfil_pasta: ""},
+          autenticado: req.session.autenticado,
+          login: req.session.autenticado,
+          tipo_usuario: req.session.autenticado.tipo,
+          img_perfil_pasta: req.session.autenticado.img_perfil_pasta,
+          usuarios: usuarios,
+          totalUsuarios: totalUsuarios, 
+        });
+      }
+    });
+  } catch (error) {
+    console.error("Erro ao buscar usuários:", error);
+    res.status(500).send("Erro ao buscar usuários.");
+  }
+});
 
+async function buscarUsuariosDoBanco() {
+  return new Promise((resolve, reject) => {
+    sharts_db.query("SELECT * FROM usuario", (error, results) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(results);
+      }
+    });
+  });
+}
+
+router.post("/desativar-usuario/:id", verificarUsuAutorizado([2, 3], "pages/restrito"), verificarUsuAutenticado, async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    await usuarioDAL.delete(id);
+    res.status(200).send("Usuário desativado com sucesso.");
+    console.log("Usuário desativado com sucesso.");
+  } catch (error) {
+    console.error("Erro ao desativar o usuário:", error);
+    res.status(500).send("Erro ao desativar o usuário.");
+    console.log("Erro ao desativar o usuário.");
+  }
+});
+
+router.post("/reativar-usuario/:id", verificarUsuAutorizado([2, 3], "pages/restrito"), verificarUsuAutenticado, async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    await usuarioDAL.reactivate(id);
+    res.status(200).send("Usuário reativado com sucesso.");
+    console.log("Usuário reativado com sucesso.");
+  } catch (error) {
+    console.error("Erro ao reativar o usuário:", error);
+    res.status(500).send("Erro ao reativar o usuário.");
+    console.log("Erro ao reativar o usuário.");
+  }
+});
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////
 router.get("/faleConosco", function (req, res) {
   res.render("pages/faleConosco");
 });
@@ -282,5 +357,8 @@ router.get("/avaliacao", function (req, res) {
   res.render("pages/avaliacao");
 });
 
+router.get("/avaliacao", function (req, res) {
+  res.render("pages/avaliacao");
+});
 
 module.exports = router;

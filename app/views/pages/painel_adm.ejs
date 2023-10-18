@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+
+<main>
+
+    <% 
+
+    let arquivo = {"imagem":"imagens/img-perfil.png"}
+ 
+    if(valores.img_perfil_pasta != null){
+        arquivo.imagem = valores.img_perfil_pasta
+    }
+
+let msgErro = {"nome":"", "email":"" }
+let avisoErro = {"nome":"", "email":""}
+if(listaErros){
+    listaErros.errors.forEach(function(itemErro){
+        if(itemErro.path == "nome"){
+            avisoErro.nome = "erro";
+            msgErro.nome += " "+itemErro.msg
+        %>
+        <script>
+            notify("Erro no preenchimento","Verifique o campo nome<br><%= itemErro.msg%>", "error", "center")                        
+        </script>
+        <%
+    }
+    if(itemErro.path == "email"){
+        avisoErro.email = "erro";
+        msgErro.email = itemErro.msg
+        %>
+        <script>
+            notify("Erro no preenchimento","Verifique o campo e-mail", "error", "center")                        
+        </script>
+        <%
+    }
+    })
+}
+
+if (dadosNotificacao) { 
+
+    %>
+    <script>
+            notify("<%= dadosNotificacao.titulo%>","<%= dadosNotificacao.mensagem%>", "<%= dadosNotificacao.tipo%>", "center")
+            
+            if("<%= dadosNotificacao.tipo %>" == "success"){
+                setTimeout(function(){
+                    window.location="/"
+                }, 3000)
+            }                        
+    </script>
+<% } %>
+
+<h1>Painel Administrativo</h1> 
+<label for="editSlides" id="label-edSl">Editar Slides</label>
+
+<section class="slider-edit" name="editSlides">
+
+    <div class="img-s-edicao">
+        <img src="imagens/Slide_3.png" alt="Imagem de edição slides">
+        <img src="imagens/Slide_2.png" alt="Imagem de edição slides">
+        <img src="imagens/Slide_2.png" alt="Imagem de edição slides">
+    </div>
+
+    <br>
+
+    <div class="slider-options">
+        <div class="btns-n-p">
+            <button id="regredir_slide" id="scroll-up"><span class="material-symbols-outlined"> chevron_left </span></button>
+            <button id="avançar_slide"><span class="material-symbols-outlined"> chevron_right </span></button>
+        </div>
+
+        <div class="load-slide-img">
+            <input type="file">
+        </div>
+
+        <div class="s-and-c">
+            <button id="save">Salvar</button>
+            <button id="cancel">Cancelar</button>
+        </div>
+    </div>
+</section>
+
+<section class="membros_posts">
+    <label for="members_posts" id="label-mb">Membros</label>
+    <div class="members_posts-div" name="members_posts">
+            <span><span class="material-symbols-outlined">group</span><%= totalUsuarios %> Usuários</span>
+            <div class="linha-vertical"></div>
+            <span><span class="material-symbols-outlined">perm_media</span>67 Posts</span>
+    </div>
+
+</section>
+
+<div class="search">
+    <input type="text" id="pesquisa" placeholder="Pesquisar">
+    <span class="material-symbols-outlined">filter_alt </span>
+</div>
+
+<section class="usuarios">
+    <table>
+        <thead>
+            <tr>
+                <th><span class="material-symbols-outlined">badge</span>Nome</th>
+                <th><span class="material-symbols-outlined">supervised_user_circle</span>Tipo</th>
+                <th><span class="material-symbols-outlined">progress_activity</span>Status usuário</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% usuarios.forEach(function(usuario, index) { %>
+                <tr>
+                    <td>
+                        <span class="material-symbols-outlined" title="Reativar Usuário" onclick="abrirPopUpR(<%= usuario.id_usuario %>)" id="reatv-user">check_circle</span>
+                        <img src="<%= usuario.img_perfil_pasta ? usuario.img_perfil_pasta : 'imagens/img-perfil.png' %>" alt="Imagem <%= index + 1 %>"><%= usuario.nome %>
+                        <span class="material-symbols-outlined" onclick="abrirPopUp(<%= usuario.id_usuario %>)" title="Desativar Usuário">delete</span>
+                        <span class="material-symbols-outlined" title="Editar Usuário">edit</span>
+                        
+                    </td>
+                    <td>
+                        <% if (usuario.tipo_usuario === 1) { %>
+                            Comum
+                        <% } else if (usuario.tipo_usuario === 2) { %>
+                            Administrador
+                        <% } else if (usuario.tipo_usuario === 3) { %>
+                            Administrador Tipo 2
+                        <% } %>
+                    </td>
+                    <td><%= usuario.status_usuario %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</section>
+
+<br>
+
+<div class="pop-up">
+<div class="modal">
+    <hr />
+        <h2>Você tem certeza que deseja continuar?</h2>
+        <span>Ao continuar o usuario selecionado será desativado!</span>
+    <hr />
+    <div class="btns">
+        <button class="btn-sim" onclick="desativarUsuario()">Sim</button>
+        <button class="btn-nao" onclick="closePopUp()">Não</button>
+    </div>
+</div>
+</div>
+
+<div class="pop-up" id="reactivate-popup">
+<div class="modal">
+    <hr />
+        <h2>Você tem certeza que deseja continuar?</h2>
+        <span>Ao continuar o usuario selecionado será reativado!</span>
+    <hr />
+    <div class="btns">
+        <button class="btn-sim" onclick="reativarUsuario()">Sim</button>
+        <button class="btn-nao" onclick="closePopUpR()">Não</button>
+    </div>
+</div>
+</div>
+
+<script>
+function abrirPopUp(id) {
+const modal = document.querySelector(".pop-up");
+
+modal.setAttribute('data-usuario-id', id);
+modal.classList.add('active');
+}
+
+function abrirPopUpR(id) {
+const modal = document.querySelector("#reactivate-popup");
+
+modal.setAttribute('data-usuario-id', id);
+modal.classList.add('active');
+}
+
+function closePopUpR() {
+  document.querySelector("#reactivate-popup").removeAttribute("data-usuario-id");
+  document.querySelector("#reactivate-popup").classList.remove("active");
+}
+
+// Função para fechar o pop-up de confirmação
+function closePopUp() {
+  document.querySelector(".pop-up").removeAttribute("data-usuario-id");
+  document.querySelector(".pop-up").classList.remove("active");
+}
+
+// Função para desativar o usuário
+async function desativarUsuario() {
+  const modal = document.querySelector(".pop-up");
+  const userIdToDelete = modal.getAttribute("data-usuario-id");
+
+  if (userIdToDelete) {
+    try {
+      const response = await fetch(`/desativar-usuario/${userIdToDelete}`, {
+        method: "POST",
+      });
+
+      if (response.ok) {
+        // O usuário foi desativado com sucesso, você pode atualizar a tabela ou fazer ações apropriadas
+      } else {
+        console.error("Erro ao desativar o usuário:", response.statusText);
+        console.log("Erro ao desativar o usuário:", error);
+      }
+    } catch (error) {
+      console.error("Erro ao desativar o usuário:", error);
+      console.log("Erro ao desativar o usuário:", error);
+    }
+
+    closePopUp();
+    location.reload();
+  }
+}
+
+// Reativar Usuário
+
+async function reativarUsuario() {
+  const modal = document.querySelector("#reactivate-popup");
+  const userIdToReactivate = modal.getAttribute("data-usuario-id");
+
+  if (userIdToReactivate) {
+    try {
+      const response = await fetch(`/reativar-usuario/${userIdToReactivate}`, {
+        method: "POST",
+      });
+
+      if (response.ok) {
+        // O usuário foi desativado com sucesso, você pode atualizar a tabela ou fazer ações apropriadas
+      } else {
+        console.error("Erro ao reativar o usuário:", response.statusText);
+        console.log("Erro ao reativar o usuário:", error);
+      }
+    } catch (error) {
+      console.error("Erro ao reativar o usuário:", error);
+      console.log("Erro ao reativar o usuário:", error);
+    }
+
+
+    closePopUpR();
+    location.reload();
+  }
+}
+</script>
+
+
+
+</main>
+
+
+</body>
+</html>

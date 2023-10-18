@@ -33,7 +33,7 @@ function gravarUsuAutenticado(usuarioDAL, bcrypt) {
                     var autenticado = {
                         autenticado: results[0].nickname,
                         id: results[0].idusuario,
-                        tipo: results[0].tipo_usuario
+                        tipo: results[0].id_tipo_usuario
                     };
                 }
             } else {

@@ -16,15 +16,16 @@
     <script type="text/javascript" src="//acc.magixite.com/freeCode?oatk=2133516" />
     <script src="js/notify.js"></script>
   </head>
+
   <body>
     <% if(autenticado){
       if(login){%>
      <script>
-         notify("Olá <%= autenticado%>", "Login efetuado com sucesso", "success", "center")                        
+         notify("Login efetuado com sucesso", "Olá <%= autenticado%>", "success", "center")                        
      </script>
      <% } } %>
     <header>
-      <span></span>
+      [<span></span]>
       <a href="/"><img src="image/logoAccex-azul.png" alt="Logo" /></a>
       <img src="image/iconePERFIL.png" id="usuario" alt="User" class="open-menu"/>
       <nav class="menu-container">

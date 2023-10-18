@@ -27,17 +27,14 @@
     </header>
     <section class="user-name"><% let arquivo = {"imagem":"image/iconePERFIL.png"}
 
-if(valores.img_perfil_pasta != null){
+if(valores.img_perfil != null){
     arquivo.imagem = valores.img_perfil %>
-    <img src="<%= valores.img_perfil%>" alt="Ícone Usuário"> <%
+    <img src="<%= valores.img_perfil%>" alt="Ícone Usuário" class="perfilUsuario"> <%
 } else{
   %><img src="image/usuario-white.png" alt="Ícone Usuário">
 <%}
 
-%><h1><%=valores.nickname%></h1> <a href="/editarPerfil">Editar</a></section>
-
-
-    
+%><h1><%=valores.nickname%></h1> <a href=""></a><a class="editar" href="/editarPerfil">Editar</button></section>
     <main>
         <a href="favoritos" class="box-perfil">
 

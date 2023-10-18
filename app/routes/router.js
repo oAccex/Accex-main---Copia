@@ -158,73 +158,94 @@ router.get("/perfil", verificarUsuAutorizado([1, 2, 3], "pages/restrito"), async
   }
 });
 
+router.get("/editarPerfil", verificarUsuAutorizado([1, 2, 3], "pages/restrito"), verificarUsuAutenticado, async function (req, res) {
+  try {
+    let results = await usuarioDAL.findID(req.session.autenticado.id);
+    console.log(results);
+    let campos = {
+      nome_completo: results[0].nome_completo, email: results[0].email,
+      img_perfil: results[0].img_perfil,
+      nickname: results[0].nickname, telefone: results[0].telefone, senha: ""
+    }
+    console.log(results)
+    res.render("pages/editarPerfil", { listaErros: null, dadosNotificacao: null, valores: campos })
+  } catch (e) {
+    res.render("pages/editarPerfil", {
+      listaErros: null, dadosNotificacao: null, valores: {
+        img_perfil: "", nome_completo: "", email: "",
+        nickname: "", telefone: "", senha: ""
+      }
+    })
+  }
+});
+
 // ////////////////////////////////////////////////////////////////////////////////////////////////
 // // copia do professor 
 
-// router.post("/perfil", upload.single('imagem-perfil_usu'),
-//   body("nome_usu")
-//     .isLength({ min: 3, max: 50 }).withMessage("Mínimo de 3 letras e máximo de 50!"),
-//   body("nomeusu_usu")
-//     .isLength({ min: 8, max: 30 }).withMessage("Nome de usuário deve ter de 8 a 30 caracteres!"),
-//   body("email_usu")
-//     .isEmail().withMessage("Digite um e-mail válido!"),
-//   body("fone_usu")
-//     .isLength({ min: 12, max: 13 }).withMessage("Digite um telefone válido!"),
-//   verificarUsuAutorizado([1, 2, 3], "pages/restrito"),
-//   async function (req, res) {
-//     const erros = validationResult(req);
-//     console.log(erros)
-//     if (!erros.isEmpty()) {
-//       return res.render("pages/perfil", { listaErros: erros, dadosNotificacao: null, valores: req.body })
-//     }
-//     try {
-//       var dadosForm = {
-//         user_usuario: req.body.nomeusu_usu,
-//         nome_usuario: req.body.nome_usu,
-//         email_usuario: req.body.email_usu,
-//         fone_usuario: req.body.fone_usu,
-//         img_perfil_banco: null,
-//         tipo_usuario: 1,
-//         status_usuario: 1
-//       };
-//       console.log("senha: " + req.body.senha_usu)
-//       if (req.body.senha_usu != "") {
-//         dadosForm.senha_usuario = bcrypt.hashSync(req.body.senha_usu, salt);
-//       }
-//       if (!req.file) {
-//         console.log("Falha no carregamento");
-//       } else {
-//         caminhoArquivo = "imagem/perfil/" + req.file.filename;
-//         dadosForm.img_perfil_pasta = caminhoArquivo
-//       }
-//       console.log(dadosForm);
+router.post("/editarPerfil", upload.single('img-perfil'),
+  body("fullName")
+    .isLength({ min: 3, max: 50 }).withMessage("Mínimo de 3 letras e máximo de 50!"),
+  body("userName")
+    .isLength({ min: 3, max: 30 }).withMessage("Nome de usuário deve ter de 8 a 30 caracteres!"),
+  body("email")
+    .isEmail().withMessage("Digite um e-mail válido!"),
+  // body("telefone")
+  //   .isLength({ min: 11, max: 11 }).withMessage("Digite um telefone válido!"),
+  verificarUsuAutorizado([1, 2, 3], "pages/restrito"),
+  async function (req, res) {
+    const erros = validationResult(req);
+    console.log(erros)
+    if (!erros.isEmpty()) {
+      return res.render("pages/editarPerfil", { listaErros: erros, dadosNotificacao: null, valores: req.body })
+    }
+    try {
+      var dadosForm = {
+        nickname: req.body.userName,
+        nome_completo: req.body.fullName,
+        email: req.body.email,
+        telefone: req.body.telefone,
+        idusuario: req.session.autenticado.id,
+        status_usuario: 1,
+        id_tipo_usuario: 1
 
-//       let resultUpdate = await usuarioDAL.update(dadosForm, req.session.autenticado.id);
-//       if (!resultUpdate.isEmpty) {
-//         if (resultUpdate.changedRows == 1) {
-//           var result = await usuarioDAL.findID(req.session.autenticado.id);
-//           var autenticado = {
-//             autenticado: result[0].nome_usuario,
-//             id: result[0].id_usuario,
-//             tipo: result[0].tipo_usuario,
-//             img_perfil_banco: result[0].img_perfil_banco,
-//             img_perfil_pasta: result[0].img_perfil_pasta
-//           };
-//           req.session.autenticado = autenticado;
-//           var campos = {
-//             nome_usu: result[0].nome_usuario, email_usu: result[0].email_usuario,
-//             img_perfil_pasta: result[0].img_perfil_pasta, img_perfil_banco: result[0].img_perfil_banco,
-//             nomeusu_usu: result[0].user_usuario, fone_usu: result[0].fone_usuario, senha_usu: ""
-//           }
-//           res.render("pages/perfil", { listaErros: null, dadosNotificacao: { titulo: "Perfil! atualizado com sucesso", mensagem: "", tipo: "success" }, valores: campos });
-//         }
-//       }
-//     } catch (e) {
-//       console.log(e)
-//       res.render("pages/perfil", { listaErros: erros, dadosNotificacao: { titulo: "Erro ao atualizar o perfil!", mensagem: "Verifique os valores digitados!", tipo: "error" }, valores: req.body })
-//     }
+      };
+      console.log("senha: " + req.body.password)
+      if (req.body.password != "") {
+        dadosForm.senha = bcrypt.hashSync(req.body.password, salt);
+      }
+      if (!req.file) {
+        console.log("Falha no carregamento");
+      } else {
+        caminhoArquivo = "imagem/perfil/" + req.file.filename;
+        dadosForm.img_perfil = caminhoArquivo
+      }
+      console.log(dadosForm);
 
-//   });
+      let resultUpdate = await usuarioDAL.update(dadosForm);
+      if (!resultUpdate.isEmpty) {
+        if (resultUpdate.changedRows == 1) {
+          var result = await usuarioDAL.findID(req.session.autenticado.id);
+          var autenticado = {
+            autenticado: result[0].nome_completo,
+            id: result[0].idusuario,
+            tipo: result[0].id_tipo_usuario,
+            img_perfil: result[0].img_perfil
+          };
+          req.session.autenticado = autenticado;
+          var campos = {
+            nome_completo: result[0].nome_completo, email: result[0].email,
+            img_perfil: result[0].img_perfil,
+            nickname: result[0].nickname, telefone: result[0].telefone, senha: ""
+          }
+          res.render("pages/editarPerfil", { listaErros: null, dadosNotificacao: { titulo: "Perfil! atualizado com sucesso", mensagem: "", tipo: "success" }, valores: campos });
+        }
+      }
+    } catch (e) {
+      console.log(e)
+      res.render("pages/editarPerfil", { listaErros: erros, dadosNotificacao: { titulo: "Erro ao atualizar o perfil!", mensagem: "Verifique os valores digitados!", tipo: "error" }, valores: req.body })
+    }
+
+  });
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////

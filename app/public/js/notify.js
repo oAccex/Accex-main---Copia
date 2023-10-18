@@ -15,3 +15,7 @@ function notify(titulo, texto, tipo, posicao) {
         position:posicao 
     })
 }
+
+function loadImg() {
+    $('#img-preview').attr('src', URL.createObjectURL(event.target.files[0]));
+}

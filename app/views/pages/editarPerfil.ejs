@@ -13,26 +13,27 @@
   <script src="js/menu.js" defer></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />​
   <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
-  <script type="text/javascript" src="//acc.magixite.com/freeCode?oatk=2133516" />
-  <script src="js/notify.js"></script>​
+  <script src="../js/notify.js"></script>
+  <script type="text/javascript" src="//acc.magixite.com/freeCode?oatk=2133516"></script>
+  ​
 </head>
 
 <body>
     <%
 
-    let arquivo = {"imagem":"image/img-perfil.png"}
+    let arquivo = {"imagem":"image/usuario-white.png"}
  
     if(valores.img_perfil != null){
         arquivo.imagem = valores.img_perfil
     }
 
-    let msgErro = {"nome_completo":"", "email":"",nickname:"", telefone:""}
-    let avisoErro = {"nome_completo":"", "email":"",nickname:"", telefone:""}
+    let msgErro = {"fullName":"", "email":"",nickname:"", telefone:""}
+    let avisoErro = {"fullName":"", "email":"",nickname:"", telefone:""}
     if(listaErros){
         listaErros.errors.forEach(function(itemErro){
-            if(itemErro.path == "nome_completo"){
-                avisoErro.nome_completo = "erro";
-                msgErro.nome_completo += " "+itemErro.msg
+            if(itemErro.path == "fullName"){
+                avisoErro.fullName = "erro";
+                msgErro.fullName += " "+itemErro.msg
                 %>
                 <script>
                     notify("Erro no preenchimento","Verifique o campo nome <br><%= itemErro.msg%>", "error", "center")                        
@@ -97,8 +98,11 @@
   </header>
   <main>
 
-    <h1>Faça o seu cadastro</h1>
-    <form method="post" action="/editar">
+    <h1>Edite seu perfil</h1>
+    <form method="post" action="/editarPerfil" enctype="multipart/form-data">
+      <label for="img-perfil">Escolha uma foto de perfil:</label>
+      <input type="file" name="img-perfil" id="img-perfil" onchange="loadImg()">
+      <img class="img-perfil"  id="img-preview" src="<%= arquivo.imagem %>">
       <label for="nome_usu">Seu nome completo:</label>
       <input type="text" id="fullName" name="fullName" value="<%= valores.nome_completo %>" class="<%= avisoErro.fullName %>"/> 
       <span> <%= msgErro.fullName %> </span>

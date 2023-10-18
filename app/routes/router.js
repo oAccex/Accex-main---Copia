@@ -158,6 +158,7 @@ router.get("/perfil", verificarUsuAutorizado([1, 2, 3], "pages/restrito"), async
   }
 });
 
+
 router.get("/editarPerfil", verificarUsuAutorizado([1, 2, 3], "pages/restrito"), verificarUsuAutenticado, async function (req, res) {
   try {
     let results = await usuarioDAL.findID(req.session.autenticado.id);
@@ -178,9 +179,6 @@ router.get("/editarPerfil", verificarUsuAutorizado([1, 2, 3], "pages/restrito"),
     })
   }
 });
-
-// ////////////////////////////////////////////////////////////////////////////////////////////////
-// // copia do professor 
 
 router.post("/editarPerfil", upload.single('img-perfil'),
   body("fullName")
@@ -357,8 +355,6 @@ router.get("/avaliacao", function (req, res) {
   res.render("pages/avaliacao");
 });
 
-router.get("/avaliacao", function (req, res) {
-  res.render("pages/avaliacao");
-});
+
 
 module.exports = router;

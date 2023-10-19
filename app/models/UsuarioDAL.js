@@ -86,9 +86,9 @@ module.exports = class UsuarioDAL {
         });
     }
 
-    function mostratermo() {
-        document.getElementById('cadastro').style.display = 'block';
+    // function mostratermo() {
+    //     document.getElementById('cadastro').style.display = 'block';
         
-    }
+    // }
 }
 

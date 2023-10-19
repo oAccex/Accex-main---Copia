@@ -1,10 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>painel adm</title>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel ADM</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="css/caixasLocais.css">
+    <link rel="stylesheet" href="css/slider.css" />
+    <link rel="stylesheet" href="css/header-footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <script src="js/menu.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />​
+    <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
+    <script type="text/javascript" src="//acc.magixite.com/freeCode?oatk=2133516"></script>
+    <script src="js/notify.js"></script>
+  </head>
 
 <body>
     
@@ -76,10 +87,6 @@ if (dadosNotificacao) {
 <h1>Painel Administrativo</h1> 
 <label for="editSlides" id="label-edSl">Editar Slides</label>
 
-
-
-
-
 <section class="usuarios">
     <table>
         <thead>
@@ -94,7 +101,7 @@ if (dadosNotificacao) {
                 <tr>
                     <td>
                         <span class="material-symbols-outlined" title="Reativar Usuário" onclick="abrirPopUpR(<%= usuario.idusuario %>)" id="reatv-user">check_circle</span>
-                        <img src="<%= usuario.img_perfil ? usuario.img_perfil : 'imagens/img-perfil.png' %>" alt="Imagem <%= index + 1 %>"><%= nome_completo %>
+                        <img src="<%= usuario.img_perfil ? usuario.img_perfil : 'imagens/img-perfil.png' %>" alt="Imagem <%= index + 1 %> <%= nome_completo %>">
                         <span class="material-symbols-outlined" onclick="abrirPopUp(<%= usuario.idusuario %>)" title="Desativar Usuário">delete</span>
                         <span class="material-symbols-outlined" title="Editar Usuário">edit</span>
                         

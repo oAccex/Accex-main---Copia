@@ -78,11 +78,13 @@ router.post(
       return res.render("pages/login", { listaErros: erros, dadosNotificacao: null })
     }
     if (req.session.autenticado != null) {
+      console.log(`Logado`)
       res.redirect("/?login=logado");
     } else {
       res.render("pages/login", { listaErros: erros, dadosNotificacao: { titulo: "Erro ao logar!", mensagem: "Usuário e/ou senha inválidos!", tipo: "error" } })
     }
-  });
+  }
+);
 
 
 router.get("/cadastro", function (req, res) {
@@ -133,10 +135,6 @@ router.post("/cadastro",
   }
 );
   
-
-/////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////
-
 router.get("/perfil", verificarUsuAutorizado([1, 2, 3], "pages/restrito"), async function (req, res) {
   try {
     let results = await usuarioDAL.findID(req.session.autenticado.id);
@@ -252,7 +250,7 @@ router.get("/painel_adm", verificarUsuAutorizado([/* */1,/* */ 2, 3], "pages/res
   try {
     const usuarios = await buscarUsuariosDoBanco();
     
-    accex.query("SELECT COUNT(id_usuario) AS total_usuarios FROM usuario", (error, results) => {
+    accex.query("SELECT COUNT(idusuario) AS total_usuarios FROM usuario", (error, results) => {
       if (error) {
         console.error("Erro ao contar usuários:", error);
         res.status(500).send("Erro ao contar usuários.");
@@ -262,11 +260,11 @@ router.get("/painel_adm", verificarUsuAutorizado([/* */1,/* */ 2, 3], "pages/res
         res.render("pages/painel_adm", {
           listaErros: null,
           dadosNotificacao: null,
-          valores: { nome: "", email: "", senha: "", img_perfil: ""},
+          valores: { nome_completo: "", email: "", senha: "", img_perfil: ""},
           autenticado: req.session.autenticado,
           login: req.session.autenticado,
           id_tipo_usuario: req.session.autenticado.tipo,
-          img_perfil_pasta: req.session.autenticado.img_perfil,
+          img_perfil: req.session.autenticado.img_perfil,
           usuarios: usuarios,
           totalUsuarios: totalUsuarios, 
         });
@@ -290,7 +288,7 @@ async function buscarUsuariosDoBanco() {
   });
 }
 
-router.post("/desativar-usuario/:id", verificarUsuAutorizado([2, 3], "pages/restrito"), verificarUsuAutenticado, async (req, res) => {
+router.post("/desativar-usuario/:id", verificarUsuAutorizado([1, 2, 3], "pages/restrito"), verificarUsuAutenticado, async (req, res) => {
   const id = req.params.id;
 
   try {
@@ -304,7 +302,7 @@ router.post("/desativar-usuario/:id", verificarUsuAutorizado([2, 3], "pages/rest
   }
 });
 
-router.post("/reativar-usuario/:id", verificarUsuAutorizado([2, 3], "pages/restrito"), verificarUsuAutenticado, async (req, res) => {
+router.post("/reativar-usuario/:id", verificarUsuAutorizado([1, 2, 3], "pages/restrito"), verificarUsuAutenticado, async (req, res) => {
   const id = req.params.id;
 
   try {
@@ -325,6 +323,26 @@ router.post("/reativar-usuario/:id", verificarUsuAutorizado([2, 3], "pages/restr
 /////////////////////////////////////
 router.get("/faleConosco", function (req, res) {
   res.render("pages/faleConosco");
+});
+
+router.get("/excluir", verificarUsuAutenticado, async function (req, res) {
+
+  try{
+
+    let deleta = await usuarioDAL.delete(req.session.autenticado.id_Cadastro);
+
+    console.log(deleta);
+
+    res.redirect("/sair");
+
+  } catch(e) {
+
+    console.log(e);
+
+    res.render("pages/locais");
+
+  }
+
 });
 
 router.get("/favoritos", function (req, res) {

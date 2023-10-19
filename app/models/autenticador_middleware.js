@@ -47,6 +47,7 @@ function gravarUsuAutenticado(usuarioDAL, bcrypt) {
         }
         req.session.autenticado = autenticado;
         console.log("middle gravar 2 -> "+ req.session.autenticado.tipo);
+        console.log(results)
         next();
     }
 }

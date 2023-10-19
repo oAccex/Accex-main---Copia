@@ -70,6 +70,35 @@ router.post(
   body("password")
     .isStrongPassword()
     .withMessage("A senha ou usuario estão incorretos"),
+    async function (req, res) {
+      var dadosForm = {
+        senha: bcrypt.hashSync(req.body.password, salt),
+        email: req.body.email 
+      }; 
+      const erros = validationResult(req);
+    console.log(erros)
+    if (!erros.isEmpty()) {
+      console.log("erro no login", erros);
+      return res.render("pages/login", { listaErros: erros, dadosNotificacao: null, valores: req.body })
+    }
+    try {
+      let insert = await usuarioDAL.create(dadosForm);
+      console.log(insert);
+      res.render("pages/login", {
+        listaErros: null, dadosNotificacao: {
+          titulo: "Login realizado!", mensagem: "Usuário criado com o id " + insert.insertId + "!", tipo: "success"
+        }, valores: req.body
+      })
+    } catch (e) {
+      console.log("erro no cadastro", e);
+      res.render("pages/cadastro", {
+        listaErros: erros, dadosNotificacao: {
+          titulo: "Erro ao cadastrar!", mensagem: "Verifique os valores digitados!", tipo: "error"
+        }, valores: req.body
+      })
+    }
+  }
+);
 
   gravarUsuAutenticado(usuarioDAL, bcrypt),
   function (req, res) {
@@ -82,7 +111,7 @@ router.post(
     } else {
       res.render("pages/login", { listaErros: erros, dadosNotificacao: { titulo: "Erro ao logar!", mensagem: "Usuário e/ou senha inválidos!", tipo: "error" } })
     }
-  });
+  };
 
 
 router.get("/cadastro", function (req, res) {
@@ -133,10 +162,6 @@ router.post("/cadastro",
   }
 );
   
-
-/////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////
-
 router.get("/perfil", verificarUsuAutorizado([1, 2, 3], "pages/restrito"), async function (req, res) {
   try {
     let results = await usuarioDAL.findID(req.session.autenticado.id);

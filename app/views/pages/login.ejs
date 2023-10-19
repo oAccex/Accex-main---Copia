@@ -29,6 +29,47 @@
     </header>
 <main>
   <% 
+  let msgErro = {"email":"", "password":"",};
+  let avisoErro = {"email":"", "password":"",};
+  if(listaErros){
+      listaErros.errors.forEach(function(itemErro){
+          if(itemErro.path == "email"){
+              avisoErro.email = "erro";
+              msgErro.email += " "+itemErro.msg;
+              %>
+              <script>
+                  notify("Erro no preenchimento","Verifique o campo nome<br><%= itemErro.msg%>", "error", "center")                        
+              </script>
+              <%
+          }
+          if(itemErro.path == "password"){
+              avisoErro.password = "erro";
+              msgErro.password = itemErro.msg;
+              %>
+              <script>
+                  notify("Erro no preenchimento","Verifique o campo senha<br><%= itemErro.msg%>", "error", "center")                        
+              </script>
+              <%                
+          }
+        })  
+  } %>     
+
+  <%
+      let avisoErro = {"email":"", "senha":""};
+      let msgErro = {"email":"", "senha":""};
+           if(listaErros){
+              listaErros.errors.forEach(function(itemErro){
+                   if(itemErro.path == "email"){
+                        avisoErro.email = "erro";
+                        msgErro.email = itemErro.msg;
+                    }
+                    if(itemErro.path == "senha"){
+                        avisoErro.senhalog = "erro";
+                        msgErro.senhalog = itemErro.msg;
+                    }
+                })
+            }
+   
    let avisoErro = {"email":"", "password":""}
    let msgErro = {"email":"", "password":""}
       if(listaErros){
@@ -47,22 +88,18 @@
   %>
     <h1>Faça o seu login</h1>
     <form method="post" action="/login">
-        <label for="email">E-mail</label>
-        <input type="text" id="email" name="email" required
-          class="<%= avisoErro.email %>" />
-        <span>
-          <%= msgErro.email %>
-        </span> 
-        <label for="password">Senha</label>
-        <input type="password" id="password" name="password" required
-            class="<%=  avisoErro.password %>" />
+      <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email"value="<%= valores.email %>" class="<%= avisoErro.email %>"/>
+        <span> <%= msgErro.email %> </span>
+        <label for="password">Senha:</label>
+        <input type="password" id="password" name="password"value="<%= valores.password %>" class="<%= avisoErro.password %>"/>
+        <span> <%= msgErro.password %> </span>
         <span id="msgerror">
             <%= msgErro.password %>
         </span>
-        </span>
-        </span>
         <button>Entrar</button>
     </form>
+    
     <div id="cadastre"><p class="message">Não tem conta? <a href="/cadastro">Cadastre-se</a></p></div>
 
     <div vw class="enabled">

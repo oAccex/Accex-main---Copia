@@ -75,13 +75,13 @@ router.post(
   function (req, res) {
     const erros = validationResult(req);
     if (!erros.isEmpty()) {
-      return res.render("pages/login", { listaErros: erros, dadosNotificacao: null })
+      return res.render("pages/login", {autenticado:req.session.autenticado, listaErros: erros, dadosNotificacao: null })
     }
     if (req.session.autenticado != null) {
       console.log(`Logado`)
       res.redirect("/?login=logado");
     } else {
-      res.render("pages/login", { listaErros: erros, dadosNotificacao: { titulo: "Erro ao logar!", mensagem: "Usuário e/ou senha inválidos!", tipo: "error" } })
+      res.render("pages/login", {autenticado:req.session.autenticado, listaErros: erros, dadosNotificacao: { titulo: "Erro ao logar!", mensagem: "Usuário e/ou senha inválidos!", tipo: "error" } })
     }
   }
 );
@@ -348,7 +348,8 @@ router.get("/faleConosco", function (req, res) {
 
 
 router.get("/excluir", verificarUsuAutenticado, async function (req, res) {
-   try{ let deleta = await usuarioDAL.delete(req.session.autenticado.idusuario);
+   try{
+   let deleta = await usuarioDAL.delete(req.session.autenticado.id);
    console.log(deleta);
    res.redirect("/sair"); 
 } catch(e) 

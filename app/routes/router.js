@@ -77,7 +77,9 @@ router.post(
     if (!erros.isEmpty()) {
       return res.render("pages/login", {autenticado:req.session.autenticado, listaErros: erros, dadosNotificacao: null })
     }
-    if (req.session.autenticado != null) {
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////
+    if (req.session.autenticado.id != null) {
       console.log(`Logado`)
       res.redirect("/?login=logado");
     } else {

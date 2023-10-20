@@ -27,71 +27,73 @@
 </head>
 
 <body>
-    <%
-
-     <!-- let arquivo = {"imagem":"image/img-perfil.png"} -->
-    let arquivo = {"imagem":"image/usuario-white.png"}
+  <%
+    let arquivo = {"imagem":"image/usuario-white.png"};
  
     if(valores.img_perfil != null){
-        arquivo.imagem = valores.img_perfil 
+        arquivo.imagem = valores.img_perfil;
     }
 
-    let msgErro = {"fullName":"", "email":"",nickname:"", telefone:""}
-    let avisoErro = {"fullName":"", "email":"",nickname:"", telefone:""}
+    let msgErro = {"fullName":"", "email":"", "nickname":"", "telefone":""};
+    let avisoErro = {"fullName":"", "email":"", "nickname":"", "telefone":""};
+    
     if(listaErros){
         listaErros.errors.forEach(function(itemErro){
             if(itemErro.path == "fullName"){
                 avisoErro.fullName = "erro";
-                msgErro.fullName += " "+itemErro.msg
+                msgErro.fullName += " " + itemErro.msg;
                 %>
                 <script>
-                    notify("Erro no preenchimento","Verifique o campo nome <br><%= itemErro.msg%>", "error", "center")                        
+                    notify("Erro no preenchimento","Verifique o campo nome <br><%= itemErro.msg %>", "error", "center");                        
                 </script>
                 <%
             }
             if(itemErro.path == "telefone"){
                 avisoErro.telefone = "erro";
-                msgErro.telefone = itemErro.msg
+                msgErro.telefone = itemErro.msg;
                 %>
                 <script>
-                    notify("Erro no preenchimento","Verifique o campo Telefone", "error", "center")                        
+                    notify("Erro no preenchimento","Verifique o campo Telefone", "error", "center");                        
                 </script>
                 <%
             }
             if(itemErro.path == "nickname"){
                 avisoErro.nickname = "erro";
-                msgErro.nickname = itemErro.msg
+                msgErro.nickname = itemErro.msg;
                 %>
                 <script>
-                    notify("Erro no preenchimento","Verifique o campo nome de usuário", "error", "center")                        
+                    notify("Erro no preenchimento","Verifique o campo nome de usuário", "error", "center");                        
                 </script>
                 <%
             }
             if(itemErro.path == "email"){
                 avisoErro.email = "erro";
-                msgErro.email = itemErro.msg
+                msgErro.email = itemErro.msg;
                 %>
                 <script>
-                    notify("Erro no preenchimento","Verifique o campo e-mail", "error", "center")                        
+                    notify("Erro no preenchimento","Verifique o campo e-mail", "error", "center");                        
                 </script>
                 <%
             }
-        })
+        });
     }
     
-    if (dadosNotificacao) 
+    if (dadosNotificacao){
         %>
         <script>
-                notify("<%= dadosNotificacao.titulo%>","<%= dadosNotificacao.mensagem%>", "<%= dadosNotificacao.tipo%>", "center")
-                
-                if("<%= dadosNotificacao.tipo %>" == "success"){
-                    setTimeout(function(){
-                        window.location="/"
-                    }, 3000)
-                }                        
+            notify("<%= dadosNotificacao.titulo %>","<%= dadosNotificacao.mensagem %>", "<%= dadosNotificacao.tipo %>", "center");
+            
+            if("<%= dadosNotificacao.tipo %>" == "success"){
+                setTimeout(function(){
+                    window.location = "/";
+                }, 3000);
+            }                        
         </script>
-    <% } %>
-  <header>
+        <%
+    }
+  %>
+  %>
+  <!-- <header>
     <span></span>
     <a href="/"><img src="image/logoAccex-azul.png" alt="Logo" /></a>
     <img src="image/iconePERFIL.png" id="usuario" alt="User" class="open-menu" />
@@ -102,7 +104,7 @@
         <li><a href="perfil">Perfil</a></li>
       </ul>
     </nav>
-  </header>
+  </header> -->
   <main>
     <h1>Edite seu perfil</h1>
     <form method="post" action="/editarPerfil" enctype="multipart/form-data">
@@ -113,20 +115,22 @@
       <input type="text" id="fullName" name="fullName" value="<%= valores.nome_completo %>" class="<%= avisoErro.fullName %>"/> 
       <span> <%= msgErro.fullName %> </span>
       <label for="nomeusu_usu">Nome de Usuário:</label>
-      <input type="text" id="userName" name="userName"value="<%= valores.nickname %>" class="<%= avisoErro.userName %>"/>
+      <input type="text" id="userName" name="userName" value="<%= valores.nickname %>" class="<%= avisoErro.userName %>"/>
       <span> <%= msgErro.userName %> </span>
       <label for="telefone">Telefone:</label>
-      <input type="tel" id="telefone" name="telefone"value="<%= valores.telefone %>" class="<%= avisoErro.telefone %>"/>
+      <input type="tel" id="telefone" name="telefone" value="<%= valores.telefone %>" class="<%= avisoErro.telefone %>"/>
       <span> <%= msgErro.telefone %> </span>
       <label for="email">E-mail:</label>
-      <input type="email" id="email" name="email"value="<%= valores.email %>" class="<%= avisoErro.email %>"/>
+      <input type="email" id="email" name="email" value="<%= valores.email %>" class="<%= avisoErro.email %>"/>
       <span> <%= msgErro.email %> </span>
       <label for="password">Senha:</label>
-      <input type="password" id="password" name="password"value="<%= valores.password %>" class="<%= avisoErro.password %>"/>
+      <input type="password" id="password" name="password" value="<%= valores.password %>" class="<%= avisoErro.password %>"/>
       <span> <%= msgErro.password %> </span>
       <button type="submit" id="butcad">Editar</button>
     </form>
   </main>
+
+
 
 
   <footer>
@@ -157,11 +161,11 @@
     const editarPerfil = document.getElementsByClassName("img-perfil");
     const arquivoSelect = document.getElementById("img-perfil")
     
-    editarPerfil.addEventlistener("click", () => {
+    editarPerfil.addEventListener("click", () => {
       arquivoSelect.classList.add("show");
     })
 
-    editarPerfil.addEventlistener("click", () => {
+    editarPerfil.addEventListener("click", () => {
       arquivoSelect.classList.remove("show");
     })
   </script>

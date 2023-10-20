@@ -77,7 +77,7 @@ module.exports = class UsuarioDAL {
 
     delete(id) {
         return new Promise((resolve, reject) => {
-            this.conexao.query("UPDATE usuario SET status_usuario = 0 WHERE idusuario = ?", [id], function (error, results) {
+            this.accex.query("UPDATE usuario SET status_usuario = '0' WHERE idusuario = ?", [id], function (error, results) {
                 if (error) {
                     return reject(error);
                 }

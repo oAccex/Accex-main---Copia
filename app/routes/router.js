@@ -325,24 +325,35 @@ router.get("/faleConosco", function (req, res) {
   res.render("pages/faleConosco");
 });
 
+// router.get("/excluir", verificarUsuAutenticado, async function (req, res) {
+
+  // try{
+
+  //   let deleta = await usuarioDAL.delete(req.session.autenticado.id_Cadastro);
+
+  //   console.log(deleta);
+
+  //   res.redirect("/sair");
+
+  // } catch(e) {
+
+  //   console.log(e);
+
+  //   res.render("pages/locais");
+
+  // }
+
+// });
+//////////////////////////////////////////////////////////////////////////////
+
+
 router.get("/excluir", verificarUsuAutenticado, async function (req, res) {
-
-  try{
-
-    let deleta = await usuarioDAL.delete(req.session.autenticado.id_Cadastro);
-
-    console.log(deleta);
-
-    res.redirect("/sair");
-
-  } catch(e) {
-
-    console.log(e);
-
-    res.render("pages/locais");
-
-  }
-
+   try{ let deleta = await usuarioDAL.delete(req.session.autenticado.idusuario);
+   console.log(deleta);
+   res.redirect("/sair"); 
+} catch(e) 
+{ console.log(e); res.render("pages/404"); 
+} 
 });
 
 router.get("/favoritos", function (req, res) {

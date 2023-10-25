@@ -10,6 +10,9 @@ var accex = fabricaDeConexao();
 var UsuarioDAL = require("../models/UsuarioDAL");
 var usuarioDAL = new UsuarioDAL(accex);
 
+var LocalDAL = require("../models/LocalDAL");
+var localDAL = new LocalDAL(accex);
+
 var { verificarUsuAutenticado, limparSessao, gravarUsuAutenticado,
   verificarUsuAutorizado } = require("../models/autenticador_middleware");
 
@@ -379,25 +382,47 @@ router.get("/visitados", function (req, res) {
   res.render("pages/visitados");
 });
 
-router.get("/cadastroLocais", async function (req, res) {
-  res.render("pages/cadastroLocais");
+router.get("/cadastroLocais", verificarUsuAutenticado, async function (req, res) {
+if(req.session.autenticado.autenticado){
+  res.render("pages/cadastroLocais", { listaErros: null, dadosNotificacao: null, valores: { nome_usu: "", nomeusu_usu: "", email_usu: "", senha_usu: "" } });
+}else{
+  res.render("pages/restrito")
+}
 
+});
+
+router.post("/cadastroLocais",
+  body("NomeLocal")
+    .isLength({ min: 3, max: 25 }).withMessage("Digite um nome válido"),
+  body("Cidade")
+    .isLength({ min: 3, max: 25 }).withMessage("O nome de usuário deve ter de 3 a 25 caracteres"),
+  body("cep")
+  .isLength({ min: 3, max: 25 }).withMessage("O nome de usuário deve ter de 3 a 25 caracteres"),
+    body("Bairro")
+    .isLength({ min: 12, max: 13 }).withMessage("Coloque seu telefone!"),
+  body("Rua")
+  .isLength({ min: 3, max: 25 }).withMessage("Digite um nome válido"),
+  body("Num")
+  .isLength({ min: 3, max: 25 }).withMessage("Digite um nome válido"),
+  async function (req, res) {
   var dadosForm = {
-    NomeLocal: req.body.NomeLocal,
-    Cidade: req.body.Cidade,
+    nome: req.body.NomeLocal,
+    cidade: req.body.Cidade,
     cep: req.body.cep,
-    Rua: req.body.Rua,
-    Bairro: req.body.Bairro,
-    Num: req.body.Num
+    rua: req.body.Rua,
+    bairro: req.body.Bairro,
+    num_residen: req.body.Num,
+    idtipoDlocal: req.body.estabelecimento,
+    idusuario: req.session.autenticado.id
   }; 
   const erros = validationResult(req);
   console.log(erros)
   if (!erros.isEmpty()) {
     console.log("erro no cadastro", erros);
-    return res.render("pages/cadastro", { listaErros: erros, dadosNotificacao: null, valores: req.body })
+    return res.render("pages/cadastrolocais", { listaErros: erros, dadosNotificacao: null, valores: req.body })
   }
   try {
-    let insert = await LocalDAL.create(dadosForm);
+    let insert = await localDAL.create(dadosForm);
     console.log(insert);
     res.render("pages/cadastroLocais", {
       listaErros: null, dadosNotificacao: {
@@ -412,7 +437,9 @@ router.get("/cadastroLocais", async function (req, res) {
       }, valores: req.body
     })
   }
-});
+}
+);
+  
 
 router.get("/avaliacao", function (req, res) {
   res.render("pages/avaliacao");

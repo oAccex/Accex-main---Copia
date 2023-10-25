@@ -33,7 +33,6 @@ create table local(
 	`estado` varchar(30),
     `img_perfil` varchar(100) DEFAULT NULL,
     `idlocal` int not null Auto_increment, 
-    `id_descricao_D_Local` int not null,
     `idtipoDlocal` int not null,
     `idusuario` int NOT NULL,
     primary key (`idlocal`)
@@ -71,10 +70,12 @@ create table descricaoDlocal(
 	`descricao_4` varchar(35) not null,
 	`descricao_5` varchar(35) not null,
 	`descricao_6` varchar(35) not null,
+    `idlocal` int not null, 
 	primary key (`id_descricao_D_Local`)
+    
 );
 
-/CREATE TABLE `tipo_usuario` (
+CREATE TABLE `tipo_usuario` (
   `id_tipo_usuario` int NOT NULL AUTO_INCREMENT,
   `tipo_usuario` varchar(25) DEFAULT NULL,
   `descricao_usuario` varchar(155) DEFAULT NULL,
@@ -84,8 +85,6 @@ create table descricaoDlocal(
 
 
 ALTER TABLE local
-ADD CONSTRAINT fk_descricaoDlocal
-FOREIGN KEY (`id_descricao_D_Local`) REFERENCES descricaoDlocal(`id_descricao_D_Local`),
 ADD CONSTRAINT fk_tipoDeLocal
 FOREIGN KEY (`idtipoDlocal`) REFERENCES tipoDeLocal(`idtipoDlocal`),
 ADD CONSTRAINT fk_usuario
@@ -101,6 +100,13 @@ ALTER TABLE usuario
 ADD CONSTRAINT tipo_usuario
 FOREIGN KEY (`id_tipo_usuario`) REFERENCES tipo_usuario(`id_tipo_usuario`); 
 
+ALTER TABLE descricaodlocal
+ADD CONSTRAINT fk_idlocal
+FOREIGN KEY (`idlocal`) REFERENCES local(`idlocal`);
+
 INSERT INTO `accex`.`tipo_usuario` (`id_tipo_usuario`, `tipo_usuario`, `descricao_usuario`, `status_tipo_usuario`) VALUES ('1', 'comum', 'usuario logado', '1');
 INSERT INTO `accex`.`tipo_usuario` (`id_tipo_usuario`, `tipo_usuario`, `descricao_usuario`, `status_tipo_usuario`) VALUES ('2', 'proprietario', 'Usuário com acesso a consultas na área administrativa', '1');
 INSERT INTO `accex`.`tipo_usuario` (`id_tipo_usuario`, `tipo_usuario`, `descricao_usuario`, `status_tipo_usuario`) VALUES ('3', 'ADM', 'Usuário com acesso a consultas e edições na área administrativa', '1');
+
+UPDATE `accex`.`tipodelocal` SET `tipo` = 'Universidade' WHERE (`idtipoDlocal` = '1');
+UPDATE `accex`.`tipodelocal` SET `tipo` = 'Mercado' WHERE (`idtipoDlocal` = '2');

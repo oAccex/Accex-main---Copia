@@ -12,6 +12,8 @@
     <script src="js/image-preview.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />​
+    <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
     <script type="text/javascript" src="//acc.magixite.com/freeCode?oatk=2133516"></script>
     <style>
         
@@ -33,33 +35,51 @@
               </script>
               <%
           }
-          if(itemErro.path == "password"){
-              avisoErro.password = "erro";
-              msgErro.password = itemErro.msg;
+          if(itemErro.path == "Cidade"){
+              avisoErro.Cidade = "erro";
+              msgErro.Cidade = itemErro.msg;
               %>
               <script>
-                  notify("Erro no preenchimento","Verifique o campo senha<br><%= itemErro.msg%>", "error", "center")                        
+                  notify("Erro no preenchimento","Verifique o campo Cidade<br><%= itemErro.msg%>", "error", "center")                        
               </script>
               <%                
           }
-          if(itemErro.path == "userName"){
-              avisoErro.userName = "erro";
-              msgErro.userName = itemErro.msg;
+          if(itemErro.path == "cep"){
+              avisoErro.cep = "erro";
+              msgErro.cep = itemErro.msg;
               %>
               <script>
-                  notify("Erro no preenchimento","Verifique o campo nome de usuário<br><%= itemErro.msg%>", "error", "center")                        
+                  notify("Erro no preenchimento","Verifique o campo cep<br><%= itemErro.msg%>", "error", "center")                        
               </script>
               <%
           }
-          if(itemErro.path == "email"){
-              avisoErro.email = "erro";
-              msgErro.email = itemErro.msg;
+          if(itemErro.path == "Rua"){
+              avisoErro.Rua = "erro";
+              msgErro.Rua = itemErro.msg;
               %>
               <script>
-                  notify("Erro no preenchimento","Verifique o campo e-mail<br><%= itemErro.msg%>", "error", "center")                        
+                  notify("Erro no preenchimento","Verifique o campo Rua<br><%= itemErro.msg%>", "error", "center")                        
               </script>
               <%
           }
+          if(itemErro.path == "Bairro"){
+            avisoErro.Bairro = "erro";
+            msgErro.Bairro = itemErro.msg;
+            %>
+            <script>
+                notify("Erro no preenchimento","Verifique o campo Bairro<br><%= itemErro.msg%>", "error", "center")                        
+            </script>
+            <%
+        }
+        if(itemErro.path == "Num"){
+          avisoErro.Num = "erro";
+          msgErro.Num = itemErro.msg;
+          %>
+          <script>
+              notify("Erro no preenchimento","Verifique o campo Num<br><%= itemErro.msg%>", "error", "center")                        
+          </script>
+          <%
+        }
       })
   }
   if (dadosNotificacao) { %>
@@ -85,28 +105,33 @@
     </header>
     <main>
       <h1>Criar estabelecimento</h1>
-        <form action="" class="locais">
+        <form action="/cadastroLocais" method="POST" class="locais">
             <label for="NomeLocal">Nome do estabelecimento:</label>
-            <input type="text" id="NomeLocal" name="NomeLocal" required>
+            <input type="text" id="NomeLocal" name="NomeLocal" class="<%= avisoErro.NomeLocal %>" required>
+
             <p>Tipo de estabelecimento:</p>
             <div class="Tipo-locais">
-                <span><input type="radio" name="estabelecimento" id="Universidade" required><label for="Universidade">Universidade</label></span>
-                <span><input type="radio" name="estabelecimento" id="Mercado" required><label for="Mercado">Mercado</label></span>
+                <span><input type="radio" name="estabelecimento" value="1" id="Universidade" required><label for="Universidade">Universidade</label></span>
+                <span><input type="radio" name="estabelecimento" value="2" id="Mercado" required><label for="Mercado">Mercado</label></span>
                 <span><input type="radio" name="estabelecimento" id="Parque" required><label for="Parque">Parque</label></span>
                 <span><input type="radio" name="estabelecimento" id="Restaurante" required><label for="Restaurante">Restaurante</label></span>
                 <span><input type="radio" name="estabelecimento" id="Hotel" required><label for="Hotel">Hotel</label></span>
                 <span><input type="radio" name="estabelecimento" id="Biblioteca" required><label for="Biblioteca">Biblioteca</label></span>
             </div>
-            <label for="Cidade" name="Cidade">Cidade:</label>
-            <input type="text" name="Cidade" id="Cidade" required>
+            <label for="Cidade" name="Cidade" class="<%= avisoErro.email %>">Cidade:</label>
+            <input type="text" name="Cidade" id="Cidade" class="<%= avisoErro.Cidade %>" required>
+
             <label for="CEP" name="cep">CEP:</label>
-            <input type="text" name="cep" id="CEP" required>
+            <input type="text" name="cep" id="CEP" class="<%= avisoErro.cep %>">
+
             <label for="Rua">Rua:</label>
-            <input type="text" name="Rua" id="Rua" required>
+            <input type="text" name="Rua" id="Rua" class="<%= avisoErro.Rua %>" required>
+
             <label for="Bairro">Bairro:</label> 
-            <input type="text" name="Bairro" id="Bairro" required>
+            <input type="text" name="Bairro" id="Bairro" class="<%= avisoErro.Bairro %>" required>
+
             <label for="Num">Número(Estabelecimento):</label>
-            <input type="text" name="Num" id="Num" required maxlength="4">
+            <input type="text" name="Num" id="Num" required class="<%= avisoErro.Num %>" maxlength="4">
 
             <p>Anexe uma foto do estabelecimento:</p>
             <div id="boxLocal">
@@ -117,10 +142,9 @@
             <!-- <button id="butcad">
                 <a href="localCaracteristicas">Continuar</a>
             </button> -->
-            <button id="butcad" type="submit">
-              <a href="/cadastroLocais">Continuar</a>
-          </button>
+            
           </div>
+          <input id="butcad" type="submit" value="Continuar">
         </form>
     </main>
     <footer style="margin-top: 10vh;">

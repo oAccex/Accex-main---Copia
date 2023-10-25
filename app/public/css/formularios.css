@@ -135,5 +135,12 @@ fieldset label{
     font-size: 3vw;
 }
 
+.erro{
+    background-color: rgb(255, 233, 233);
+    border: 1px solid red;
+    border-radius: 7px;
+	color: red;
+}
+
 } 
 

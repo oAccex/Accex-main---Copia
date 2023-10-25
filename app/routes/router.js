@@ -59,7 +59,7 @@ router.get("/", verificarUsuAutenticado, function (req, res) {
 
 router.get("/login", function (req, res) {
   res.locals.erroLogin = null
-  res.render("pages/login", { listaErros: null });
+  res.render("pages/login", { listaErros: null, dadosNotificacao: null, valores: { nome_usu: "", nomeusu_usu: "", email_usu: "", senha_usu: "" } });
 });
 
 router.post(
@@ -379,8 +379,39 @@ router.get("/visitados", function (req, res) {
   res.render("pages/visitados");
 });
 
-router.get("/cadastroLocais", function (req, res) {
+router.get("/cadastroLocais", async function (req, res) {
   res.render("pages/cadastroLocais");
+
+  var dadosForm = {
+    NomeLocal: req.body.NomeLocal,
+    Cidade: req.body.Cidade,
+    cep: req.body.cep,
+    Rua: req.body.Rua,
+    Bairro: req.body.Bairro,
+    Num: req.body.Num
+  }; 
+  const erros = validationResult(req);
+  console.log(erros)
+  if (!erros.isEmpty()) {
+    console.log("erro no cadastro", erros);
+    return res.render("pages/cadastro", { listaErros: erros, dadosNotificacao: null, valores: req.body })
+  }
+  try {
+    let insert = await LocalDAL.create(dadosForm);
+    console.log(insert);
+    res.render("pages/cadastroLocais", {
+      listaErros: null, dadosNotificacao: {
+        titulo: "Cadastro de local realizado!", mensagem: "Local criado com o id " + insert.insertId + "!", tipo: "success"
+      }, valores: req.body
+    })
+  } catch (e) {
+    console.log("erro no cadastro", e);
+    res.render("pages/cadastro", {
+      listaErros: erros, dadosNotificacao: {
+        titulo: "Erro ao cadastrar local!", mensagem: "Verifique os valores digitados!", tipo: "error"
+      }, valores: req.body
+    })
+  }
 });
 
 router.get("/avaliacao", function (req, res) {

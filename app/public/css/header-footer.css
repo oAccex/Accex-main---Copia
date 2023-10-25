@@ -49,6 +49,10 @@ nav{
     z-index: 1;
 }
 
+nav li{
+    margin: 10px 10px 0 10px;
+}
+
 .show-menu{
     right: 0 !important;
     position: absolute;

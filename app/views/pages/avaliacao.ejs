@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/header-footer.css">
     <link rel="stylesheet" href="css/avaliar.css">
     <script src="js/menu.js" defer></script>
-    <script src="js/rating.js" defer></script>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <script type="text/javascript" src="//acc.magixite.com/freeCode?oatk=2133516"></script>
   </head>
@@ -103,5 +103,25 @@
             </div></div>
         </div>
       </footer>
+      <script>
+        const stars = document.querySelectorAll('.stars i' )
+        console.log(stars)
+          console.log("Funcionou")
+          stars.forEach((star, index1)=>{
+              star.addEventListener('click', ()=>{
+                  var rating = (index1+1)
+                  stars.forEach((star, index2)=>{
+                      console.log('index 1: ' + index1, 'index 2: ' + index2)
+                      if(index1 >= index2){
+                          star.classList.add("active")
+                      }else{
+                          star.classList.remove("active")
+                      }
+                  })
+              })
+          })
+  
+  
+      </script>
           </body>
         </html>

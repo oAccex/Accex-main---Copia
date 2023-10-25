@@ -18,6 +18,59 @@
     </style>
   </head>
   <body>
+
+    <% 
+  let msgErro = {"NomeLocal":"", "Cidade":"", cep:"" , "Rua":"", "Bairro":"", Num:""};
+  let avisoErro = {"NomeLocal":"", "Cidade":"", cep:"" , Rua:"", Bairro:"", Num:""};
+  if(listaErros){
+      listaErros.errors.forEach(function(itemErro){
+          if(itemErro.path == "NomeLocal"){
+              avisoErro.NomeLocal = "erro";
+              msgErro.NomeLocal += " "+itemErro.msg;
+              %>
+              <script>
+                  notify("Erro no preenchimento","Verifique o campo nome<br><%= itemErro.msg%>", "error", "center")                        
+              </script>
+              <%
+          }
+          if(itemErro.path == "password"){
+              avisoErro.password = "erro";
+              msgErro.password = itemErro.msg;
+              %>
+              <script>
+                  notify("Erro no preenchimento","Verifique o campo senha<br><%= itemErro.msg%>", "error", "center")                        
+              </script>
+              <%                
+          }
+          if(itemErro.path == "userName"){
+              avisoErro.userName = "erro";
+              msgErro.userName = itemErro.msg;
+              %>
+              <script>
+                  notify("Erro no preenchimento","Verifique o campo nome de usuário<br><%= itemErro.msg%>", "error", "center")                        
+              </script>
+              <%
+          }
+          if(itemErro.path == "email"){
+              avisoErro.email = "erro";
+              msgErro.email = itemErro.msg;
+              %>
+              <script>
+                  notify("Erro no preenchimento","Verifique o campo e-mail<br><%= itemErro.msg%>", "error", "center")                        
+              </script>
+              <%
+          }
+      })
+  }
+  if (dadosNotificacao) { %>
+    <script>
+            notify("<%= dadosNotificacao.titulo%>","<%= dadosNotificacao.mensagem%>", "<%= dadosNotificacao.tipo%>", "center")
+            if("<%= dadosNotificacao.tipo %>" == "success"){
+                setTimeout(function(){window.location="/"}, 3007)
+            }                        
+    </script>
+<% } %>
+
     <header>
       <span></span>
       <a href="/"><img src="image/logoAccex-azul.png" alt="Logo" /></a>
@@ -34,7 +87,7 @@
       <h1>Criar estabelecimento</h1>
         <form action="" class="locais">
             <label for="NomeLocal">Nome do estabelecimento:</label>
-            <input type="text" id="NomeLocal" required>
+            <input type="text" id="NomeLocal" name="NomeLocal" required>
             <p>Tipo de estabelecimento:</p>
             <div class="Tipo-locais">
                 <span><input type="radio" name="estabelecimento" id="Universidade" required><label for="Universidade">Universidade</label></span>
@@ -44,10 +97,10 @@
                 <span><input type="radio" name="estabelecimento" id="Hotel" required><label for="Hotel">Hotel</label></span>
                 <span><input type="radio" name="estabelecimento" id="Biblioteca" required><label for="Biblioteca">Biblioteca</label></span>
             </div>
-            <label for="Cidade">Cidade:</label>
+            <label for="Cidade" name="Cidade">Cidade:</label>
             <input type="text" name="Cidade" id="Cidade" required>
-            <label for="CEP">CEP:</label>
-            <input type="text" name="CEP" id="CEP" required>
+            <label for="CEP" name="cep">CEP:</label>
+            <input type="text" name="cep" id="CEP" required>
             <label for="Rua">Rua:</label>
             <input type="text" name="Rua" id="Rua" required>
             <label for="Bairro">Bairro:</label> 
@@ -61,9 +114,12 @@
               <input type="file" aria-label="Logo" required name="Local" id="Local" max="1" placeholder="Local">
           </div>
           <div class="grup-btcad">
-            <button id="butcad">
+            <!-- <button id="butcad">
                 <a href="localCaracteristicas">Continuar</a>
-            </button>
+            </button> -->
+            <button id="butcad" type="submit">
+              <a href="/cadastroLocais">Continuar</a>
+          </button>
           </div>
         </form>
     </main>

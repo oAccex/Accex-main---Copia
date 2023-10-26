@@ -89,19 +89,19 @@
       <h1>Faça o seu cadastro</h1>
       <form method="post" action="/cadastro">
         <label for="nome_usu">Seu nome completo:</label>
-        <input type="text" id="fullName" name="fullName" value="<%= valores.fullName %>" class="<%= avisoErro.fullName %>"/> 
+        <input type="text" id="fullName" name="fullName" value="<%= valores.fullName %>" class="<%= avisoErro.fullName %>" placeholder="nome"/> 
         <span> <%= msgErro.fullName %> </span>
         <label for="nomeusu_usu">Nome de Usuário:</label>
-        <input type="text" id="userName" name="userName"value="<%= valores.userName %>" class="<%= avisoErro.userName %>"/>
+        <input type="text" id="userName" name="userName"value="<%= valores.userName %>" class="<%= avisoErro.userName %>" placeholder="nome de usuario"/>
         <span> <%= msgErro.userName %> </span>
         <label for="telefone">Telefone:</label>
-        <input type="tel" id="telefone" name="telefone"value="<%= valores.telefone %>" class="<%= avisoErro.telefone %>"/>
+        <input type="tel" id="telefone" name="telefone"value="<%= valores.telefone %>" class="<%= avisoErro.telefone %>" placeholder="telefone"/>
         <span> <%= msgErro.telefone %> </span>
         <label for="email">E-mail:</label>
-        <input type="email" id="email" name="email"value="<%= valores.email %>" class="<%= avisoErro.email %>"/>
+        <input type="email" id="email" name="email"value="<%= valores.email %>" class="<%= avisoErro.email %>" placeholder="email"/>
         <span> <%= msgErro.email %> </span>
         <label for="password">Senha:</label>
-        <input type="password" id="password" name="password"value="<%= valores.password %>" class="<%= avisoErro.password %>"/>
+        <input type="password" id="password" name="password"value="<%= valores.password %>" class="<%= avisoErro.password %>" placeholder="Senha"/>
         <span> <%= msgErro.password %> </span>
         <input type="checkbox" name="termos" id="termos" onclick="mostratermo()" required>
         <label for="termos"> Li e concordo com os <a>termos requisitados</a></label>

@@ -4,6 +4,7 @@ with
 mysql_native_password
 BY '@ITB123456';
 
+DROP DATABASE IF EXISTS accex;
 CREATE DATABASE  accex;
 
 use accex;
@@ -110,3 +111,7 @@ INSERT INTO `accex`.`tipo_usuario` (`id_tipo_usuario`, `tipo_usuario`, `descrica
 
 UPDATE `accex`.`tipodelocal` SET `tipo` = 'Universidade' WHERE (`idtipoDlocal` = '1');
 UPDATE `accex`.`tipodelocal` SET `tipo` = 'Mercado' WHERE (`idtipoDlocal` = '2');
+UPDATE `accex`.`tipodelocal` SET `tipo` = 'Parque' WHERE (`idtipoDlocal` = '3');
+UPDATE `accex`.`tipodelocal` SET `tipo` = 'Restaurante' WHERE (`idtipoDlocal` = '4');
+UPDATE `accex`.`tipodelocal` SET `tipo` = 'Hotel' WHERE (`idtipoDlocal` = '5');
+UPDATE `accex`.`tipodelocal` SET `tipo` = 'Biblioteca' WHERE (`idtipoDlocal` = '6');

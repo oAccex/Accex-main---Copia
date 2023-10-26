@@ -86,7 +86,7 @@
     <script>
             notify("<%= dadosNotificacao.titulo%>","<%= dadosNotificacao.mensagem%>", "<%= dadosNotificacao.tipo%>", "center")
             if("<%= dadosNotificacao.tipo %>" == "success"){
-                setTimeout(function(){window.location="/"}, 3007)
+                setTimeout(function(){window.location="/localCaracteristicas"}, 3007)
             }                        
     </script>
 <% } %>
@@ -113,10 +113,10 @@
             <div class="Tipo-locais">
                 <span><input type="radio" name="estabelecimento" value="1" id="Universidade" required><label for="Universidade">Universidade</label></span>
                 <span><input type="radio" name="estabelecimento" value="2" id="Mercado" required><label for="Mercado">Mercado</label></span>
-                <span><input type="radio" name="estabelecimento" id="Parque" required><label for="Parque">Parque</label></span>
-                <span><input type="radio" name="estabelecimento" id="Restaurante" required><label for="Restaurante">Restaurante</label></span>
-                <span><input type="radio" name="estabelecimento" id="Hotel" required><label for="Hotel">Hotel</label></span>
-                <span><input type="radio" name="estabelecimento" id="Biblioteca" required><label for="Biblioteca">Biblioteca</label></span>
+                <span><input type="radio" name="estabelecimento" value="3" id="Parque" required><label for="Parque">Parque</label></span>
+                <span><input type="radio" name="estabelecimento" value="4" id="Restaurante" required><label for="Restaurante">Restaurante</label></span>
+                <span><input type="radio" name="estabelecimento" value="5" id="Hotel" required><label for="Hotel">Hotel</label></span>
+                <span><input type="radio" name="estabelecimento" value="6" id="Biblioteca" required><label for="Biblioteca">Biblioteca</label></span>
             </div>
             <label for="Cidade" name="Cidade" class="<%= avisoErro.email %>">Cidade:</label>
             <input type="text" name="Cidade" id="Cidade" class="<%= avisoErro.Cidade %>" required>

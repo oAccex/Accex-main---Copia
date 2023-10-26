@@ -370,10 +370,6 @@ router.get("/locais", function (req, res) {
   res.render("pages/locais");
 });
 
-router.get("/localCaracteristicas", function (req, res) {
-  res.render("pages/localCaracteristicas");
-});
-
 router.get("/localDesc", function (req, res) {
   res.render("pages/localDesc");
 });
@@ -440,6 +436,9 @@ router.post("/cadastroLocais",
 }
 );
   
+router.get("/localCaracteristicas", function (req, res) {
+  res.render("pages/localCaracteristicas");
+});
 
 router.get("/avaliacao", function (req, res) {
   res.render("pages/avaliacao");

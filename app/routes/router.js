@@ -399,7 +399,7 @@ router.post("/cadastroLocais",
   body("cep")
   .isLength({ min: 3, max: 25 }).withMessage("O nome de usuário deve ter de 3 a 25 caracteres"),
     body("Bairro")
-    .isLength({ min: 12, max: 13 }).withMessage("Coloque seu telefone!"),
+    .isLength({ min: 4, max: 100 }).withMessage("Digite o bairro!"),
   body("Rua")
   .isLength({ min: 3, max: 25 }).withMessage("Digite um nome válido"),
   body("Num")
@@ -412,7 +412,7 @@ router.post("/cadastroLocais",
     rua: req.body.Rua,
     bairro: req.body.Bairro,
     num_residen: req.body.Num,
-    idtipoDlocal: req.body.estabelecimento,
+    tipoDlocal: req.body.estabelecimento,
     idusuario: req.session.autenticado.id
   }; 
   const erros = validationResult(req);

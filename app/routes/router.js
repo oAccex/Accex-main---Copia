@@ -408,7 +408,7 @@ router.post("/cadastroLocais",
     rua: req.body.Rua,
     bairro: req.body.Bairro,
     num_residen: req.body.Num,
-    tipoDlocal: req.body.estabelecimento,
+    idtipoDlocal: req.body.estabelecimento,
     idusuario: req.session.autenticado.id
   }; 
   const erros = validationResult(req);

@@ -13,6 +13,10 @@ var usuarioDAL = new UsuarioDAL(accex);
 var LocalDAL = require("../models/LocalDAL");
 var localDAL = new LocalDAL(accex);
 
+
+var localDALcrct = require("../models/localDALcrct");
+var localDALcrct = new localDALcrct(accex);
+
 var { verificarUsuAutenticado, limparSessao, gravarUsuAutenticado,
   verificarUsuAutorizado } = require("../models/autenticador_middleware");
 
@@ -435,9 +439,53 @@ router.post("/cadastroLocais",
   }
 }
 );
+
+router.post("/localCaracteristicas",
+  body("andares")
+    .isLowercase().withMessage("Selecione uma opção válida!"),
+  body("escada")
+    .isLowercase().withMessage("Selecione uma opção válida!"),
+  body("elevadores")
+  .isLowercase() .withMessage("Selecione uma opção válida!"),
+  body("rampa")
+    .isLowercase().withMessage("Selecione uma opção válida!"),
+  body("piso")
+    .isLowercase().withMessage("Selecione uma opção válida!"),
+  async function (req, res){
+  var dadosForm = {
+    descricao_1: req.body.andares,
+    descricao_2: req.body.escada,
+    descricao_3: req.body.elevadores,
+    descricao_4: req.body.rampa,
+    descricao_5: req.body.piso,
+  }; 
+  const erros = validationResult(req);
+  console.log(erros)
+  if (!erros.isEmpty()) {
+    console.log("erro no cadastro", erros);
+    return res.render("pages/cadastrolocais", { listaErros: erros, dadosNotificacao: null, valores: req.body })
+  }
+  try {
+    let insert = await localDALcrct.create(dadosForm);
+    console.log(insert);
+    res.render("pages/localCaracteristicas", {
+      listaErros: null, dadosNotificacao: {
+        titulo: "Cadastro de local realizado!", mensagem: "Caracteristica atribuídas ao local com id " + insert.insertId + "!", tipo: "success"
+      }, valores: req.body
+    })
+  } catch (e) {
+    console.log("erro no cadastro", e);
+    res.render("pages/localCaracteristicas", {
+      listaErros: erros, dadosNotificacao: {
+        titulo: "Erro ao cadastrar local!", mensagem: "Verifique os valores digitados!", tipo: "error"
+      }, valores: req.body
+    })
+  }
+}
+);
   
 router.get("/localCaracteristicas", function (req, res) {
-  res.render("pages/localCaracteristicas");
+  res.render("pages/localCaracteristicas", { listaErros: null, dadosNotificacao: null, valores: { nome_usu: "", nomeusu_usu: "", email_usu: "", senha_usu: "" } });
 });
 
 router.get("/avaliacao", function (req, res) {

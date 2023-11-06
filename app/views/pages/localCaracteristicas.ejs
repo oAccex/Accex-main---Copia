@@ -9,9 +9,75 @@
     <link rel="stylesheet" href="css/header-footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <script type="text/javascript" src="//acc.magixite.com/freeCode?oatk=2133516"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />​​
+    <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
+    <script type="text/javascript" src="//acc.magixite.com/freeCode?oatk=2133516"></script>
+    <script src="js/notify.js"></script>
     <script src="js/menu.js" defer></script>
   </head>
   <body>
+
+    <% 
+    let msgErro = {"andares":"", "escada":"", "elevadores":"" , "rampa":"", "piso":""};
+    let avisoErro = {"andares":"", "escada":"", "elevadores":"" , "rampa":"", "piso":""};
+    if(listaErros){
+        listaErros.errors.forEach(function(itemErro){
+            if(itemErro.path == "andares"){
+                avisoErro.andares = "erro";
+                msgErro.andares += " "+itemErro.msg;
+                %>
+                <script>
+                    notify("Erro no preenchimento","Verifique o campo andares<br><%= itemErro.msg%>", "error", "center")                        
+                </script>
+                <%
+            }
+            if(itemErro.path == "escada"){
+                avisoErro.escada = "erro";
+                msgErro.escada = itemErro.msg;
+                %>
+                <script>
+                    notify("Erro no preenchimento","Verifique o campo escada<br><%= itemErro.msg%>", "error", "center")                        
+                </script>
+                <%                
+            }
+            if(itemErro.path == "elevadores"){
+                avisoErro.elevadores = "erro";
+                msgErro.elevadores = itemErro.msg;
+                %>
+                <script>
+                    notify("Erro no preenchimento","Verifique o campo elevadores<br><%= itemErro.msg%>", "error", "center")                        
+                </script>
+                <%
+            }
+            if(itemErro.path == "rampa"){
+                avisoErro.rampa = "erro";
+                msgErro.rampa = itemErro.msg;
+                %>
+                <script>
+                    notify("Erro no preenchimento","Verifique o campo rampa<br><%= itemErro.msg%>", "error", "center")                        
+                </script>
+                <%
+            }
+            if(itemErro.path == "piso"){
+              avisoErro.piso = "erro";
+              msgErro.piso = itemErro.msg;
+              %>
+              <script>
+                  notify("Erro no preenchimento","Verifique o campo piso<br><%= itemErro.msg%>", "error", "center")                        
+              </script>
+              <%
+          }
+        })
+    }
+    if (dadosNotificacao) { %>
+      <script>
+              notify("<%= dadosNotificacao.titulo%>","<%= dadosNotificacao.mensagem%>", "<%= dadosNotificacao.tipo%>", "center")
+              if("<%= dadosNotificacao.tipo %>" == "success"){
+                  setTimeout(function(){window.location="/localCaracteristicas"}, 3007)
+              }                        
+      </script>
+  <% } %>
+
     <header>
       <span></span>
       <a href="/"><img src="image/logoAccex-azul.png" alt="Logo" /></a>
@@ -26,34 +92,34 @@
     </header>
 <main>
     <h1>Adicionar Acesso(s)</h1>
-    <form class="Acessos">
+    <form class="Acessos" method="POST" >
         <fieldset >
             <legend>Este local possui andares?</legend>
-            <div><input type="radio" name="andares" id="SimAnd" value="sim"><label for="SimAnd" required>Sim</label></div>
-            <div><input type="radio" name="andares" id="NaoAnd" value="nao"><label for="NaoAnd" required>   Não</label></div>
+            <div><input type="radio" name="andares" id="SimAnd" value="sim"><label for="SimAnd" class="<%= avisoErro.andares %>" required>Sim</label></div>
+            <div><input type="radio" name="andares" id="NaoAnd" value="nao"><label for="NaoAnd" class="<%= avisoErro.andares %>" required>Não</label></div>
         </fieldset>
         <fieldset>
             <legend>Este local escada(s) rolante?</legend>
-            <div><input type="radio" name="escada" id="SimEsc" value="sim"><label for="SimEsc" required>Sim</label></div>
-            <div><input type="radio" name="escada" id="NaoEsc" value="nao"><label for="NaoEsc" required>Não</label></div>
+            <div><input type="radio" name="escada" id="SimEsc" value="sim"><label for="SimEsc" class="<%= avisoErro.escada %>" required>Sim</label></div>
+            <div><input type="radio" name="escada" id="NaoEsc" value="nao"><label for="NaoEsc" class="<%= avisoErro.escada %>" required>Não</label></div>
         </fieldset>
         <fieldset>
             <legend>Este local possui elevador(es)?</legend>
-            <div><input type="radio" name="elevadores" id="SimEle" value="sim"><label for="SimEle" required>Sim</label></div>
-            <div><input type="radio" name="elevadores" id="NaoEle" value="nao"><label for="NaoEle" required>Não</label></div>
+            <div><input type="radio" name="elevadores" id="SimEle" value="sim"><label for="SimEle" class="<%= avisoErro.elevadores %>" required>Sim</label></div>
+            <div><input type="radio" name="elevadores" id="NaoEle" value="nao"><label for="NaoEle" class="<%= avisoErro.elevadores %>" required>Não</label></div>
         </fieldset>
         <fieldset>
             <legend>Este local possui rampa(s) de acesso?</legend>
-            <div><input type="radio" name="rampa" id="SimRam" value="sim"><label for="SimRam" required>Sim</label></div>
-            <div><input type="radio" name="rampa" id="NaoRam" value="nao"><label for="NaoRam" required>Não</label></div>
+            <div><input type="radio" name="rampa" id="SimRam" value="sim"><label for="SimRam" class="<%= avisoErro.rampa %>" required>Sim</label></div>
+            <div><input type="radio" name="rampa" id="NaoRam" value="nao"><label for="NaoRam" class="<%= avisoErro.rampa %>"required>Não</label></div>
         </fieldset>
         <fieldset>
             <legend>Este local possui piso tátil?</legend>
-            <div><input type="radio" name="piso" id="SimPiso" value="sim"><label for="SimPiso" required>Sim</label></div>
-            <div><input type="radio" name="piso" id="NaoPiso" value="nao"><label for="NaoAnd" required>Não</label></div>
+            <div><input type="radio" name="piso" id="SimPiso" value="sim"><label for="SimPiso" class="<%= avisoErro.piso %>" required>Sim</label></div>
+            <div><input type="radio" name="piso" id="NaoPiso" value="nao"><label for="NaoAnd" class="<%= avisoErro.piso %>" required>Não</label></div>
         </fieldset>
         <button id="butcad">
-          <a href="/localDesc">Finalizar</a>
+          <a href="/localCaracteristicas">Finalizar</a>
         </button>
     </form>
 </main>

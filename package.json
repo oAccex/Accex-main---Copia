@@ -5,6 +5,14 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+-  "start": "vite"
++  "start": "npx http-server ./dist",
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
   },
   "author": "",
   "license": "ISC",
@@ -23,12 +31,4 @@
     "simple-notify": "^0.5.5"
   }
 }
-  "scripts": {
--  "start": "vite"
-+  "start": "npx http-server ./dist",
-    "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
-  },
+

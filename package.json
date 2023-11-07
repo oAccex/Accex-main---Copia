@@ -23,7 +23,6 @@
     "simple-notify": "^0.5.5"
   }
 }
-...
   "scripts": {
 -  "start": "vite"
 +  "start": "npx http-server ./dist",
@@ -33,4 +32,3 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-...

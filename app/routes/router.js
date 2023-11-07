@@ -431,7 +431,7 @@ router.post("/cadastroLocais",
     })
   } catch (e) {
     console.log("erro no cadastro", e);
-    res.render("pages/cadastro", {
+    res.render("pages/cadastroLocais", {
       listaErros: erros, dadosNotificacao: {
         titulo: "Erro ao cadastrar local!", mensagem: "Verifique os valores digitados!", tipo: "error"
       }, valores: req.body

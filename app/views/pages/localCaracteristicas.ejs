@@ -92,7 +92,8 @@
     </header>
 <main>
     <h1>Adicionar Acesso(s)</h1>
-    <form class="Acessos" method="POST" >
+    <form class="Acessos" method="POST" action="/localCaracteristicas">
+      <input type="hidden" name="idLocal" value="<%= idLocal %> ">
         <fieldset >
             <legend>Este local possui andares?</legend>
             <div><input type="radio" name="andares" id="SimAnd" value="sim"><label for="SimAnd" class="<%= avisoErro.andares %>" required>Sim</label></div>
@@ -118,8 +119,9 @@
             <div><input type="radio" name="piso" id="SimPiso" value="sim"><label for="SimPiso" class="<%= avisoErro.piso %>" required>Sim</label></div>
             <div><input type="radio" name="piso" id="NaoPiso" value="nao"><label for="NaoAnd" class="<%= avisoErro.piso %>" required>Não</label></div>
         </fieldset>
-        <button id="butcad">
-          <a href="/localCaracteristicas">Finalizar</a>
+        <button id="butcad" type="submit"> Finalizar
+
+          <!-- <a href="/localCaracteristicas">Finalizar</a> -->
         </button>
     </form>
 </main>

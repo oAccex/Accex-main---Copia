@@ -184,7 +184,7 @@ CREATE TABLE descricaoDlocal (
     descricao_4 VARCHAR(35) NOT NULL,
     descricao_5 VARCHAR(35) NOT NULL,
     descricao_6 VARCHAR(35),
-    /*idlocal INT NOT NULL,*/
+    idlocal INT NOT NULL,
     PRIMARY KEY (id_descricao_D_Local)
 );
 
@@ -213,9 +213,9 @@ ALTER TABLE usuario
 ADD CONSTRAINT tipo_usuario
 FOREIGN KEY (`id_tipo_usuario`) REFERENCES tipo_usuario(`id_tipo_usuario`); 
 
-/*ALTER TABLE descricaodlocal
+ALTER TABLE descricaodlocal
 ADD CONSTRAINT fk_idlocal
-FOREIGN KEY (`idlocal`) REFERENCES local(`idlocal`);*/
+FOREIGN KEY (`idlocal`) REFERENCES local(`idlocal`);
 
 INSERT INTO `accex`.`tipo_usuario` (`id_tipo_usuario`, `tipo_usuario`, `descricao_usuario`, `status_tipo_usuario`) VALUES ('1', 'comum', 'usuario logado', '1');
 INSERT INTO `accex`.`tipo_usuario` (`id_tipo_usuario`, `tipo_usuario`, `descricao_usuario`, `status_tipo_usuario`) VALUES ('2', 'proprietario', 'Usuário com acesso a consultas na área administrativa', '1');

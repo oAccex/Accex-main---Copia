@@ -88,27 +88,53 @@
           <section class="desc-info-local">
             <span>
                 <img src="image/iconeESCAD.png" alt="Ícone escada">
-                <p>Este local  possui escada rolante</p>
+                <%if(valores.descricao_1 == "sim"){
+                  %>
+                  <p>Este local <strong>possui</strong> escada rolante</p>
+                  <% } else { %>
+                    <p>Este local <strong style="color: rgb(255, 60, 0);">não possui</strong> escada rolante</p>
+<% } %>
+                
             </span>
             <span>
                 <img src="image/iconeELEVA.png" alt="Ícone Elevador">
-                <p>Este local  possui elevadores</p>
+                <%if(valores.descricao_2 == "sim"){
+                  %>
+                  <p>Este local <strong>possui</strong> elevadores</p>
+                  <% } else { %>
+                    <p>Este local <strong style="color: rgb(255, 60, 0);">não possui</strong> elevadores</p>
+<% } %>
             </span>
             <span>
                 <img src="image/inoceCAD-RODAS.png" alt="Ícone rampa de acesso">
-                <p>Este local  possui rampa de acesso</p>
+                <%if(valores.descricao_3 == "sim"){
+                  %>
+                  <p>Este local <strong>possui</strong> rampa de acesso</p>
+                  <% } else { %>
+                    <p>Este local <strong style="color: rgb(255, 60, 0);">não possui</strong> rampa de acesso</p>
+<% } %>
             </span>
             <span>
                 <img src="image/inoceTATIL.png" alt="Ícone piso tátil">
-                <p>Este local  possui piso tatil</p>
+                <%if(valores.descricao_4 == "sim"){
+                  %>
+                  <p>Este local <strong>possui</strong> piso tátil</p>
+                  <% } else { %>
+                    <p>Este local <strong style="color: rgb(255, 60, 0);">não possui</strong> piso tátil</p>
+<% } %>
             </span>
             <span>
                 <img src="image/inocePREFE.png" alt="Ícone estacionamento preferencial">
-                <p>Este local  possui estacionamento preferencial</p>
+                <%if(valores.descricao_5 == "sim"){
+                  %>
+                  <p>Este local <strong>possui</strong> estacionamento preferencial</p>
+                  <% } else { %>
+                    <p>Este local <strong style="color: rgb(255, 60, 0);">não possui</strong> estacionamento preferencial</p>
+<% } %>
             </span>
             <span>
                 <img src="image/inoceCHECK.png" alt="Ícone local acessível">
-                <p>Este local  é <strong>MUITO</strong> acessivel</p>
+                <p>Este local  é <strong>MUITO</strong> possui acessivel</p>
             </span>
         </section>
         <section class="desc-avaliacoes">
@@ -117,6 +143,7 @@
                 <h3>Usuário</h3>
                 <p>Excelente! Muito bem acessível e organizado</p>
                 <span class="rating">
+
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>

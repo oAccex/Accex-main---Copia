@@ -72,9 +72,7 @@
     if (dadosNotificacao) { %>
       <script>
               notify("<%= dadosNotificacao.titulo%>","<%= dadosNotificacao.mensagem%>", "<%= dadosNotificacao.tipo%>", "center")
-              if("<%= dadosNotificacao.tipo %>" == "success"){
-                  setTimeout(function(){window.location="/localCaracteristicas"}, 3007)
-              }                        
+                     
       </script>
   <% } %>
 
@@ -96,28 +94,28 @@
       <input type="hidden" name="idLocal" value="<%= idLocal %> ">
         <fieldset >
             <legend>Este local possui andares?</legend>
-            <div><input type="radio" name="andares" id="SimAnd" value="sim"><label for="SimAnd" class="<%= avisoErro.andares %>" required>Sim</label></div>
-            <div><input type="radio" name="andares" id="NaoAnd" value="nao"><label for="NaoAnd" class="<%= avisoErro.andares %>" required>Não</label></div>
+            <div><input type="radio" name="andares" id="SimAnd" value="sim"><label for="SimAnd" class="<%= avisoErro.andares %>" required>Possui</label></div>
+            <div><input type="radio" name="andares" id="NaoAnd" value="nao"><label for="NaoAnd" class="<%= avisoErro.andares %>" required>Não Possui</label></div>
         </fieldset>
         <fieldset>
             <legend>Este local escada(s) rolante?</legend>
-            <div><input type="radio" name="escada" id="SimEsc" value="sim"><label for="SimEsc" class="<%= avisoErro.escada %>" required>Sim</label></div>
-            <div><input type="radio" name="escada" id="NaoEsc" value="nao"><label for="NaoEsc" class="<%= avisoErro.escada %>" required>Não</label></div>
+            <div><input type="radio" name="escada" id="SimEsc" value="sim"><label for="SimEsc" class="<%= avisoErro.escada %>" required>Possui</label></div>
+            <div><input type="radio" name="escada" id="NaoEsc" value="nao"><label for="NaoEsc" class="<%= avisoErro.escada %>" required>Não Possui</label></div>
         </fieldset>
         <fieldset>
             <legend>Este local possui elevador(es)?</legend>
-            <div><input type="radio" name="elevadores" id="SimEle" value="sim"><label for="SimEle" class="<%= avisoErro.elevadores %>" required>Sim</label></div>
-            <div><input type="radio" name="elevadores" id="NaoEle" value="nao"><label for="NaoEle" class="<%= avisoErro.elevadores %>" required>Não</label></div>
+            <div><input type="radio" name="elevadores" id="SimEle" value="sim"><label for="SimEle" class="<%= avisoErro.elevadores %>" required>Possui</label></div>
+            <div><input type="radio" name="elevadores" id="NaoEle" value="nao"><label for="NaoEle" class="<%= avisoErro.elevadores %>" required>Não Possui</label></div>
         </fieldset>
         <fieldset>
             <legend>Este local possui rampa(s) de acesso?</legend>
-            <div><input type="radio" name="rampa" id="SimRam" value="sim"><label for="SimRam" class="<%= avisoErro.rampa %>" required>Sim</label></div>
-            <div><input type="radio" name="rampa" id="NaoRam" value="nao"><label for="NaoRam" class="<%= avisoErro.rampa %>"required>Não</label></div>
+            <div><input type="radio" name="rampa" id="SimRam" value="sim"><label for="SimRam" class="<%= avisoErro.rampa %>" required>Possui</label></div>
+            <div><input type="radio" name="rampa" id="NaoRam" value="nao"><label for="NaoRam" class="<%= avisoErro.rampa %>"required>Não Possui</label></div>
         </fieldset>
         <fieldset>
             <legend>Este local possui piso tátil?</legend>
-            <div><input type="radio" name="piso" id="SimPiso" value="sim"><label for="SimPiso" class="<%= avisoErro.piso %>" required>Sim</label></div>
-            <div><input type="radio" name="piso" id="NaoPiso" value="nao"><label for="NaoAnd" class="<%= avisoErro.piso %>" required>Não</label></div>
+            <div><input type="radio" name="piso" id="SimPiso" value="sim"><label for="SimPiso" class="<%= avisoErro.piso %>" required>Possui</label></div>
+            <div><input type="radio" name="piso" id="NaoPiso" value="nao"><label for="NaoAnd" class="<%= avisoErro.piso %>" required>Não Possui</label></div>
         </fieldset>
         <button id="butcad" type="submit"> Finalizar
 

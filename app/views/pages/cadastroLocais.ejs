@@ -83,9 +83,7 @@
   if (dadosNotificacao) { %>
     <script>
             notify("<%= dadosNotificacao.titulo%>","<%= dadosNotificacao.mensagem%>", "<%= dadosNotificacao.tipo%>", "center")
-            if("<%= dadosNotificacao.tipo %>" == "success"){
-                setTimeout(function(){window.location="/localCaracteristicas"}, 3007)
-            }                        
+                   
     </script>
 <% } %>
 

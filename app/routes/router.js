@@ -29,7 +29,7 @@ const e = require("express");
 
 var storagePasta = multer.diskStorage({
   destination: (req, file, callBack) => {
-    callBack(null, './app/public/image/perfil/') 
+    callBack(null, './app/public/image/perfil/')
   },
   filename: (req, file, callBack) => {
     callBack(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
@@ -82,7 +82,7 @@ router.post(
   function (req, res) {
     const erros = validationResult(req);
     if (!erros.isEmpty()) {
-      return res.render("pages/login", {autenticado:req.session.autenticado, listaErros: erros, dadosNotificacao: null })
+      return res.render("pages/login", { autenticado: req.session.autenticado, listaErros: erros, dadosNotificacao: null })
     }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////
@@ -90,7 +90,7 @@ router.post(
       console.log(`Logado`)
       res.redirect("/?login=logado");
     } else {
-      res.render("pages/login", {autenticado:req.session.autenticado, listaErros: erros, dadosNotificacao: { titulo: "Erro ao logar!", mensagem: "Usuário e/ou senha inválidos!", tipo: "error" } })
+      res.render("pages/login", { autenticado: req.session.autenticado, listaErros: erros, dadosNotificacao: { titulo: "Erro ao logar!", mensagem: "Usuário e/ou senha inválidos!", tipo: "error" } })
     }
   }
 );
@@ -107,8 +107,8 @@ router.post("/cadastro",
     .isLength({ min: 3, max: 25 }).withMessage("O nome de usuário deve ter de 3 a 25 caracteres"),
   body("email")
     .isEmail().withMessage("Digite um e-mail válido!"),
-    //body("telefone")
-    //.isLength({ min: 12, max: 13 }).withMessage("Coloque seu telefone!"),
+  //body("telefone")
+  //.isLength({ min: 12, max: 13 }).withMessage("Coloque seu telefone!"),
   body("password")
     .isStrongPassword().withMessage("Escolha uma senha mais forte. Ex: 8nd5?4eCJ@"),
   async function (req, res) {
@@ -118,7 +118,7 @@ router.post("/cadastro",
       nome_completo: req.body.fullName,
       nickname: req.body.userName,
       telefone: req.body.telefone
-    }; 
+    };
     const erros = validationResult(req);
     console.log(erros)
     if (!erros.isEmpty()) {
@@ -143,7 +143,7 @@ router.post("/cadastro",
     }
   }
 );
-  
+
 router.get("/perfil", verificarUsuAutorizado([1, 2, 3], "pages/restrito"), async function (req, res) {
   try {
     let results = await usuarioDAL.findID(req.session.autenticado.id);
@@ -258,24 +258,24 @@ router.post("/editarPerfil", upload.single('img-perfil'),
 router.get("/painel_adm", verificarUsuAutorizado([/* */1,/* */ 2, 3], "pages/restrito"), verificarUsuAutenticado, async (req, res) => {
   try {
     const usuarios = await buscarUsuariosDoBanco();
-    
+
     accex.query("SELECT COUNT(idusuario) AS total_usuarios FROM usuario", (error, results) => {
       if (error) {
         console.error("Erro ao contar usuários:", error);
         res.status(500).send("Erro ao contar usuários.");
       } else {
         const totalUsuarios = results[0].total_usuarios;
-        
+
         res.render("pages/painel_adm", {
           listaErros: null,
           dadosNotificacao: null,
-          valores: { nome_completo: "", email: "", senha: "", img_perfil: ""},
+          valores: { nome_completo: "", email: "", senha: "", img_perfil: "" },
           autenticado: req.session.autenticado,
           login: req.session.autenticado,
           id_tipo_usuario: req.session.autenticado.tipo,
           img_perfil: req.session.autenticado.img_perfil,
           usuarios: usuarios,
-          totalUsuarios: totalUsuarios, 
+          totalUsuarios: totalUsuarios,
         });
       }
     });
@@ -336,34 +336,34 @@ router.get("/faleConosco", function (req, res) {
 
 // router.get("/excluir", verificarUsuAutenticado, async function (req, res) {
 
-  // try{
+// try{
 
-  //   let deleta = await usuarioDAL.delete(req.session.autenticado.id_Cadastro);
+//   let deleta = await usuarioDAL.delete(req.session.autenticado.id_Cadastro);
 
-  //   console.log(deleta);
+//   console.log(deleta);
 
-  //   res.redirect("/sair");
+//   res.redirect("/sair");
 
-  // } catch(e) {
+// } catch(e) {
 
-  //   console.log(e);
+//   console.log(e);
 
-  //   res.render("pages/locais");
+//   res.render("pages/locais");
 
-  // }
+// }
 
 // });
 //////////////////////////////////////////////////////////////////////////////
 
 
 router.get("/excluir", verificarUsuAutenticado, async function (req, res) {
-   try{
-   let deleta = await usuarioDAL.delete(req.session.autenticado.id);
-   console.log(deleta);
-   res.redirect("/sair"); 
-} catch(e) 
-{ console.log(e); res.render("pages/404"); 
-} 
+  try {
+    let deleta = await usuarioDAL.delete(req.session.autenticado.id);
+    console.log(deleta);
+    res.redirect("/sair");
+  } catch (e) {
+    console.log(e); res.render("pages/404");
+  }
 });
 
 router.get("/favoritos", function (req, res) {
@@ -374,8 +374,10 @@ router.get("/locais", function (req, res) {
   res.render("pages/locais");
 });
 
-router.get("/localDesc", function (req, res) {
+router.get("/localDesc", async function (req, res) {
+
   res.render("pages/localDesc");
+
 });
 
 router.get("/visitados", function (req, res) {
@@ -383,11 +385,11 @@ router.get("/visitados", function (req, res) {
 });
 
 router.get("/cadastroLocais", verificarUsuAutenticado, async function (req, res) {
-if(req.session.autenticado.autenticado){
-  res.render("pages/cadastroLocais", { listaErros: null, dadosNotificacao: null, valores: { nome_usu: "", nomeusu_usu: "", email_usu: "", senha_usu: "" }});
-}else{
-  res.render("pages/restrito")
-}
+  if (req.session.autenticado.autenticado) {
+    res.render("pages/cadastroLocais", { listaErros: null, dadosNotificacao: null, valores: { nome_usu: "", nomeusu_usu: "", email_usu: "", senha_usu: "" } });
+  } else {
+    res.render("pages/restrito")
+  }
 
 });
 
@@ -397,100 +399,101 @@ router.post("/cadastroLocais",
   body("Cidade")
     .isLength({ min: 3, max: 25 }).withMessage("O nome de usuário deve ter de 3 a 25 caracteres"),
   body("cep")
-  .isLength({ min: 3, max: 25 }).withMessage("O nome de usuário deve ter de 3 a 25 caracteres"),
-    body("Bairro")
+    .isLength({ min: 3, max: 25 }).withMessage("O nome de usuário deve ter de 3 a 25 caracteres"),
+  body("Bairro")
     .isLength({ min: 4, max: 100 }).withMessage("Digite o bairro!"),
   body("Rua")
-  .isLength({ min: 3, max: 25 }).withMessage("Digite um nome válido"),
+    .isLength({ min: 3, max: 25 }).withMessage("Digite um nome válido"),
   body("Num")
-  .isLength({ min: 3, max: 25 }).withMessage("Digite um nome válido"),
+    .isLength({ min: 3, max: 25 }).withMessage("Digite um nome válido"),
   async function (req, res) {
-  var dadosForm = {
-    nome: req.body.NomeLocal,
-    cidade: req.body.Cidade,
-    cep: req.body.cep,
-    rua: req.body.Rua,
-    bairro: req.body.Bairro,
-    num_residen: req.body.Num,
-    idtipoDlocal: req.body.estabelecimento,
-    idusuario: req.session.autenticado.id
-  };
-  const erros = validationResult(req);
-  console.log(erros)
-  if (!erros.isEmpty()) {
-    console.log("erro no cadastro", erros);
-    return res.render("pages/cadastrolocais", { listaErros: erros, dadosNotificacao: null, valores: req.body, idLocal: req.body })
+    var dadosForm = {
+      nome: req.body.NomeLocal,
+      cidade: req.body.Cidade,
+      cep: req.body.cep,
+      rua: req.body.Rua,
+      bairro: req.body.Bairro,
+      num_residen: req.body.Num,
+      idtipoDlocal: req.body.estabelecimento,
+      idusuario: req.session.autenticado.id
+    };
+    const erros = validationResult(req);
+    console.log(erros)
+    if (!erros.isEmpty()) {
+      console.log("erro no cadastro", erros);
+      return res.render("pages/cadastrolocais", { listaErros: erros, dadosNotificacao: null, valores: req.body, idLocal: req.body })
+    }
+    try {
+      let insert = await localDAL.create(dadosForm);
+      console.log(insert);
+      var idDolocal = insert.insertId;
+      req.session.autenticado.idLocal = idDolocal;
+      console.log("esse é o id " + idDolocal) // Exibição do id do local cadastrado
+      res.render("pages/localCaracteristicas", { idLocal: insert.insertId, listaErros: null, dadosNotificacao: { titulo: "Cadastro de local realizado!", mensagem: "Local criado com o id " + insert.insertId + "!", tipo: "success"
+        }, valores: req.body})
+    } catch (e) {
+      console.log("erro no cadastro", e);
+      res.render("pages/cadastroLocais", {
+        listaErros: erros, dadosNotificacao: {
+          titulo: "Erro ao cadastrar local!", mensagem: "Verifique os valores digitados!", tipo: "error"
+        }, valores: req.body, idLocal: req.body
+      })
+    }
   }
-  try {
-    let insert = await localDAL.create(dadosForm);
-    console.log(insert);
-    var idDolocal = insert.insertId;
-    console.log("esse é o id" + idDolocal) // Exibição do id do local cadastrado
-    res.render("pages/localCaracteristicas", {idlocal:insert.insertId,
-      listaErros: null, dadosNotificacao: {
-        titulo: "Cadastro de local realizado!", mensagem: "Local criado com o id " + insert.insertId + "!", tipo: "success"
-      }, valores: req.body, idLocal: req.body
-    })
-  } catch (e) {
-    console.log("erro no cadastro", e);
-    res.render("pages/cadastroLocais", {
-      listaErros: erros, dadosNotificacao: {
-        titulo: "Erro ao cadastrar local!", mensagem: "Verifique os valores digitados!", tipo: "error"
-      }, valores: req.body, idLocal: req.body
-    })
-  }
-}
 );
 
 router.get("/localCaracteristicas", async function (req, res) {
-  res.render("pages/localCaracteristicas", { listaErros: null, dadosNotificacao: null, valores: { nome_usu: "", nomeusu_usu: "", email_usu: "", senha_usu: "" } });
+  console.log("get local características")
+  console.log(req.session.autenticado.idLocal)
+  res.render("pages/localCaracteristicas", { listaErros: null, dadosNotificacao: null, valores: { nome_usu: "", nomeusu_usu: "", email_usu: "", senha_usu: "" }, idlocal: req.session.autenticado.idLocal });
 });
 
 router.post("/localCaracteristicas",
   body("andares")
-  .isLowercase().withMessage("Selecione uma opção válida!"),
+    .isLowercase().withMessage("Selecione uma opção válida!"),
   body("escada")
-  .isLowercase().withMessage("Selecione uma opção válida!"),
+    .isLowercase().withMessage("Selecione uma opção válida!"),
   body("elevadores")
-  .isLowercase() .withMessage("Selecione uma opção válida!"),
+    .isLowercase().withMessage("Selecione uma opção válida!"),
   body("rampa")
     .isLowercase().withMessage("Selecione uma opção válida!"),
   body("piso")
     .isLowercase().withMessage("Selecione uma opção válida!"),
-  async function (req, res){
-  var dadosForm = {
-    descricao_1: req.body.andares,
-    descricao_2: req.body.escada,
-    descricao_3: req.body.elevadores,
-    descricao_5: req.body.piso,
-    descricao_4: req.body.rampa,
-    idlocal: req.body.idLocal 
-  }; 
-  const erros = validationResult(req);
-  console.log(erros)
-  if (!erros.isEmpty()) {
-    console.log("erro no cadastro", erros);
-    return res.render("pages/cadastrolocais", { listaErros: erros, dadosNotificacao: null, valores: req.body, idLocal: req.body })
+  async function (req, res) {
+    var dadosForm = {
+      descricao_1: req.body.andares,
+      descricao_2: req.body.escada,
+      descricao_3: req.body.elevadores,
+      descricao_5: req.body.piso,
+      descricao_4: req.body.rampa,
+      idlocal: req.body.idLocal
+    };
+    const erros = validationResult(req);
+    console.log(erros)
+    if (!erros.isEmpty()) {
+      console.log("erro no cadastro", erros);
+      return res.render("pages/cadastrolocais", { listaErros: erros, dadosNotificacao: null, valores: req.body, idLocal: req.body })
+    }
+    try {
+      let insert = await localDALcrct.create(dadosForm);
+      console.log(insert);
+      res.render("pages/localDesc", {
+        listaErros: null, dadosNotificacao: {
+          titulo: "Cadastro de local realizado!", mensagem: "Caracteristica atribuídas ao local com id " + insert.insertId + "!", tipo: "success"
+        }, valores: dadosForm, idLocal: insert.insertId
+      })
+    } catch (e) {
+      console.log("erro no cadastro", e);
+      res.render("pages/localCaracteristicas", {
+        listaErros: erros, dadosNotificacao: {
+          titulo: "Erro ao cadastrar local!", mensagem: "Verifique os valores digitados!", tipo: "error"
+        }, valores: req.body, idLocal: req.body
+      })
+    }
   }
-  try {
-    let insert = await localDALcrct.create(dadosForm);
-    console.log(insert);
-    res.render("pages/localDesc", {
-      listaErros: null, dadosNotificacao: {
-        titulo: "Cadastro de local realizado!", mensagem: "Caracteristica atribuídas ao local com id " + insert.insertId + "!", tipo: "success"
-      }, valores: req.body, idLocal: req.body
-    })
-  } catch (e) {
-    console.log("erro no cadastro", e);
-    res.render("pages/localCaracteristicas", {
-      listaErros: erros, dadosNotificacao: {
-        titulo: "Erro ao cadastrar local!", mensagem: "Verifique os valores digitados!", tipo: "error"
-      }, valores: req.body, idLocal: req.body
-    })
-  }
-}
 );
-  
+
+
 
 router.get("/avaliacao", function (req, res) {
   res.render("pages/avaliacao");

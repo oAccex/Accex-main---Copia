@@ -114,6 +114,12 @@ UPDATE `accex`.`tipodelocal` SET `tipo` = 'Biblioteca' WHERE (`idtipoDlocal` = '
 
 mysql -hroundhouse.proxy.rlwy.net -uroot -p******** --port 34628 --protocol=TCP railway
 
+--  ALTER USER 'root'@'localhost' usar na escola
+-- identified
+-- with
+-- mysql_native_password
+-- BY '@ITB123456';
+
 
 DROP DATABASE IF EXISTS accex;
 CREATE DATABASE  accex;

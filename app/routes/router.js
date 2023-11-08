@@ -375,7 +375,7 @@ router.get("/locais", function (req, res) {
 });
 
 router.get("/localDesc", async function (req, res) {
-
+  
   res.render("pages/localDesc");
 
 });
@@ -386,7 +386,7 @@ router.get("/visitados", function (req, res) {
 
 router.get("/cadastroLocais", verificarUsuAutenticado, async function (req, res) {
   if (req.session.autenticado.autenticado) {
-    res.render("pages/cadastroLocais", { listaErros: null, dadosNotificacao: null, valores: { nome_usu: "", nomeusu_usu: "", email_usu: "", senha_usu: "" } });
+    res.render("pages/cadastroLocais", { listaErros: null, dadosNotificacao: null, valores: { NomeLocal: "", nomeusu_usu: "", email_usu: "", senha_usu: "" } });
   } else {
     res.render("pages/restrito")
   }
@@ -466,6 +466,7 @@ router.post("/localCaracteristicas",
       descricao_3: req.body.elevadores,
       descricao_5: req.body.piso,
       descricao_4: req.body.rampa,
+      descricao_6: req.body.acessibilidade,
       idlocal: req.body.idLocal
     };
     const erros = validationResult(req);
@@ -477,11 +478,18 @@ router.post("/localCaracteristicas",
     try {
       let insert = await localDALcrct.create(dadosForm);
       console.log(insert);
-      res.render("pages/localDesc", {
+
+/////////////////////
+      let local = await localDAL.findID( req.body.idLocal)
+      console.log("local----> ");
+      console.log(local);
+
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ //////////////////////////////
+      res.render("pages/localDesc", {localInst: local ,
         listaErros: null, dadosNotificacao: {
           titulo: "Cadastro de local realizado!", mensagem: "Caracteristica atribuídas ao local com id " + insert.insertId + "!", tipo: "success"
-        }, valores: dadosForm, idLocal: insert.insertId
-      })
+        }, valores: dadosForm, idLocal: insert.insertId})
     } catch (e) {
       console.log("erro no cadastro", e);
       res.render("pages/localCaracteristicas", {
@@ -499,6 +507,63 @@ router.get("/avaliacao", function (req, res) {
   res.render("pages/avaliacao");
 });
 
+router.get("/pesquisa", async function (req, res) {
+  res.locals.moment = moment;
+  if (req.query.pesquisa) {
+    var contem = req.query.pesquisa;
+  } else {
+    var contem = req.query.pesquisa == undefined ? '' : req.query.pesquisa;
+  }
+
+  try {
+
+    let pagina = req.query.pagina == undefined ? 1 : req.query.pagina;
+    var results = null;
+    inicio = parseInt(pagina - 1) * 3
+    results = await LocalDAL.FindPageTarefa(req.query.pesquisa, inicio, 3);
+    totReg = await LocalDAL.TotalRegTarefa(req.query.pesquisa);
+    console.log(results);
+
+    totPaginas = Math.ceil(totReg[0].total / 3);
+
+    var paginador = totReg[0].total <= 3 ? null : { "pagina_atual": pagina, "total_reg": totReg[0].total, "total_paginas": totPaginas, pesquisa:contem }
+
+    res.render("pages/index", { tarefas: results, paginador: paginador });
+
+  } catch (e) {
+    console.log(e); // console log the error so we can see it in the console
+    res.json({ erro: "Falha ao acessar dados" });
+  }
+});
+
+router.post("/pesquisa", async function (req, res) {
+  res.locals.moment = moment;
+  if (req.body.pesquisa) {
+    var contem = req.body.pesquisa;
+  } else {
+    var contem = req.query.pesquisa == undefined ? '' : req.query.pesquisa;
+  }
+
+  try {
+
+    let pagina = req.query.pagina == undefined ? 1 : req.query.pagina;
+    var results = null;
+    inicio = parseInt(pagina - 1) * 3
+    results = await LocalDAL.FindPageTarefa(req.body.pesquisa, inicio, 3);
+    totReg = await LocalDAL.TotalRegTarefa(req.body.pesquisa);
+    console.log(results);
+
+    totPaginas = Math.ceil(totReg[0].total / 3);
+
+    var paginador = totReg[0].total <= 3 ? null : { "pagina_atual": pagina, "total_reg": totReg[0].total, "total_paginas": totPaginas, pesquisa:contem }
+
+    res.render("pages/index", { local: results, paginador: paginador });
+
+  } catch (e) {
+    console.log(e); // console log the error so we can see it in the console
+    res.json({ erro: "Falha ao acessar dados" });
+  }
+});
 
 
 module.exports = router;

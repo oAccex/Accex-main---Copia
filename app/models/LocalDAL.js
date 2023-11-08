@@ -87,7 +87,26 @@ module.exports = class UsuarioDAL {
         });
     }
 
-    
+    TotalReg(){
+        return new Promise((resolve, reject)=>{
+            this.accex.query('SELECT count(*) total FROM local ',  function(error, elements){
+                if(error){
+                    return reject(error);
+                }
+                return resolve(elements);
+            });
+        });
+    };
+    TotalRegTarefa(contem){
+        return new Promise((resolve, reject)=>{
+            this.accex.query("SELECT count(*) total FROM local where nome like CONCAT('%',?,'%') ",[contem],  function(error, elements){
+                if(error){
+                    return reject(error);
+                }
+                return resolve(elements);
+            });
+        });
+    };
 
 }
 

@@ -112,11 +112,8 @@ UPDATE `accex`.`tipodelocal` SET `tipo` = 'Restaurante' WHERE (`idtipoDlocal` = 
 UPDATE `accex`.`tipodelocal` SET `tipo` = 'Hotel' WHERE (`idtipoDlocal` = '5');
 UPDATE `accex`.`tipodelocal` SET `tipo` = 'Biblioteca' WHERE (`idtipoDlocal` = '6'); */
 
-ALTER USER 'root'@'localhost'
-identified
-with
-mysql_native_password
-BY '@ITB123456';
+mysql -hroundhouse.proxy.rlwy.net -uroot -p******** --port 34628 --protocol=TCP railway
+
 
 DROP DATABASE IF EXISTS accex;
 CREATE DATABASE  accex;

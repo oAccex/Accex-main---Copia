@@ -384,7 +384,7 @@ router.get("/visitados", function (req, res) {
 
 router.get("/cadastroLocais", verificarUsuAutenticado, async function (req, res) {
 if(req.session.autenticado.autenticado){
-  res.render("pages/cadastroLocais", { listaErros: null, dadosNotificacao: null, valores: { nome_usu: "", nomeusu_usu: "", email_usu: "", senha_usu: "" } });
+  res.render("pages/cadastroLocais", { listaErros: null, dadosNotificacao: null, valores: { nome_usu: "", nomeusu_usu: "", email_usu: "", senha_usu: "" }});
 }else{
   res.render("pages/restrito")
 }
@@ -414,33 +414,35 @@ router.post("/cadastroLocais",
     num_residen: req.body.Num,
     idtipoDlocal: req.body.estabelecimento,
     idusuario: req.session.autenticado.id
-  }; 
+  };
   const erros = validationResult(req);
   console.log(erros)
   if (!erros.isEmpty()) {
     console.log("erro no cadastro", erros);
-    return res.render("pages/cadastrolocais", { listaErros: erros, dadosNotificacao: null, valores: req.body })
+    return res.render("pages/cadastrolocais", { listaErros: erros, dadosNotificacao: null, valores: req.body, idLocal: req.body })
   }
   try {
     let insert = await localDAL.create(dadosForm);
     console.log(insert);
+    var idDolocal = insert.insertId;
+    console.log("esse é o id" + idDolocal) // Exibição do id do local cadastrado
     res.render("pages/localCaracteristicas", {idlocal:insert.insertId,
       listaErros: null, dadosNotificacao: {
         titulo: "Cadastro de local realizado!", mensagem: "Local criado com o id " + insert.insertId + "!", tipo: "success"
-      }, valores: req.body
+      }, valores: req.body, idLocal: req.body
     })
   } catch (e) {
     console.log("erro no cadastro", e);
     res.render("pages/cadastroLocais", {
       listaErros: erros, dadosNotificacao: {
         titulo: "Erro ao cadastrar local!", mensagem: "Verifique os valores digitados!", tipo: "error"
-      }, valores: req.body
+      }, valores: req.body, idLocal: req.body
     })
   }
 }
 );
 
-router.get("/localCaracteristicas", function (req, res) {
+router.get("/localCaracteristicas", async function (req, res) {
   res.render("pages/localCaracteristicas", { listaErros: null, dadosNotificacao: null, valores: { nome_usu: "", nomeusu_usu: "", email_usu: "", senha_usu: "" } });
 });
 
@@ -468,7 +470,7 @@ router.post("/localCaracteristicas",
   console.log(erros)
   if (!erros.isEmpty()) {
     console.log("erro no cadastro", erros);
-    return res.render("pages/cadastrolocais", { listaErros: erros, dadosNotificacao: null, valores: req.body })
+    return res.render("pages/cadastrolocais", { listaErros: erros, dadosNotificacao: null, valores: req.body, idLocal: req.body })
   }
   try {
     let insert = await localDALcrct.create(dadosForm);
@@ -476,14 +478,14 @@ router.post("/localCaracteristicas",
     res.render("pages/localDesc", {
       listaErros: null, dadosNotificacao: {
         titulo: "Cadastro de local realizado!", mensagem: "Caracteristica atribuídas ao local com id " + insert.insertId + "!", tipo: "success"
-      }, valores: req.body
+      }, valores: req.body, idLocal: req.body
     })
   } catch (e) {
     console.log("erro no cadastro", e);
     res.render("pages/localCaracteristicas", {
       listaErros: erros, dadosNotificacao: {
         titulo: "Erro ao cadastrar local!", mensagem: "Verifique os valores digitados!", tipo: "error"
-      }, valores: req.body
+      }, valores: req.body, idLocal: req.body
     })
   }
 }

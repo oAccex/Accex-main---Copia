@@ -103,7 +103,7 @@
     </header>
     <main>
       <h1>Criar estabelecimento</h1>
-        <form action="/localCaracteristicas" method="POST" class="locais">
+        <form action="/cadastroLocais" method="POST" class="locais">
             <label for="NomeLocal">Nome do estabelecimento:</label>
             <input type="text" id="NomeLocal" name="NomeLocal" class="<%= avisoErro.NomeLocal %>" required>
 
@@ -116,6 +116,9 @@
                 <span><input type="radio" name="estabelecimento" value="5" id="Hotel" required><label for="Hotel">Hotel</label></span>
                 <span><input type="radio" name="estabelecimento" value="6" id="Biblioteca" required><label for="Biblioteca">Biblioteca</label></span>
             </div>
+
+            
+
             <label for="Cidade" name="Cidade" class="<%= avisoErro.email %>">Cidade:</label>
             <input type="text" name="Cidade" id="Cidade" class="<%= avisoErro.Cidade %>" required>
 

@@ -62,14 +62,17 @@
       </nav>
     </header>
     <section class="categories">
-      <form class="searchBar">
+
+      <form class="searchBar" action="/resultadosPesquisa" method="post">
         <input
           type="search"
           id="search"
           name="search"
           placeholder="Para onde iremos hoje?"
         />
+        <input type="submit">
       </form>
+
       <div class="cat-icons">
         <div>
           <a href="locais"

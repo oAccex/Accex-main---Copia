@@ -1,6 +1,8 @@
 var express = require("express");
 var router = express.Router();
 
+const moment = require("moment");
+
 var bcrypt = require("bcrypt");
 var salt = bcrypt.genSaltSync(12);
 
@@ -13,6 +15,8 @@ var usuarioDAL = new UsuarioDAL(accex);
 var LocalDAL = require("../models/LocalDAL");
 var localDAL = new LocalDAL(accex);
 
+var LocaisDAL = require("../models/locaisDAL");
+var locaisDAL = new LocaisDAL(accex);
 
 var localDALcrct = require("../models/localDALcrct");
 var localDALcrct = new localDALcrct(accex);
@@ -501,13 +505,12 @@ router.post("/localCaracteristicas",
   }
 );
 
-
-
 router.get("/avaliacao", function (req, res) {
   res.render("pages/avaliacao");
 });
 
-router.get("/pesquisa", async function (req, res) {
+router.get("/resultadosPesquisa", async function (req, res) {
+  
   res.locals.moment = moment;
   if (req.query.pesquisa) {
     var contem = req.query.pesquisa;
@@ -520,15 +523,15 @@ router.get("/pesquisa", async function (req, res) {
     let pagina = req.query.pagina == undefined ? 1 : req.query.pagina;
     var results = null;
     inicio = parseInt(pagina - 1) * 3
-    results = await LocalDAL.FindPageTarefa(req.query.pesquisa, inicio, 3);
-    totReg = await LocalDAL.TotalRegTarefa(req.query.pesquisa);
+    results = await LocaisDAL.FindPageTarefa(req.query.pesquisa, inicio, 3);
+    totReg = await LocaisDAL.TotalRegTarefa(req.query.pesquisa);
     console.log(results);
 
     totPaginas = Math.ceil(totReg[0].total / 3);
 
     var paginador = totReg[0].total <= 3 ? null : { "pagina_atual": pagina, "total_reg": totReg[0].total, "total_paginas": totPaginas, pesquisa:contem }
 
-    res.render("pages/index", { tarefas: results, paginador: paginador });
+    res.render("pages/resultadosPesquisa", { tarefas: results, paginador: paginador });
 
   } catch (e) {
     console.log(e); // console log the error so we can see it in the console
@@ -549,15 +552,15 @@ router.post("/pesquisa", async function (req, res) {
     let pagina = req.query.pagina == undefined ? 1 : req.query.pagina;
     var results = null;
     inicio = parseInt(pagina - 1) * 3
-    results = await LocalDAL.FindPageTarefa(req.body.pesquisa, inicio, 3);
-    totReg = await LocalDAL.TotalRegTarefa(req.body.pesquisa);
+    results = await LocaisDAL.FindPageTarefa(req.body.pesquisa, inicio, 3);
+    totReg = await LocaisDAL.TotalRegTarefa(req.body.pesquisa);
     console.log(results);
 
     totPaginas = Math.ceil(totReg[0].total / 3);
 
     var paginador = totReg[0].total <= 3 ? null : { "pagina_atual": pagina, "total_reg": totReg[0].total, "total_paginas": totPaginas, pesquisa:contem }
 
-    res.render("pages/index", { local: results, paginador: paginador });
+    res.render("pages/resultadosPesquisa", { local: results, paginador: paginador });
 
   } catch (e) {
     console.log(e); // console log the error so we can see it in the console

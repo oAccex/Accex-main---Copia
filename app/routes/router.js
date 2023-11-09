@@ -395,7 +395,7 @@ router.get("/cadastroLocais", verificarUsuAutenticado, async function (req, res)
 
 router.post("/cadastroLocais",
   body("NomeLocal")
-    .isLength({ min: 3, max: 25 }).withMessage("Digite um nome válido"),
+    .isLength({ min: 3, max: 100 }).withMessage("Digite um nome válido"),
   body("Cidade")
     .isLength({ min: 3, max: 25 }).withMessage("O nome de usuário deve ter de 3 a 25 caracteres"),
   body("cep")
@@ -403,7 +403,7 @@ router.post("/cadastroLocais",
   body("Bairro")
     .isLength({ min: 4, max: 100 }).withMessage("Digite o bairro!"),
   body("Rua")
-    .isLength({ min: 3, max: 25 }).withMessage("Digite um nome válido"),
+    .isLength({ min: 3, max: 100 }).withMessage("Digite um nome válido"),
   body("Num")
     .isLength({ min: 3, max: 25 }).withMessage("Digite um nome válido"),
   async function (req, res) {
@@ -564,6 +564,28 @@ router.post("/pesquisa", async function (req, res) {
     res.json({ erro: "Falha ao acessar dados" });
   }
 });
+
+// router.post("/pesquisa", verificarUsuAutenticado, async function (req, res) {
+//   try {
+//     var results = null
+//     let pesquisa = req.body.pesquisa;
+//     console.log(pesquisa)
+//     results = await usuarioDAL.findByTag(pesquisa)
+//     console.log(results)
+//     res.render("pages/home", { tarefas: results, autenticado: req.session.autenticado });
+//   } catch (e) {
+//     console.log(e)
+//   }
+// });
+
+// router.get("/pesquisa", verificarUsuAutenticado, async function (req, res) {
+//   // idUsuario = req.params.id_usuario;
+//   req.session.login = req.query.login;
+//   idUsuario = req.query.idusuario;
+//   result = await usuarioDAL.findID(idUsuario);
+//   res.render("pages/perfilusu", { login: req.session.login, dadosUsuario: result, autenticado: req.session.autenticado });
+// });
+
 
 
 module.exports = router;

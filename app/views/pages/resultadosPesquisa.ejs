@@ -63,6 +63,7 @@
     </header>
     <main>
 
+      <% local.forEach(function(item){ %>
         <div class="place">
             <img
               src="https://source.unsplash.com/random/360x200/?nature"
@@ -70,7 +71,7 @@
             />
             <div class="info-place">
               <div>
-                <h2>Faculdade FATEC</h2>
+                <h2><%=item.nome%></h2>
                 <span class="rating">
                   <i class="fa-solid fa-star"></i>
                   <i class="fa-solid fa-star"></i>
@@ -81,16 +82,15 @@
               </div>
               <div class="address">
                 <img src="image/inoceLOCALIZ.png" alt="Ícone local" />
-                <p>Avenida Carlos Capriotti, 123 Centro de Barueri - SP</p>
+                <p><%=item.rua%> <%=item.num_residen%>, <%=item.cep%> <%=item.cidade%></p>
               </div>
               <div class="desc">
-                <p>
-                  Nesta faculdade, você aprenderá com <br> facilidade de acesso para inclusão.
-                </p>
               </div>
-              <a href="localDesc"><p>Mais detalhes</p></a>
+              <a href="/localdescricao"><p>Mais detalhes</p></a>
             </div>
           </div>
+
+          <% }); %>
 
     </main>
 

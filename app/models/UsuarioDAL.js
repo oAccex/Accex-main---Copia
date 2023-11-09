@@ -86,6 +86,18 @@ module.exports = class UsuarioDAL {
         });
     }
 
+    Pesquisar(texto) {
+        return new Promise((resolve, reject) => {
+            this.accex.query("SELECT * from local WHERE nome = ?", [texto], function (error, elements) {
+                    if (error) {
+                        return reject(error);
+                    }
+
+                    return resolve(elements);
+                });
+        });
+    };
+
     
 
 }

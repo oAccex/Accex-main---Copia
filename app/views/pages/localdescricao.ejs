@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Descrição Local</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/slider.css" />
+    <link rel="stylesheet" href="css/header-footer.css">
+    <link rel="stylesheet" href="css/descricao.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <script type="text/javascript" src="//acc.magixite.com/freeCode?oatk=2133516"></script>
+    <script src="js/menu.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <span></span>
+      <a href="/"><img src="image/logoAccex-azul.png" alt="Logo" /></a>
+      <img src="image/iconePERFIL.png" id="usuario" alt="User" class="open-menu"/>
+      <nav class="menu-container">
+        <ul>
+          <li><a href="index">Entrar</a></li>
+          <li><a href="cadastro ">Cadastro</a></li>
+          <li><a href="perfil">Perfil</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+        <section class="slider">
+            <button class="arrow-left control" aria-label="Previous Image"><img src="image/seta-direita.png" alt=""></button>
+            <button class="arrow-right control" aria-label="Next Image"><img src="image/seta-direita.png" alt="Seta direita"></button>
+            <div class="gallery-wrapper">
+              <div class="gallery">
+                <img
+                  src="image/slider/SLIDE1_CRRSSL.png"
+                  alt="Image Slider"
+                  class="item current-item"
+                />
+                <img
+                  src="image/slider/slide2.jpeg"
+                  alt="Image Slider"
+                  class="item"
+                />
+                <img
+                  src="image/slider/slide3.jpeg"
+                  alt="Image Slider"
+                  class="item"
+                />
+                <img
+                  src="image/slider/slide4.jpeg"
+                  alt="Image Slider"
+                  class="item"
+                />
+              </div>
+            </div>
+          </section>
+          <section class="desc-local">
+                <div class="title-local">
+                    <h1><%= local.nome %></h1>
+                    <span class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star no"></i>
+                      </span>
+                </div>
+                <div class="desc-info-funcionamento">
+                    <div><img src="image/inoceCALENDA.png" alt="Ícone calendário"><p>08h às 22:50h</p></div>
+                    <div><img src="image/iconeTELEF.png" alt=""><p>(11) 4198-3086</p></div>
+                </div>
+                <div class="end-text">
+                    <div><img src="image/inoceLOCALIZ.png" alt="Ícone localização"><p><%= local.rua %>, <%=local.bairro%>, <%=local.cep%>, <%=local.num_residen%>, <%=local.cidade%></p></div>
+                    <!-- <p>Nesta faculdade, você aprenderá com facilidade de acesso para inclusão</p> -->
+                </div>
+                <div class="desc-imgs">
+                    <span>
+                        <a href="#"><img src="image/logoFaceb.png" alt="Logo Facebook"></a>
+                        <a href="#"><img src="image/logoInstag.png" alt="Logo Instagram"></a>
+                        <a href="#"><img src="image/logoX.png" alt="Logo X"></a>
+                    </span>
+                    <span>
+                        <img src="image/inoceLOCALIZ.png" alt="Ícone localização">
+                        <img src="image/favoritos-blue.png" alt="Ícone favoritar">
+                    </span>
+                </div>
+          </section>
+          <section class="desc-info-local">
+            <span>
+                <img src="image/iconeESCAD.png" alt="Ícone escada">
+                <%if(valores.descricao_1 == "sim"){
+                  %>
+                  <p>Este local <strong>possui</strong> escada rolante</p>
+                  <% } else { %>
+                    <p>Este local <strong style="color: rgb(255, 60, 0);">não possui</strong> escada rolante</p>
+<% } %>
+                
+            </span>
+            <span>
+                <img src="image/iconeELEVA.png" alt="Ícone Elevador">
+                <%if(valores.descricao_2 == "sim"){
+                  %>
+                  <p>Este local <strong>possui</strong> elevadores</p>
+                  <% } else { %>
+                    <p>Este local <strong style="color: rgb(255, 60, 0);">não possui</strong> elevadores</p>
+<% } %>
+            </span>
+            <span>
+                <img src="image/inoceCAD-RODAS.png" alt="Ícone rampa de acesso">
+                <%if(valores.descricao_3 == "sim"){
+                  %>
+                  <p>Este local <strong>possui</strong> rampa de acesso</p>
+                  <% } else { %>
+                    <p>Este local <strong style="color: rgb(255, 60, 0);">não possui</strong> rampa de acesso</p>
+<% } %>
+            </span>
+            <span>
+                <img src="image/inoceTATIL.png" alt="Ícone piso tátil">
+                <%if(valores.descricao_4 == "sim"){
+                  %>
+                  <p>Este local <strong>possui</strong> piso tátil</p>
+                  <% } else { %>
+                    <p>Este local <strong style="color: rgb(255, 60, 0);">não possui</strong> piso tátil</p>
+<% } %>
+            </span>
+            <span>
+                <img src="image/inocePREFE.png" alt="Ícone estacionamento preferencial">
+                <%if(valores.descricao_5 == "sim"){
+                  %>
+                  <p>Este local <strong>possui</strong> andares</p>
+                  <% } else { %>
+                    <p>Este local <strong style="color: rgb(255, 60, 0);">não possui</strong> estacionamento preferencial</p>
+<% } %>
+            </span>
+            <span>
+                <img src="image/inoceCHECK.png" alt="Ícone local acessível">
+                
+                <p>Este local  é <strong><%=valores.descricao_6%></strong> possui acessivel</p>
+            </span>
+        </section>
+        <section class="desc-avaliacoes">
+            <h2>Avaliações</h2>
+            <div class="avaliacao">
+                <h3>Usuário</h3>
+                <p>Excelente! Muito bem acessível e organizado</p>
+                <span class="rating">
+
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star no"></i>
+                </span>
+            </div>
+            <a href="avaliacao">Avaliar o estabelecimento</a>
+        </section>
+    </main>
+    <footer>
+        <a href="faleConosco">Fale conosco</a>
+        <div class="rodape-info">
+          <img src="image/logoAccex-branca.png" alt="" id="logo">
+          <p>E-mail <br/> accex@gmail.com</p>
+          <div class="socialMedia">
+            <div><img src="image/logoFaceb.png" alt="Ícone Facebook" /></div><div>
+              <img src="image/logoInstag.png" alt="Ícone Instagram"/>
+            </div><div>
+              <img src="image/logoX.png" alt="Ícone X"/>
+            </div></div>
+        </div>
+      </footer>
+    </body>
+    <script src="js/slider.js"></script>
+  </html>
+  

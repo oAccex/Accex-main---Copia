@@ -15,8 +15,8 @@ var usuarioDAL = new UsuarioDAL(accex);
 var LocalDAL = require("../models/LocalDAL");
 var localDAL = new LocalDAL(accex);
 
-var LocaisDAL = require("../models/locaisDAL");
-var locaisDAL = new LocaisDAL(accex);
+var LocaisDAL = require("../models/LocaisDAL");
+var LocaisDAL = new LocaisDAL(accex);
 
 var localDALcrct = require("../models/localDALcrct");
 var localDALcrct = new localDALcrct(accex);
@@ -30,6 +30,7 @@ const multer = require('multer');
 const path = require('path');
 const { receiveMessageOnPort } = require("worker_threads");
 const e = require("express");
+const { error } = require("console");
 
 var storagePasta = multer.diskStorage({
   destination: (req, file, callBack) => {
@@ -384,6 +385,32 @@ router.get("/localDesc", async function (req, res) {
 
 });
 
+router.get("/localdescricao", async function (req, res) {
+  
+  var results = null;
+  results = await usuarioDAL.Pesquisar(req.body.search);
+  var dadosForm = {
+    descricao_1: req.body.andares,
+    descricao_2: req.body.escada,
+    descricao_3: req.body.elevadores,
+    descricao_5: req.body.piso,
+    descricao_4: req.body.rampa,
+    descricao_6: req.body.acessibilidade,
+    idlocal: req.body.idLocal
+  };
+
+  try {
+    res.render("pages/localdescricao", { local: results, valores: dadosForm});
+    
+    
+  } catch (error) {
+    res.status(500).send("Erro ao carregar a página de descrição!");
+    console.log("Erro ao carregar a página de descrição!");
+    console.log(error)
+  }
+
+});
+
 router.get("/visitados", function (req, res) {
   res.render("pages/visitados");
 });
@@ -523,15 +550,16 @@ router.get("/resultadosPesquisa", async function (req, res) {
     let pagina = req.query.pagina == undefined ? 1 : req.query.pagina;
     var results = null;
     inicio = parseInt(pagina - 1) * 3
-    results = await LocaisDAL.FindPageTarefa(req.query.pesquisa, inicio, 3);
+    // results = await LocaisDAL.FindPageTarefa(req.query.pesquisa, inicio, 3);
+    results = await UsuarioDAL.Pesquisar(req.body.search.value)
     totReg = await LocaisDAL.TotalRegTarefa(req.query.pesquisa);
+    console.log("Almofada")
     console.log(results);
 
     totPaginas = Math.ceil(totReg[0].total / 3);
 
     var paginador = totReg[0].total <= 3 ? null : { "pagina_atual": pagina, "total_reg": totReg[0].total, "total_paginas": totPaginas, pesquisa:contem }
-
-    res.render("pages/resultadosPesquisa", { tarefas: results, paginador: paginador });
+    res.render("pages/resultadosPesquisa", { locais: results, paginador: paginador });
 
   } catch (e) {
     console.log(e); // console log the error so we can see it in the console
@@ -539,7 +567,7 @@ router.get("/resultadosPesquisa", async function (req, res) {
   }
 });
 
-router.post("/pesquisa", async function (req, res) {
+router.post("/resultadosPesquisa", async function (req, res) {
   res.locals.moment = moment;
   if (req.body.pesquisa) {
     var contem = req.body.pesquisa;
@@ -552,8 +580,12 @@ router.post("/pesquisa", async function (req, res) {
     let pagina = req.query.pagina == undefined ? 1 : req.query.pagina;
     var results = null;
     inicio = parseInt(pagina - 1) * 3
-    results = await LocaisDAL.FindPageTarefa(req.body.pesquisa, inicio, 3);
-    totReg = await LocaisDAL.TotalRegTarefa(req.body.pesquisa);
+    // results = await LocaisDAL.FindPageTarefa(req.body.pesquisa, inicio, 3);
+    // totReg = await LocaisDAL.TotalRegTarefa(req.body.pesquisa);
+    // console.log(results);
+    results = await usuarioDAL.Pesquisar(req.body.search);
+    totReg = await LocaisDAL.TotalRegTarefa(req.query.pesquisa);
+    console.log("Almofada");
     console.log(results);
 
     totPaginas = Math.ceil(totReg[0].total / 3);

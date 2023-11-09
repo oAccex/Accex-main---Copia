@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/home.css" />
+    <link rel="stylesheet" href="css/caixasLocais.css">
+    <link rel="stylesheet" href="css/slider.css" />
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/header-footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <script src="js/menu.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.css" />​
+    <script src="https://cdn.jsdelivr.net/npm/simple-notify@0.5.5/dist/simple-notify.min.js"></script>
+    <script type="text/javascript" src="//acc.magixite.com/freeCode?oatk=2133516"></script>
+    <script src="js/notify.js"></script>
+    <link rel="stylesheet" href="js/pesquisa.js">
+
+    <style>
+
+        .place{
+            margin: 20px auto;
+        }
+
+    </style>
+
+  </head>
+
+  <body>
+    <header>
+
+      <span></span>
+      <a href="/"><img src="image/logoAccex-azul.png" alt="Logo" /></a>
+      <img src="image/iconePERFIL.png" id="usuario" alt="User" class="open-menu"/>
+      <nav class="menu-container">
+        <ul>
+
+
+
+            <li><a href="/login" id="btn-entrar">Entrar</a></li>
+            <li><a href="cadastro">Cadastro</a></li>
+            <li><a href="perfil ">Perfil</a></li>
+
+            <!-- <script>
+              var btn_entrar = document.getElementById("btn-entrar");
+              btn_entrar.style.display = "none";
+
+              var sair_btn = document.getElementById("sair-btn");
+              sair_btn.style.display = "none";
+             </script> -->
+
+
+              <li><a href="perfil">Perfil</a></li>
+              <li><a href="cadastroLocais" id="add-local">Adicionar local</a></li>
+              <li><a href="/sair" method="POST" id="sair-btn">Sair</a></li>
+
+
+          
+        </ul>
+      </nav>
+    </header>
+    <main>
+
+        <div class="place">
+            <img
+              src="https://source.unsplash.com/random/360x200/?nature"
+              alt="Imagem Local"
+            />
+            <div class="info-place">
+              <div>
+                <h2>Faculdade FATEC</h2>
+                <span class="rating">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star no"></i>
+                  <i class="fa-solid fa-star no"></i>
+                </span>
+              </div>
+              <div class="address">
+                <img src="image/inoceLOCALIZ.png" alt="Ícone local" />
+                <p>Avenida Carlos Capriotti, 123 Centro de Barueri - SP</p>
+              </div>
+              <div class="desc">
+                <p>
+                  Nesta faculdade, você aprenderá com <br> facilidade de acesso para inclusão.
+                </p>
+              </div>
+              <a href="localDesc"><p>Mais detalhes</p></a>
+            </div>
+          </div>
+
+    </main>
+
+    <footer>
+      <a href="faleConosco">Fale conosco</a>
+      <div class="rodape-info">
+        <img src="image/logoAccex-branca.png" alt="" id="logo">
+        <p>E-mail <br/> accex@gmail.com</p>
+        <div class="socialMedia">
+          <div><img src="image/logoFaceb.png" alt="Ícone Facebook" /></div><div>
+            <img src="image/logoInstag.png" alt="Ícone Instagram"/>
+          </div><div>
+            <img src="image/logoX.png" alt="Ícone X"/>
+          </div></div>
+      </div>
+    </footer>
+  </body>
+  <script src="js/slider.js"></script>
+</html>

@@ -103,8 +103,10 @@
         <label for="password">Senha:</label>
         <input type="password" id="password" name="password"value="<%= valores.password %>" class="<%= avisoErro.password %>" placeholder="Senha"/>
         <span> <%= msgErro.password %> </span>
-        <input type="checkbox" name="termos" id="termos" onclick="mostratermo()" required>
-        <label for="termos"> Li e concordo com os <a>termos requisitados</a></label>
+        <div class="lieconcordo">
+          <input type="checkbox" name="termos" id="termosconcordo" onclick="mostratermo()" required>
+          <label for="termos"> <p>Li e concordo com os <a>termos requisitados</a></p></label>
+      </div>
         <div class="grup-bcad">
           <button type="submit" id="butca">Cadastrar</button>
         </div>

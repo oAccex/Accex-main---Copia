@@ -56,7 +56,8 @@
           </section>
           <section class="desc-local">
                 <div class="title-local">
-                    <h1><%= local.nome %></h1>
+                    <h1><%= local.nome %> Itb Brasilio Flores de Azevedo</h1>
+                    <% console.log("Apenas um teste = " + local.nome) %>
                     <span class="rating">
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
@@ -70,7 +71,7 @@
                     <div><img src="image/iconeTELEF.png" alt=""><p>(11) 4198-3086</p></div>
                 </div>
                 <div class="end-text">
-                    <div><img src="image/inoceLOCALIZ.png" alt="Ícone localização"><p><%= local.rua %>, <%=local.bairro%>, <%=local.cep%>, <%=local.num_residen%>, <%=local.cidade%></p></div>
+                    <div><img src="image/inoceLOCALIZ.png" alt="Ícone localização"><p><%= local.rua %>rua bandeirantes, <%=local.bairro%>belval, <%=local.cep%>11111-111, <%=local.num_residen%>138, <%=local.cidade%>barueri</p></div>
                     <!-- <p>Nesta faculdade, você aprenderá com facilidade de acesso para inclusão</p> -->
                 </div>
                 <div class="desc-imgs">
@@ -92,7 +93,7 @@
                   %>
                   <p>Este local <strong>possui</strong> escada rolante</p>
                   <% } else { %>
-                    <p>Este local <strong style="color: rgb(255, 60, 0);">não possui</strong> escada rolante</p>
+                    <p>Este local <strong>possui</strong> escada rolante</p>
 <% } %>
                 
             </span>
@@ -111,7 +112,7 @@
                   %>
                   <p>Este local <strong>possui</strong> rampa de acesso</p>
                   <% } else { %>
-                    <p>Este local <strong style="color: rgb(255, 60, 0);">não possui</strong> rampa de acesso</p>
+                    <p>Este local <strong>possui</strong> rampa de acesso</p>
 <% } %>
             </span>
             <span>
@@ -129,13 +130,13 @@
                   %>
                   <p>Este local <strong>possui</strong> andares</p>
                   <% } else { %>
-                    <p>Este local <strong style="color: rgb(255, 60, 0);">não possui</strong> estacionamento preferencial</p>
+                    <p>Este local <strong>possui</strong> estacionamento preferencial</p>
 <% } %>
             </span>
             <span>
                 <img src="image/inoceCHECK.png" alt="Ícone local acessível">
                 
-                <p>Este local  é <strong><%=valores.descricao_6%></strong> possui acessivel</p>
+                <p>Este local <strong><%=valores.descricao_6%></strong> possui acessibilidade</p>
             </span>
         </section>
         <section class="desc-avaliacoes">

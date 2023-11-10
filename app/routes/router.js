@@ -385,10 +385,22 @@ router.get("/localDesc", async function (req, res) {
 
 });
 
+router.post("/desativar-usuario/:id", verificarUsuAutorizado([2, 3], "pages/restrito"), verificarUsuAutenticado, async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    await usuarioDAL.delete(id);
+    res.status(200).send("Usuário desativado com sucesso.");
+    console.log("Usuário desativado com sucesso.");
+  } catch (error) {
+    console.error("Erro ao desativar o usuário:", error);
+    res.status(500).send("Erro ao desativar o usuário.");
+    console.log("Erro ao desativar o usuário.");
+  }
+});
+
 router.get("/localdescricao", async function (req, res) {
-  
-  var results = null;
-  results = await usuarioDAL.Pesquisar(req.body.search);
+
   var dadosForm = {
     descricao_1: req.body.andares,
     descricao_2: req.body.escada,
@@ -400,7 +412,13 @@ router.get("/localdescricao", async function (req, res) {
   };
 
   try {
+    results = await usuarioDAL.Pesquisar(req.body.localreferente);
+    totReg = await LocaisDAL.TotalRegTarefa(req.query.pesquisa);
+    console.log(results);
+
     res.render("pages/localdescricao", { local: results, valores: dadosForm});
+    console.log("estes sao os valores = " + dadosForm)
+    console.log("estes sao os valores 2 = " + results)
     
     
   } catch (error) {

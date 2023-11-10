@@ -88,7 +88,19 @@ module.exports = class UsuarioDAL {
 
     Pesquisar(texto) {
         return new Promise((resolve, reject) => {
-            this.accex.query("SELECT * from local WHERE nome = ?", [texto], function (error, elements) {
+            this.accex.query("SELECT * from local WHERE nome like CONCAT('%',?,'%')", [texto], function (error, elements) {
+                    if (error) {
+                        return reject(error);
+                    }
+
+                    return resolve(elements);
+                });
+        });
+    };
+
+    encontrarID(idlocal) {
+        return new Promise((resolve, reject) => {
+            this.accex.query("SELECT * from local WHERE idlocal = ?", [idlocal], function (error, elements) {
                     if (error) {
                         return reject(error);
                     }

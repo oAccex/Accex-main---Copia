@@ -91,3 +91,14 @@
     color: #ccc;
 }
 
+.resultsPesquisa{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #00518C;
+    margin: 0 auto;
+}
+
+.resultsPesquisa p{
+    font-size: 20px;
+}

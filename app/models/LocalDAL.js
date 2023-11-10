@@ -6,7 +6,7 @@ module.exports = class UsuarioDAL {
 
     findAll() {
         return new Promise((resolve, reject) => {
-            this.accex.query("SELECT u.id_usuario, u.nome_usuario, u.user_usuario, " ,
+            this.accex.query("SELECT .id_usuario, u.nome_usuario, u.user_usuario, " ,
              function (error, elements) {
                     if (error) {
                         return reject(error);
@@ -31,7 +31,7 @@ module.exports = class UsuarioDAL {
         });
     };
 
-    findID(idlocal) {
+    encontrarID(idlocal) {
         return new Promise((resolve, reject) => {
             this.accex.query("SELECT * from local WHERE idlocal = ?", [idlocal], function (error, elements) {
                     if (error) {

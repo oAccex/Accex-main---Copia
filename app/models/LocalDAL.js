@@ -31,7 +31,7 @@ module.exports = class UsuarioDAL {
         });
     };
 
-    encontrarID(idlocal) {
+    findID(idlocal) {
         return new Promise((resolve, reject) => {
             this.accex.query("SELECT * from local WHERE idlocal = ?", [idlocal], function (error, elements) {
                     if (error) {

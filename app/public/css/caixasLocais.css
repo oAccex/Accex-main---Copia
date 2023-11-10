@@ -102,3 +102,12 @@
 .resultsPesquisa p{
     font-size: 20px;
 }
+
+#voltar_page{
+    margin-right: 25px;
+    background: linear-gradient(to right, #00518C, #377ED0);
+    color: white;
+    border-radius: 5px;
+    padding-left: 2px;
+    padding-right: 2px;
+}
